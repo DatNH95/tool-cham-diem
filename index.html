@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chấm điểm Ban Giám khảo – Travel Awards 2026</title>
+  <link rel="stylesheet" href="shared/utilities.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: #f3faf8;
+      background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230d9488' stroke-width='1' stroke-opacity='0.07'%3E%3Cpath d='M-100 120 C 120 40, 280 240, 480 120 C 560 70, 640 90, 700 140'/%3E%3Cpath d='M-100 240 C 140 140, 300 340, 520 210 C 600 160, 660 190, 720 240'/%3E%3Cpath d='M-100 380 C 100 300, 260 480, 480 350 C 580 290, 640 320, 720 380'/%3E%3Ccircle cx='480' cy='120' r='95' stroke-opacity='0.04'/%3E%3C/g%3E%3Cg fill='none' stroke='%23eab308' stroke-width='1.5' stroke-dasharray='6 6' stroke-opacity='0.12'%3E%3Cpath d='M 40 560 Q 220 360 360 410 T 580 80'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+      color: #0f172a;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .teal-btn-primary {
+      background-color: #0d9488;
+      color: #ffffff;
+      transition: all 0.18s ease;
+    }
+    .teal-btn-primary:hover:not(:disabled) {
+      background-color: #0f766e;
+    }
+    .teal-btn-primary:disabled {
+      background-color: #e2e8f0;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+  </style>
+  <link rel="stylesheet" href="shared/editor-workspace.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER TỐI GIẢN CHUẨN TRANG KHẢO SÁT -->
+  <div id="main"><template shadowrootmode="open"><link rel="stylesheet" href="shared/travel-awards.css"><div class="home"><header class="home-header home-header--survey"><div class="layout-container home-header-inner"><div class="home-header-brand-row"><a class="home-header-logo" href="https://vnexpress.net/du-lich/travel-awards" aria-label="Travel Awards — Trang chủ"><img class="brand-graphic brand-graphic--logo" src="assets/key-visual/logo.svg" alt="Travel Awards 2026" width="1000" height="350"></a></div></div></header></div></template></div>
+<section aria-label="Tiến trình chấm điểm" class="border-b border-slate-200 bg-white/95"><div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3"><span class="text-sm font-semibold text-teal-700">Chấm điểm Ban Giám khảo</span><div id="stepIndicatorBar" class="flex items-center gap-1 sm:gap-1.5"></div></div></section>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6">
+    <div id="appStepContainer"></div>
+  </main>
+<div id="travelAwardsFooter"><template shadowrootmode="open"><link rel="stylesheet" href="shared/travel-awards.css"><div class="home"><footer class="home-footer"><div class="layout-container">
+    <div class="home-footer-navigation"><a href="/#main" aria-label="Travel Awards — Trang chủ"><img class="brand-graphic brand-graphic--logo" src="assets/key-visual/logo.svg" alt="Travel Awards 2026" width="1000" height="350"></a><nav aria-label="Điều hướng chân trang"><a href="/#main" aria-label="Trang chủ"><img src="assets/key-visual/home.svg" alt="" width="20" height="20" ></a><a href="/#awards">Giải thưởng</a><a href="/the-le">Thể lệ</a><a href="/#news">Tin tức</a></nav></div>
+    <div class="home-footer-utilities"><a class="home-footer-utility" href="https://vnexpress.net/">← Trở lại VnExpress</a><div><button type="button" class="home-footer-utility home-footer-utility--facebook" disabled title="Fanpage sẽ được cập nhật"><span class="home-footer-icon home-footer-icon--facebook" aria-hidden="true" />Fanpage</button><a class="home-footer-utility home-footer-utility--feedback" href="mailto:sukien@vnexpress.net"><span class="home-footer-icon home-footer-icon--feedback" aria-hidden="true" />Góp ý cho sự kiện</a><a class="home-footer-utility" href="https://vnexpress.net/dieu-khoan-su-dung">Điều khoản sử dụng</a><a href="#main" target="_self">Về đầu trang ↑</a></div></div>
+    <div class="home-footer-information"><div><p class="home-footer-label">Báo tiếng Việt nhiều người xem nhất</p><p>Thuộc Bộ Khoa học và Công nghệ</p><p>Số giấy phép: 548/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 24/8/2021</p><dl><div><dt>Tổng biên tập:</dt><dd>Phạm Văn Hiếu</dd></div><div><dt>Địa chỉ:</dt><dd>Tầng 10, Tòa A FPT Tower, số 10 Phạm Văn Bạch, <span class="home-footer-address-locality">phường Cầu Giấy, Hà Nội</span></dd></div><div><dt>Đường dây nóng:</dt><dd><a href="tel:0838880123">083 888 0123</a></dd></div><div><dt>Email:</dt><dd><a href="mailto:bandoc@vnexpress.net">bandoc@vnexpress.net</a></dd></div></dl></div><div><p class="home-footer-label">Thông tin liên hệ</p><dl><div><dt>Email:</dt><dd><a href="mailto:sukien@vnexpress.net">sukien@vnexpress.net</a></dd></div></dl><p class="home-footer-label">Tài trợ sự kiện</p><dl><div><dt>Đại diện:</dt><dd>Lương Thị Thanh Tú</dd></div><div><dt>Điện thoại:</dt><dd><a href="tel:+842473009999;ext=4567">+84 (24) 73009999/ Ext: 4567</a></dd></div><div><dt>Email:</dt><dd><a href="mailto:tultt@fpt.com">tultt@fpt.com</a></dd></div></dl></div></div>
+    <div class="home-footer-bottom"><span>© 1997–2026. Toàn bộ bản quyền thuộc VnExpress.</span></div>
+  </div></footer></div></template></div>
+
+  <!-- TOAST THÔNG BÁO GỌN -->
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-lg text-xs font-medium flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+    <span id="toastMessage">Đã lưu</span>
+  </div>
+
+  <script>
+    // ============================================================================
+    // 1. DỮ LIỆU 15 HẠNG MỤC (6 TRỤ CỘT & 9 TIÊN PHONG) VÀ 59 TIÊU CHÍ
+    // ============================================================================
+    const AWARD_CATEGORIES = [
+      // ------------------- TRỤ CỘT (6 HẠNG MỤC CON) -------------------
+      {
+        id: "tru-cot-1",
+        code: "DD",
+        group: "tru-cot",
+        groupLabel: "Trụ cột",
+        name: "Điểm đến du lịch của năm",
+        councilWeight: 0.70,
+        readerWeight: 0.30,
+        criteriaCount: 5,
+        criteria: [
+          {
+            code: "DD-1",
+            name: "Trách nhiệm bền vững: bảo tồn di sản, môi trường & cộng đồng",
+            isQuant: false,
+            weight: 0.15,
+            question: "Điểm đến có hành động bảo tồn/môi trường/cộng đồng cụ thể, có số liệu kết quả trong kỳ không?",
+            levels: {
+              1: "Có chủ trương bảo tồn, môi trường, cộng đồng; hoạt động còn đơn lẻ, ít số liệu",
+              2: "Có 1–2 hoạt động cụ thể, kết quả mô tả định tính",
+              3: "Có 3–5 hoạt động cụ thể, có số liệu kết quả trong kỳ",
+              4: "Có chương trình bài bản, nhiều chỉ số đo được (rác thải, di tích tu bổ, hộ dân hưởng lợi…)",
+              5: "Chương trình hệ thống, chỉ số đo được rõ, được bên thứ ba ghi nhận; là hình mẫu cho địa phương khác"
+            }
+          },
+          {
+            code: "DD-2",
+            name: "Tăng trưởng lượt khách & doanh thu du lịch",
+            isQuant: true,
+            weight: 0.25,
+            question: "Chỉ số tổng hợp = 50% tăng trưởng lượt khách + 50% tăng trưởng tổng thu (kỳ xét giải so cùng kỳ); xếp hạng trong shortlist",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          },
+          {
+            code: "DD-3",
+            name: "Phát triển sản phẩm mới, hạ tầng & kết nối giao thông",
+            isQuant: false,
+            weight: 0.25,
+            question: "Trong kỳ, điểm đến có sản phẩm/hạ tầng/kết nối mới tạo khác biệt rõ cho du khách không?",
+            levels: {
+              1: "Có sản phẩm/hạ tầng mới quy mô nhỏ hoặc đang hoàn thiện",
+              2: "Có 1–2 sản phẩm/hạ tầng mới đã khai thác, tác động cục bộ",
+              3: "Có nhiều sản phẩm/hạ tầng mới đã khai thác, tạo thêm lựa chọn rõ cho du khách",
+              4: "Có sản phẩm/hạ tầng/kết nối mới quy mô lớn, đã khai thác và thu hút khách rõ",
+              5: "Sản phẩm/hạ tầng/đường bay mới quy mô lớn, tạo động lực tăng trưởng nổi bật nhất trong shortlist"
+            }
+          },
+          {
+            code: "DD-4",
+            name: "Chính sách, môi trường đầu tư & xúc tiến du lịch",
+            isQuant: false,
+            weight: 0.15,
+            question: "Chính sách/xúc tiến của tỉnh có mới, cụ thể và đã triển khai thực tế không?",
+            levels: {
+              1: "Có kế hoạch, chính sách xúc tiến đã ban hành, triển khai bước đầu",
+              2: "Có chính sách/chương trình xúc tiến đã triển khai, quy mô nhỏ",
+              3: "Có chính sách/chương trình xúc tiến đã triển khai, quy mô trung bình, có kết quả ban đầu",
+              4: "Chính sách ưu đãi đầu tư, kích cầu, xúc tiến quốc tế đã triển khai, có kết quả đo được",
+              5: "Chính sách đột phá, triển khai đồng bộ, kết quả đo được vượt trội; được ghi nhận rộng rãi"
+            }
+          },
+          {
+            code: "DD-5",
+            name: "Độ phủ truyền thông & nhận diện thương hiệu điểm đến",
+            isQuant: false,
+            weight: 0.20,
+            question: "Điểm đến có độ phủ truyền thông và mức nhận diện thương hiệu nổi bật trong kỳ không?",
+            levels: {
+              1: "Được nhắc đến trên truyền thông ở mức cơ bản; nhận diện thương hiệu đang hình thành",
+              2: "Được nhắc đến định kỳ trên truyền thông trong nước; có thông điệp thương hiệu",
+              3: "Được nhắc đến thường xuyên trong nước; nhận diện thương hiệu rõ, cảm nhận chủ yếu tích cực",
+              4: "Độ phủ cao trong nước, bắt đầu có độ phủ quốc tế; cảm nhận tích cực cao",
+              5: "Độ phủ cao cả trong nước và quốc tế, thương hiệu rõ nét, cảm nhận tích cực vượt trội trong shortlist"
+            }
+          }
+        ]
+      },
+      {
+        id: "tru-cot-2",
+        code: "LH",
+        group: "tru-cot",
+        groupLabel: "Trụ cột",
+        name: "Doanh nghiệp lữ hành của năm",
+        councilWeight: 0.60,
+        readerWeight: 0.40,
+        criteriaCount: 5,
+        criteria: [
+          {
+            code: "LH-1",
+            name: "Trách nhiệm bền vững: thực hành du lịch có trách nhiệm với điểm đến & đối tác địa phương",
+            isQuant: false,
+            weight: 0.15,
+            question: "Doanh nghiệp có chính sách và hoạt động du lịch có trách nhiệm được áp dụng vào sản phẩm thực tế không?",
+            levels: {
+              1: "Có chính sách du lịch có trách nhiệm ở mức cam kết",
+              2: "Có chính sách và một số hoạt động đơn lẻ",
+              3: "Có chính sách và hoạt động đều đặn, áp dụng vào một phần sản phẩm",
+              4: "Tích hợp vào phần lớn sản phẩm (nhà cung cấp địa phương, giảm rác, bảo vệ di sản), có số liệu",
+              5: "Tích hợp toàn diện, có số liệu và chứng nhận (Travelife…); dẫn dắt thực hành của ngành"
+            }
+          },
+          {
+            code: "LH-2",
+            name: "Quy mô, doanh thu & tốc độ tăng trưởng kinh doanh",
+            isQuant: true,
+            weight: 0.20,
+            question: "Chỉ số tổng hợp = 40% doanh thu + 30% tăng trưởng doanh thu + 30% lượt khách; xếp hạng trong cùng phân khúc",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          },
+          {
+            code: "LH-3",
+            name: "Đa dạng & chất lượng sản phẩm tour",
+            isQuant: false,
+            weight: 0.25,
+            question: "Danh mục tour có đa dạng, khác biệt và được thiết kế tốt không?",
+            levels: {
+              1: "Danh mục tour phổ thông, chất lượng ổn định",
+              2: "Có 1–2 sản phẩm khác biệt",
+              3: "Có nhiều sản phẩm khác biệt, thiết kế tốt",
+              4: "Danh mục đa dạng, nhiều sản phẩm chuyên đề/độc quyền, thiết kế chuyên nghiệp",
+              5: "Danh mục đa dạng, nhiều sản phẩm độc quyền, tạo xu hướng thị trường"
+            }
+          },
+          {
+            code: "LH-4",
+            name: "Năng lực vận hành, đội ngũ hướng dẫn viên & CSKH",
+            isQuant: false,
+            weight: 0.25,
+            question: "Doanh nghiệp có đủ năng lực vận hành an toàn, chuyên nghiệp và chăm sóc khách tốt không?",
+            levels: {
+              1: "Đội ngũ và quy trình vận hành đáp ứng yêu cầu cơ bản",
+              2: "Có HDV cơ hữu, quy trình CSKH cơ bản",
+              3: "Đội ngũ HDV cơ hữu vừa đủ, quy trình CSKH và xử lý sự cố rõ ràng",
+              4: "Đội ngũ HDV cơ hữu lớn, được đào tạo định kỳ, quy trình CSKH chuẩn hóa",
+              5: "Đội ngũ lớn, đào tạo bài bản, quy trình xử lý sự cố & CSKH chuẩn hóa ở mức quốc tế"
+            }
+          },
+          {
+            code: "LH-5",
+            name: "Ứng dụng công nghệ, đổi mới sản phẩm",
+            isQuant: false,
+            weight: 0.15,
+            question: "Công nghệ/đổi mới có được áp dụng thực tế và tạo giá trị cho khách không?",
+            levels: {
+              1: "Có website giới thiệu và kênh liên hệ trực tuyến",
+              2: "Có đặt tour trực tuyến hoặc CRM",
+              3: "Có đặt tour, thanh toán trực tuyến và CRM; có cải tiến sản phẩm",
+              4: "Nền tảng số tích hợp nhiều khâu (đặt, thanh toán, CSKH), có sản phẩm đổi mới",
+              5: "Nền tảng số đồng bộ, khai thác dữ liệu khách; có sản phẩm đổi mới dẫn dắt thị trường"
+            }
+          }
+        ]
+      },
+      {
+        id: "tru-cot-3",
+        code: "KS",
+        group: "tru-cot",
+        groupLabel: "Trụ cột",
+        name: "Khách sạn của năm",
+        councilWeight: 0.50,
+        readerWeight: 0.50,
+        criteriaCount: 5,
+        criteria: [
+          {
+            code: "KS-1",
+            name: "Thực hành bền vững, bảo vệ môi trường",
+            isQuant: false,
+            weight: 0.10,
+            question: "Khách sạn có thực hành bền vững hệ thống, có chứng nhận hoặc số liệu không?",
+            levels: {
+              1: "Có các biện pháp tiết kiệm năng lượng, giảm nhựa cơ bản",
+              2: "Có chương trình nội bộ về môi trường",
+              3: "Có chương trình nội bộ và theo dõi chỉ số năng lượng/nước/rác",
+              4: "Có Nhãn Bông sen xanh hoặc chứng nhận tương đương, chỉ số cải thiện qua các năm",
+              5: "Có chứng nhận quốc tế (Green Key, EarthCheck, LEED/EDGE…), chỉ số cải thiện rõ, công bố minh bạch"
+            }
+          },
+          {
+            code: "KS-2",
+            name: "Chất lượng cơ sở vật chất & tiện nghi",
+            isQuant: false,
+            weight: 0.25,
+            question: "Cơ sở vật chất có đạt và vượt chuẩn hạng sao, được duy tu/nâng cấp không?",
+            levels: {
+              1: "Đạt chuẩn hạng sao, duy trì tốt",
+              2: "Tốt so với hạng sao; có duy tu định kỳ",
+              3: "Tốt so với hạng sao; có nâng cấp một phần trong kỳ",
+              4: "Vượt chuẩn hạng sao, có đầu tư/nâng cấp đáng kể trong kỳ",
+              5: "Vượt chuẩn rõ rệt, đầu tư lớn trong kỳ, tiện nghi nổi bật nhất phân khúc"
+            }
+          },
+          {
+            code: "KS-3",
+            name: "Chất lượng dịch vụ & đội ngũ nhân sự",
+            isQuant: false,
+            weight: 0.30,
+            question: "Đội ngũ có được đào tạo bài bản và quy trình dịch vụ chuẩn hóa không?",
+            levels: {
+              1: "Có quy trình dịch vụ và đào tạo nhân sự cơ bản",
+              2: "Có chương trình đào tạo định kỳ",
+              3: "Đào tạo định kỳ, tỷ lệ nhân sự có chứng chỉ nghiệp vụ ở mức khá",
+              4: "Tỷ lệ chứng chỉ cao, quy trình dịch vụ chuẩn hóa",
+              5: "Tỷ lệ chứng chỉ cao, giờ đào tạo/người cao, quy trình chuẩn quốc tế, có giải thưởng dịch vụ"
+            }
+          },
+          {
+            code: "KS-4",
+            name: "Đổi mới trải nghiệm khách hàng",
+            isQuant: false,
+            weight: 0.15,
+            question: "Khách sạn có sáng kiến mới trong kỳ làm khác biệt trải nghiệm không?",
+            levels: {
+              1: "Duy trì chất lượng trải nghiệm hiện có, có cải tiến nhỏ",
+              2: "Có 1–2 cải tiến dịch vụ/tiện ích trong kỳ",
+              3: "Có cải tiến tạo khác biệt vừa phải cho khách",
+              4: "Có sáng kiến trải nghiệm mới, khác biệt rõ",
+              5: "Sáng kiến trải nghiệm mới, độc đáo, được thị trường/báo chí ghi nhận"
+            }
+          },
+          {
+            code: "KS-5",
+            name: "Điểm đánh giá trên các nền tảng đặt phòng (OTA) và review trong năm",
+            isQuant: true,
+            weight: 0.20,
+            question: "Điểm đánh giá OTA bình quân có trọng số theo số lượt đánh giá; xếp hạng trong shortlist",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          }
+        ]
+      },
+      {
+        id: "tru-cot-4",
+        code: "RS",
+        group: "tru-cot",
+        groupLabel: "Trụ cột",
+        name: "Khu nghỉ dưỡng của năm (Resort)",
+        councilWeight: 0.50,
+        readerWeight: 0.50,
+        criteriaCount: 5,
+        criteria: [
+          {
+            code: "RS-1",
+            name: "Thực hành bền vững, bảo vệ môi trường",
+            isQuant: false,
+            weight: 0.10,
+            question: "Resort có thực hành bền vững hệ thống, có chứng nhận hoặc số liệu không?",
+            levels: {
+              1: "Có các biện pháp tiết kiệm năng lượng, giảm nhựa cơ bản",
+              2: "Có chương trình nội bộ về môi trường",
+              3: "Có chương trình nội bộ và theo dõi chỉ số năng lượng/nước/rác",
+              4: "Có chứng nhận bền vững, chỉ số cải thiện, có hoạt động bảo tồn hệ sinh thái",
+              5: "Có chứng nhận quốc tế, chỉ số cải thiện rõ, bảo tồn hệ sinh thái tại chỗ bài bản"
+            }
+          },
+          {
+            code: "RS-2",
+            name: "Không gian, kiến trúc & cảnh quan",
+            isQuant: false,
+            weight: 0.25,
+            question: "Kiến trúc, cảnh quan có chất lượng thiết kế cao và hài hòa với tự nhiên không?",
+            levels: {
+              1: "Thiết kế đạt chuẩn, cảnh quan được chăm sóc",
+              2: "Thiết kế đẹp, có điểm nhấn cảnh quan",
+              3: "Thiết kế đẹp, cảnh quan chăm chút, hài hòa với tự nhiên",
+              4: "Kiến trúc có dấu ấn riêng, trải nghiệm không gian đặc sắc",
+              5: "Kiến trúc có giải thưởng thiết kế, cảnh quan hài hòa tự nhiên, không gian là điểm đến tự thân"
+            }
+          },
+          {
+            code: "RS-3",
+            name: "Dịch vụ nghỉ dưỡng cao cấp (spa, ẩm thực, giải trí)",
+            isQuant: false,
+            weight: 0.25,
+            question: "Hệ thống dịch vụ có đầy đủ, chất lượng cao và đồng bộ không?",
+            levels: {
+              1: "Có đủ dịch vụ nghỉ dưỡng cơ bản",
+              2: "Có spa, ẩm thực, giải trí ở mức tốt",
+              3: "Đủ hạng mục spa/ẩm thực/giải trí, chất lượng tốt, đồng bộ",
+              4: "Dịch vụ cao cấp, có cá nhân hóa trải nghiệm",
+              5: "Dịch vụ cao cấp có thương hiệu riêng/giải thưởng (spa, nhà hàng), cá nhân hóa trọn vẹn"
+            }
+          },
+          {
+            code: "RS-4",
+            name: "Bản sắc địa phương & tính độc đáo",
+            isQuant: false,
+            weight: 0.20,
+            question: "Resort có đưa văn hóa, nhân lực, nguyên liệu địa phương vào trải nghiệm không?",
+            levels: {
+              1: "Có yếu tố địa phương trong trang trí hoặc ẩm thực",
+              2: "Có yếu tố địa phương ở 2 khía cạnh (trang trí, ẩm thực, hoạt động)",
+              3: "Yếu tố địa phương rõ ở kiến trúc, ẩm thực và hoạt động",
+              4: "Bản sắc địa phương xuyên suốt; sử dụng nhiều nhân sự, nguyên liệu địa phương",
+              5: "Bản sắc địa phương xuyên suốt, độc đáo; tỷ lệ nhân sự/nguyên liệu địa phương cao, góp phần bảo tồn văn hóa"
+            }
+          },
+          {
+            code: "RS-5",
+            name: "Điểm đánh giá trên các nền tảng đặt phòng (OTA) và review trong năm",
+            isQuant: true,
+            weight: 0.20,
+            question: "Điểm đánh giá OTA bình quân có trọng số theo số lượt đánh giá; xếp hạng trong shortlist",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          }
+        ]
+      },
+      {
+        id: "tru-cot-5",
+        code: "HK",
+        group: "tru-cot",
+        groupLabel: "Trụ cột",
+        name: "Hãng hàng không du lịch của năm",
+        councilWeight: 0.60,
+        readerWeight: 0.40,
+        criteriaCount: 6,
+        criteria: [
+          {
+            code: "HK-1",
+            name: "Trách nhiệm bền vững: giảm phát thải, nhiên liệu bền vững",
+            isQuant: false,
+            weight: 0.15,
+            question: "Hãng có lộ trình và hành động giảm phát thải cụ thể không?",
+            levels: {
+              1: "Có cam kết giảm phát thải",
+              2: "Có chương trình tiết kiệm nhiên liệu",
+              3: "Có đội tàu thế hệ mới và chương trình tiết kiệm nhiên liệu đo được",
+              4: "Có lộ trình net-zero, bắt đầu sử dụng SAF",
+              5: "Lộ trình net-zero rõ, đã sử dụng SAF, chương trình bù đắp carbon minh bạch"
+            }
+          },
+          {
+            code: "HK-2",
+            name: "Mạng đường bay, tần suất & đường bay du lịch mới",
+            isQuant: false,
+            weight: 0.25,
+            question: "Mạng bay và đường bay mới có đóng góp rõ cho kết nối du lịch Việt Nam không?",
+            levels: {
+              1: "Duy trì mạng bay đến các điểm du lịch chính",
+              2: "Tăng tần suất trên một số đường bay du lịch",
+              3: "Có 1–2 đường bay mới hoặc tăng tần suất đáng kể",
+              4: "Mở nhiều đường bay mới đến/đi điểm du lịch",
+              5: "Mở nhiều đường bay mới, mở thị trường khách mới cho Việt Nam"
+            }
+          },
+          {
+            code: "HK-3",
+            name: "Chất lượng dịch vụ, tỷ lệ đúng giờ",
+            isQuant: true,
+            weight: 0.25,
+            question: "Chỉ số = tỷ lệ đúng giờ (OTP) trong kỳ theo nguồn độc lập; xếp hạng trong shortlist",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          },
+          {
+            code: "HK-4",
+            name: "Chính sách giá & chương trình kích cầu du lịch",
+            isQuant: false,
+            weight: 0.10,
+            question: "Hãng có chương trình giá/kích cầu gắn với điểm đến du lịch, có kết quả không?",
+            levels: {
+              1: "Có chương trình giá khuyến mại chung",
+              2: "Có chương trình khuyến mại theo mùa du lịch",
+              3: "Có chương trình kích cầu gắn với điểm đến",
+              4: "Chương trình kích cầu gắn điểm đến, quy mô lớn",
+              5: "Chương trình kích cầu gắn điểm đến, quy mô lớn, có số liệu hành khách tăng rõ"
+            }
+          },
+          {
+            code: "HK-5",
+            name: "Hợp tác quảng bá điểm đến với địa phương/doanh nghiệp",
+            isQuant: false,
+            weight: 0.15,
+            question: "Hãng có hợp tác quảng bá điểm đến cụ thể với địa phương/doanh nghiệp không?",
+            levels: {
+              1: "Có hoạt động quảng bá điểm đến trên kênh của hãng",
+              2: "Có 1–2 thỏa thuận hợp tác, hoạt động ở mức truyền thông",
+              3: "Có nhiều thỏa thuận hợp tác, có hoạt động chung",
+              4: "Nhiều chương trình hợp tác có ngân sách, sự kiện",
+              5: "Nhiều chương trình hợp tác có ngân sách, sự kiện, kết quả đo được (khách đến điểm đến tăng)"
+            }
+          },
+          {
+            code: "HK-6",
+            name: "Đổi mới trải nghiệm khách hàng",
+            isQuant: false,
+            weight: 0.10,
+            question: "Hãng có sản phẩm/dịch vụ mới cải thiện trải nghiệm hành khách trong kỳ không?",
+            levels: {
+              1: "Duy trì chất lượng trải nghiệm hiện có, có cải tiến nhỏ",
+              2: "Có 1–2 cải tiến (check-in số, suất ăn, giải trí)",
+              3: "Có nhiều cải tiến trải nghiệm hành khách trong kỳ",
+              4: "Có đổi mới nổi bật, khác biệt rõ với hãng khác",
+              5: "Đổi mới nổi bật, tiên phong trong khu vực"
+            }
+          }
+        ]
+      },
+      {
+        id: "tru-cot-6",
+        code: "TN",
+        group: "tru-cot",
+        groupLabel: "Trụ cột",
+        name: "Trải nghiệm du lịch của năm",
+        councilWeight: 0.40,
+        readerWeight: 0.60,
+        criteriaCount: 5,
+        criteria: [
+          {
+            code: "TN-1",
+            name: "Trách nhiệm với cộng đồng/di sản tại nơi diễn ra",
+            isQuant: false,
+            weight: 0.10,
+            question: "Trải nghiệm có tạo lợi ích cho cộng đồng và tôn trọng di sản/không gian nơi diễn ra không?",
+            levels: {
+              1: "Tôn trọng không gian, di sản nơi diễn ra",
+              2: "Có sử dụng lao động/nhà cung cấp địa phương",
+              3: "Cộng đồng tham gia và có hưởng lợi",
+              4: "Cộng đồng tham gia và hưởng lợi rõ, có biện pháp bảo vệ di sản",
+              5: "Cộng đồng đồng hành và hưởng lợi rõ, bảo vệ di sản bài bản, là hình mẫu"
+            }
+          },
+          {
+            code: "TN-2",
+            name: "Tính sáng tạo, độc đáo của trải nghiệm",
+            isQuant: false,
+            weight: 0.30,
+            question: "Trải nghiệm có ý tưởng mới, khác biệt so với sản phẩm cùng loại không?",
+            levels: {
+              1: "Trải nghiệm được thiết kế tốt trên mô hình đã có",
+              2: "Có điểm mới nhỏ trong cách kể chuyện/hình thức",
+              3: "Có điểm mới rõ trong cách kể chuyện/hình thức",
+              4: "Ý tưởng độc đáo, khác biệt rõ với sản phẩm cùng loại",
+              5: "Ý tưởng độc đáo, lần đầu có tại Việt Nam hoặc tạo xu hướng"
+            }
+          },
+          {
+            code: "TN-3",
+            name: "Chất lượng tổ chức, chuyên nghiệp trong vận hành",
+            isQuant: false,
+            weight: 0.25,
+            question: "Khâu tổ chức có chuyên nghiệp, an toàn, ổn định không?",
+            levels: {
+              1: "Vận hành đáp ứng yêu cầu, có phương án an toàn",
+              2: "Vận hành ổn định, khiếu nại được xử lý",
+              3: "Vận hành ổn định, ít khiếu nại",
+              4: "Vận hành chuyên nghiệp, phương án an toàn đầy đủ, rất ít khiếu nại",
+              5: "Vận hành chuyên nghiệp quy mô lớn, phương án an toàn đầy đủ, gần như không khiếu nại"
+            }
+          },
+          {
+            code: "TN-4",
+            name: "Số lượng & tăng trưởng khách tham gia",
+            isQuant: true,
+            weight: 0.15,
+            question: "Chỉ số = lượt khách (60%) + tăng trưởng so mùa trước (40%); xếp hạng trong shortlist",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          },
+          {
+            code: "TN-5",
+            name: "Mức độ lan tỏa truyền thông & mạng xã hội",
+            isQuant: false,
+            weight: 0.20,
+            question: "Trải nghiệm có được báo chí và mạng xã hội nhắc đến rộng rãi, tích cực trong kỳ không?",
+            levels: {
+              1: "Được nhắc đến chủ yếu qua kênh của đơn vị",
+              2: "Có bài báo/nội dung mạng xã hội ở phạm vi địa phương",
+              3: "Lan tỏa ở phạm vi khu vực, có số liệu reach/tương tác",
+              4: "Lan tỏa toàn quốc, nhiều nội dung tự nhiên từ du khách",
+              5: "Lan tỏa toàn quốc hoặc quốc tế, báo chí lớn đưa tin, số liệu reach/tương tác cao"
+            }
+          }
+        ]
+      },
+
+      // ------------------- TIÊN PHONG (9 HẠNG MỤC CON) -------------------
+      {
+        id: "tien-phong-1",
+        code: "NV",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Nhân vật du lịch của năm",
+        councilWeight: 0.90,
+        readerWeight: 0.10,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "NV-1",
+            name: "Tính tiên phong, sáng tạo trong đóng góp cho ngành",
+            isQuant: false,
+            weight: 0.35,
+            question: "Đóng góp của cá nhân có mở hướng mới cho ngành không?",
+            levels: {
+              1: "Hoàn thành tốt vai trò, có đóng góp ổn định cho ngành",
+              2: "Có sáng kiến trong phạm vi công việc",
+              3: "Có sáng kiến mới trong phạm vi đơn vị",
+              4: "Có sáng kiến ở tầm địa phương/lĩnh vực, được nơi khác học theo",
+              5: "Tiên phong ở tầm ngành/quốc gia, được nhiều đơn vị học theo"
+            }
+          },
+          {
+            code: "NV-2",
+            name: "Hiệu quả/tác động thực tế đo lường được",
+            isQuant: false,
+            weight: 0.45,
+            question: "Đóng góp đã tạo kết quả đo được (khách, doanh thu, việc làm, chính sách) chưa?",
+            levels: {
+              1: "Có kết quả mô tả rõ ràng",
+              2: "Có số liệu kết quả ban đầu",
+              3: "Có số liệu kết quả ở phạm vi đơn vị/địa phương",
+              4: "Tác động đo được, phạm vi rộng",
+              5: "Tác động lớn, đo được, được bên thứ ba xác nhận"
+            }
+          },
+          {
+            code: "NV-3",
+            name: "Ghi nhận từ cộng đồng chuyên môn, đồng nghiệp trong ngành",
+            isQuant: false,
+            weight: 0.20,
+            question: "Đồng nghiệp/chuyên gia đánh giá thế nào về cá nhân?",
+            levels: {
+              1: "Người tham chiếu xác nhận đóng góp",
+              2: "Người tham chiếu xác nhận tích cực",
+              3: "Được đồng nghiệp, đơn vị trong ngành ghi nhận",
+              4: "Được ghi nhận rộng (giải thưởng, vai trò hiệp hội)",
+              5: "Được ghi nhận rộng rãi và người tham chiếu đánh giá rất cao"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-2",
+        code: "BV",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Sáng kiến du lịch bền vững của năm",
+        councilWeight: 0.80,
+        readerWeight: 0.20,
+        criteriaCount: 4,
+        criteria: [
+          {
+            code: "BV-1",
+            name: "Mức độ đổi mới so với thực hành hiện tại",
+            isQuant: false,
+            weight: 0.20,
+            question: "Sáng kiến có cách làm mới so với thực hành phổ biến không?",
+            levels: {
+              1: "Áp dụng tốt cách làm đã có",
+              2: "Có điều chỉnh, cải tiến nhỏ so với cách làm hiện có",
+              3: "Cải tiến đáng kể cách làm hiện có",
+              4: "Cách tiếp cận mới so với thực hành phổ biến",
+              5: "Cách tiếp cận mới, lần đầu áp dụng trong ngành du lịch Việt Nam"
+            }
+          },
+          {
+            code: "BV-2",
+            name: "Tính khả thi & hiệu quả đo lường được",
+            isQuant: false,
+            weight: 0.30,
+            question: "Sáng kiến có vận hành ổn định và có chỉ số trước/sau rõ ràng không?",
+            levels: {
+              1: "Đang vận hành, có mô tả kết quả",
+              2: "Có số liệu kết quả ban đầu",
+              3: "Có số liệu kết quả, chưa có baseline hoặc chưa xác minh",
+              4: "Có baseline và kết quả rõ ràng, cải thiện đáng kể",
+              5: "Baseline và kết quả rõ ràng, cải thiện lớn, có đánh giá bên thứ ba"
+            }
+          },
+          {
+            code: "BV-3",
+            name: "Tác động môi trường & xã hội cụ thể",
+            isQuant: false,
+            weight: 0.30,
+            question: "Quy mô tác động môi trường/xã hội đến đâu?",
+            levels: {
+              1: "Có tác động tích cực trong phạm vi nhỏ",
+              2: "Tác động rõ ở một khía cạnh",
+              3: "Tác động rõ trong phạm vi một điểm đến/cộng đồng",
+              4: "Tác động rộng, ở hai khía cạnh (môi trường, xã hội)",
+              5: "Tác động lớn, nhiều chiều (môi trường + sinh kế + văn hóa)"
+            }
+          },
+          {
+            code: "BV-4",
+            name: "Khả năng nhân rộng",
+            isQuant: false,
+            weight: 0.20,
+            question: "Mô hình có thể áp dụng ở nơi khác với chi phí hợp lý không?",
+            levels: {
+              1: "Phù hợp với điều kiện riêng của nơi triển khai",
+              2: "Có thể nhân rộng ở nơi có điều kiện tương tự",
+              3: "Có thể nhân rộng với điều chỉnh",
+              4: "Đã có kế hoạch hoặc thử nghiệm nhân rộng ở nơi khác",
+              5: "Đã được nhân rộng ở nơi khác hoặc có bộ công cụ chuyển giao"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-3",
+        code: "DX",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Điểm đến du lịch xanh của năm",
+        councilWeight: 0.70,
+        readerWeight: 0.30,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "DX-1",
+            name: "Mức độ đổi mới trong chính sách & hành động môi trường",
+            isQuant: false,
+            weight: 0.30,
+            question: "Chính sách/hành động môi trường có mới, quyết liệt và đi vào thực tế không?",
+            levels: {
+              1: "Có văn bản chính sách môi trường đã ban hành",
+              2: "Có hành động cụ thể ở 1 lĩnh vực",
+              3: "Có hành động cụ thể ở một số lĩnh vực",
+              4: "Chính sách mạnh (giảm nhựa, năng lượng sạch…) thực thi ở nhiều lĩnh vực",
+              5: "Chính sách đột phá được thực thi đồng bộ"
+            }
+          },
+          {
+            code: "DX-2",
+            name: "Hiệu quả đo lường được (chứng nhận xanh: Green Key, ESG…)",
+            isQuant: false,
+            weight: 0.40,
+            question: "Có chỉ số môi trường trước/sau hoặc chứng nhận xanh độc lập không?",
+            levels: {
+              1: "Có mô tả kết quả môi trường",
+              2: "Có số liệu cải thiện ở 1 chỉ số",
+              3: "Có số liệu cải thiện hoặc 1 chứng nhận",
+              4: "Số liệu cải thiện ở nhiều chỉ số và có chứng nhận",
+              5: "Số liệu cải thiện rõ trên nhiều chỉ số và có chứng nhận quốc tế"
+            }
+          },
+          {
+            code: "DX-3",
+            name: "Sự tham gia & hưởng lợi của cộng đồng địa phương",
+            isQuant: false,
+            weight: 0.30,
+            question: "Cộng đồng có tham gia và hưởng lợi từ chương trình xanh không?",
+            levels: {
+              1: "Cộng đồng được thông tin, vận động",
+              2: "Cộng đồng tham gia một số hoạt động",
+              3: "Cộng đồng tham gia thường xuyên",
+              4: "Cộng đồng tham gia và có nguồn thu từ du lịch xanh",
+              5: "Cộng đồng đồng quản lý, có sinh kế xanh tạo thu nhập"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-4",
+        code: "SP",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Sản phẩm du lịch sáng tạo của năm",
+        councilWeight: 0.50,
+        readerWeight: 0.50,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "SP-1",
+            name: "Tính mới & độc đáo",
+            isQuant: false,
+            weight: 0.45,
+            question: "Sản phẩm có mới thực sự so với thị trường không?",
+            levels: {
+              1: "Sản phẩm mới trên nền mô hình đã có",
+              2: "Có điểm mới nhỏ",
+              3: "Có điểm mới rõ ở một khía cạnh (nội dung, hình thức, công nghệ)",
+              4: "Có điểm mới rõ ở nhiều khía cạnh",
+              5: "Mô hình hoàn toàn mới tại Việt Nam, tạo phân khúc mới"
+            }
+          },
+          {
+            code: "SP-2",
+            name: "Tiềm năng phát triển & khả năng nhân rộng dài hạn",
+            isQuant: false,
+            weight: 0.25,
+            question: "Sản phẩm có mô hình kinh doanh bền vững và khả năng mở rộng không?",
+            levels: {
+              1: "Đang vận hành, có kế hoạch phát triển",
+              2: "Có doanh thu ban đầu",
+              3: "Có doanh thu ổn định, có kế hoạch mở rộng",
+              4: "Tăng trưởng tốt, có kế hoạch mở rộng cụ thể",
+              5: "Tăng trưởng nhanh, đã/đang mở rộng ra thị trường khác"
+            }
+          },
+          {
+            code: "SP-3",
+            name: "Mức độ đón nhận của thị trường",
+            isQuant: false,
+            weight: 0.30,
+            question: "Sản phẩm đã được thị trường đón nhận đến mức nào trong kỳ?",
+            levels: {
+              1: "Đã có khách sử dụng thực tế",
+              2: "Có lượng khách ban đầu, có đánh giá trực tuyến",
+              3: "Có lượng khách ổn định, đánh giá trực tuyến tích cực",
+              4: "Lượt đặt/doanh thu tăng tốt, đánh giá trực tuyến cao",
+              5: "Lượt đặt/doanh thu tăng nhanh, vượt kỳ vọng; đánh giá trực tuyến cao với số lượng lớn"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-5",
+        code: "CDS",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Chuyển đổi số xuất sắc trong du lịch",
+        councilWeight: 0.60,
+        readerWeight: 0.40,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "CDS-1",
+            name: "Mức độ ứng dụng công nghệ (AI, dữ liệu, ứng dụng…)",
+            isQuant: false,
+            weight: 0.30,
+            question: "Mức độ công nghệ và độ sâu tích hợp vào vận hành?",
+            levels: {
+              1: "Đã số hóa một số khâu (website, biểu mẫu trực tuyến)",
+              2: "Có ứng dụng/nền tảng cho 1 quy trình",
+              3: "Có ứng dụng/nền tảng riêng tích hợp một số quy trình",
+              4: "Nền tảng tích hợp nhiều quy trình, có dùng dữ liệu",
+              5: "Hệ sinh thái số dùng dữ liệu/AI, tích hợp đầu-cuối"
+            }
+          },
+          {
+            code: "CDS-2",
+            name: "Hiệu quả cải thiện trải nghiệm khách hàng",
+            isQuant: false,
+            weight: 0.40,
+            question: "Giải pháp giúp khách thuận tiện hơn đến mức nào, có số liệu không?",
+            levels: {
+              1: "Có mô tả lợi ích cho khách hàng",
+              2: "Có số liệu sử dụng",
+              3: "Có số liệu sử dụng/hài lòng",
+              4: "Cải thiện rõ có số liệu ở 1–2 chỉ số",
+              5: "Cải thiện rõ rệt có số liệu (thời gian chờ, tỷ lệ chuyển đổi, người dùng tích cực)"
+            }
+          },
+          {
+            code: "CDS-3",
+            name: "Hiệu quả vận hành nội bộ",
+            isQuant: false,
+            weight: 0.30,
+            question: "Giải pháp giảm chi phí/thời gian vận hành đến mức nào?",
+            levels: {
+              1: "Có mô tả lợi ích vận hành",
+              2: "Có cải thiện ở một quy trình",
+              3: "Có cải thiện đo được ở một quy trình",
+              4: "Tiết kiệm đo được ở một số quy trình",
+              5: "Tiết kiệm lớn, đo được trên nhiều quy trình"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-6",
+        code: "LC",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Làng du lịch cộng đồng tiêu biểu của năm",
+        councilWeight: 0.60,
+        readerWeight: 0.40,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "LC-1",
+            name: "Tính đặc sắc, khác biệt của mô hình cộng đồng",
+            isQuant: false,
+            weight: 0.35,
+            question: "Mô hình có giữ và phát huy bản sắc riêng không?",
+            levels: {
+              1: "Mô hình có yếu tố văn hóa địa phương",
+              2: "Có hoạt động văn hóa đặc trưng",
+              3: "Có nhiều hoạt động văn hóa đặc trưng, bản sắc rõ",
+              4: "Bản sắc nổi bật, bảo tồn nghề/lễ hội/kiến trúc truyền thống",
+              5: "Bản sắc nổi bật, bảo tồn nghề/lễ hội/kiến trúc truyền thống một cách sống động"
+            }
+          },
+          {
+            code: "LC-2",
+            name: "Tính bền vững trong vận hành",
+            isQuant: false,
+            weight: 0.30,
+            question: "Mô hình có quy chế quản lý, chia sẻ lợi ích và môi trường rõ ràng không?",
+            levels: {
+              1: "Đang vận hành, có sự hỗ trợ từ bên ngoài",
+              2: "Có quy chế cơ bản",
+              3: "Có quy chế cơ bản, tự vận hành",
+              4: "Quy chế rõ, tự chủ tài chính phần lớn",
+              5: "Quy chế minh bạch, tài chính tự chủ, quản lý môi trường tốt"
+            }
+          },
+          {
+            code: "LC-3",
+            name: "Mức độ tham gia & hưởng lợi của cộng đồng địa phương",
+            isQuant: false,
+            weight: 0.35,
+            question: "Bao nhiêu hộ tham gia và thu nhập tăng thế nào?",
+            levels: {
+              1: "Có các hộ trong làng tham gia",
+              2: "Nhiều hộ tham gia",
+              3: "Nhiều hộ tham gia, thu nhập cải thiện",
+              4: "Phần lớn cộng đồng tham gia, thu nhập tăng",
+              5: "Phần lớn cộng đồng tham gia, thu nhập tăng rõ, có số liệu"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-7",
+        code: "AT",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Trải nghiệm ẩm thực du lịch của năm",
+        councilWeight: 0.40,
+        readerWeight: 0.60,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "AT-1",
+            name: "Chất lượng & tính đặc trưng, sáng tạo của ẩm thực",
+            isQuant: false,
+            weight: 0.45,
+            question: "Ẩm thực có chất lượng cao và mang bản sắc/câu chuyện Việt rõ nét không?",
+            levels: {
+              1: "Ẩm thực chất lượng ổn định",
+              2: "Chất lượng tốt, có món đặc trưng",
+              3: "Chất lượng tốt, có món/câu chuyện đặc trưng",
+              4: "Chất lượng rất tốt, sáng tạo trên nền bản sắc",
+              5: "Chất lượng xuất sắc, sáng tạo trên nền bản sắc, được giải thưởng/xếp hạng uy tín"
+            }
+          },
+          {
+            code: "AT-2",
+            name: "Chất lượng trải nghiệm phục vụ du khách",
+            isQuant: false,
+            weight: 0.30,
+            question: "Không gian, phục vụ, khả năng phục vụ khách quốc tế có tốt không?",
+            levels: {
+              1: "Phục vụ đáp ứng yêu cầu",
+              2: "Phục vụ tốt",
+              3: "Phục vụ tốt, có thực đơn/nhân viên ngoại ngữ",
+              4: "Trải nghiệm chuyên nghiệp, phục vụ tốt khách quốc tế",
+              5: "Trải nghiệm trọn vẹn, chuyên nghiệp, là điểm đến của du khách"
+            }
+          },
+          {
+            code: "AT-3",
+            name: "Mức độ lan tỏa truyền thông, giải thưởng quốc tế",
+            isQuant: false,
+            weight: 0.25,
+            question: "Ẩm thực của ứng viên được truyền thông và các hệ thống xếp hạng, giải thưởng ghi nhận đến đâu?",
+            levels: {
+              1: "Được biết đến qua kênh của đơn vị",
+              2: "Được báo chí/mạng xã hội trong nước nhắc đến",
+              3: "Được truyền thông nhắc đến; có giải thưởng hoặc xếp hạng trong nước",
+              4: "Có xếp hạng/giải thưởng khu vực, được truyền thông quốc tế nhắc đến",
+              5: "Có giải thưởng/xếp hạng quốc tế uy tín (Michelin Guide, Asia's 50 Best…), được truyền thông quốc tế nhắc đến"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-8",
+        code: "DS",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Gương mặt truyền thông du lịch của năm (Đại sứ)",
+        councilWeight: 0.30,
+        readerWeight: 0.70,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "DS-1",
+            name: "Tính sáng tạo, tiên phong trong cách truyền tải nội dung du lịch",
+            isQuant: false,
+            weight: 0.40,
+            question: "Nội dung có cách kể chuyện mới, chất lượng sản xuất cao không?",
+            levels: {
+              1: "Nội dung du lịch đều đặn, chất lượng ổn định",
+              2: "Nội dung có đầu tư",
+              3: "Nội dung có đầu tư, có góc nhìn riêng",
+              4: "Cách kể sáng tạo, được nhiều người học theo",
+              5: "Định dạng/cách kể tiên phong, tạo xu hướng, giúp điểm đến mới được biết đến"
+            }
+          },
+          {
+            code: "DS-2",
+            name: "Tính xác thực, phù hợp với hình ảnh ngành du lịch",
+            isQuant: false,
+            weight: 0.30,
+            question: "Nội dung có trung thực, minh bạch quảng cáo và phù hợp hình ảnh du lịch Việt Nam không?",
+            levels: {
+              1: "Nội dung chính xác",
+              2: "Nội dung chính xác, có gắn nhãn tài trợ",
+              3: "Nội dung chính xác, minh bạch hợp tác thương mại",
+              4: "Nội dung chính xác, minh bạch, lan tỏa giá trị tích cực",
+              5: "Nội dung chính xác, minh bạch, lan tỏa giá trị tích cực, không có tranh cãi"
+            }
+          },
+          {
+            code: "DS-3",
+            name: "Hiệu quả lan tỏa đo lường được (reach, engagement)",
+            isQuant: true,
+            weight: 0.30,
+            question: "Chỉ số = 60% tỷ lệ tương tác + 40% tổng lượt tiếp cận nội dung du lịch trong kỳ; xếp hạng trong shortlist",
+            levels: {
+              1: "Nhóm thấp nhất trong shortlist (điểm tính sẵn 1,0)",
+              2: "Dưới mức giữa shortlist (≈ 2)",
+              3: "Mức giữa shortlist (≈ 3)",
+              4: "Trên mức giữa shortlist (≈ 4)",
+              5: "Cao nhất trong shortlist (điểm tính sẵn 5,0)"
+            }
+          }
+        ]
+      },
+      {
+        id: "tien-phong-9",
+        code: "CD",
+        group: "tien-phong",
+        groupLabel: "Tiên phong",
+        name: "Chiến dịch quảng bá du lịch của năm",
+        councilWeight: 0.50,
+        readerWeight: 0.50,
+        criteriaCount: 3,
+        criteria: [
+          {
+            code: "CD-1",
+            name: "Tính sáng tạo & thông điệp chiến dịch",
+            isQuant: false,
+            weight: 0.35,
+            question: "Ý tưởng và thông điệp có mới, nhất quán và đúng mục tiêu không?",
+            levels: {
+              1: "Ý tưởng rõ ràng, thông điệp đúng mục tiêu",
+              2: "Ý tưởng tốt",
+              3: "Ý tưởng tốt, thông điệp rõ",
+              4: "Ý tưởng sáng tạo, thông điệp mạnh",
+              5: "Ý tưởng đột phá, thông điệp mạnh, triển khai đa kênh nhất quán"
+            }
+          },
+          {
+            code: "CD-2",
+            name: "Hiệu quả kích cầu đo lường được",
+            isQuant: false,
+            weight: 0.40,
+            question: "Chiến dịch đạt KPI và tạo kết quả kinh doanh (khách, lượt đặt) đến đâu?",
+            levels: {
+              1: "Có đặt KPI và đo lường kết quả",
+              2: "Đạt một phần KPI",
+              3: "Đạt KPI truyền thông; kết quả kinh doanh chưa rõ",
+              4: "Đạt KPI truyền thông và có số liệu kinh doanh tăng",
+              5: "Vượt KPI, có số liệu khách/lượt đặt tăng được xác minh"
+            }
+          },
+          {
+            code: "CD-3",
+            name: "Độ phủ & hiệu quả lan tỏa truyền thông đa kênh",
+            isQuant: false,
+            weight: 0.25,
+            question: "Chiến dịch phủ được bao nhiêu kênh và đạt hiệu quả lan tỏa đến đâu?",
+            levels: {
+              1: "Triển khai trên 1–2 kênh",
+              2: "Triển khai đa kênh, độ phủ vừa",
+              3: "Triển khai đa kênh, có số liệu reach/tương tác đạt KPI",
+              4: "Đa kênh tích hợp, reach và tương tác vượt KPI",
+              5: "Đa kênh tích hợp (online, offline, quốc tế), reach và tương tác vượt KPI, có earned media lớn"
+            }
+          }
+        ]
+      }
+    ];
+
+    // ============================================================================
+    // 2. DỮ LIỆU HỒ SƠ ĐỀ CỬ (CHUẨN CẤU TRÚC LINK MẪU VERCEL)
+    // ============================================================================
+    const BASE_PROFILES = {
+      "tru-cot-1": [
+        {
+          id: "tru-cot-1-ho-so-1",
+          code: "HS-01",
+          title: "Đà Nẵng – Hành trình khám phá thành phố biển",
+          organization: "Vingroup",
+          registerRole: "Doanh nghiệp dịch vụ du lịch",
+          location: "Đà Nẵng, Việt Nam",
+          website: "travel-experience.example.com",
+          fanpage: "social.example.com/travel-experience",
+          representative: "Trung tâm Xúc tiến Du lịch Đà Nẵng",
+          quantPreScore: 5.0,
+          summary: "Đà Nẵng định vị là trung tâm du lịch biển, sự kiện lễ hội và nghỉ dưỡng hàng đầu miền Trung, kết hợp đồng bộ giữa hạ tầng giao thông quốc tế, sản phẩm giải trí đêm và chương trình bảo tồn bán đảo Sơn Trà.",
+          keyMetrics: [
+            { value: "4,8 triệu", label: "Lượt khách" },
+            { value: "12.600 tỷ", label: "Tổng thu du lịch" },
+            { value: "+18%", label: "Tăng trưởng tổng thu" }
+          ],
+          gallery: [
+            { title: "Cầu Vàng – Biểu tượng du lịch Đà Nẵng", tag: "Hạ tầng & Biểu tượng", gradient: "from-sky-600 via-teal-500 to-emerald-600" },
+            { title: "Bãi biển Mỹ Khê & Tuyến tham quan ven biển", tag: "Biển Đà Nẵng", gradient: "from-cyan-600 via-teal-600 to-blue-700" },
+            { title: "Lễ hội Pháo hoa Quốc tế Đà Nẵng (DIFF)", tag: "Sự kiện quốc tế", gradient: "from-indigo-700 via-purple-700 to-rose-600" },
+            { title: "Bán đảo Sơn Trà – Bảo tồn đa dạng sinh học", tag: "Sinh thái", gradient: "from-emerald-700 via-green-600 to-teal-700" },
+            { title: "Tuyến phố đi bộ Bạch Đằng & Sông Hàn", tag: "Kinh tế đêm", gradient: "from-amber-600 via-orange-600 to-rose-700" },
+            { title: "Hệ thống Trạm thông tin & Bản đồ số", tag: "Chuyển đổi số", gradient: "from-teal-700 via-cyan-700 to-slate-800" }
+          ],
+          achievements: "Đón 4,8 triệu lượt khách (3,2 triệu khách nội địa, 1,6 triệu khách quốc tế, 2,9 triệu khách lưu trú). Tổng thu du lịch đạt 12.600 tỷ đồng, tốc độ tăng trưởng đạt +18% so với cùng kỳ.",
+          differentiation: "Kết nối hài hòa giữa trải nghiệm đô thị biển hiện đại và bản sắc văn hóa địa phương, vận hành đồng bộ tuyến xe điện ven biển và bản đồ số song ngữ.",
+          operationalData: [
+            { title: "1. Số liệu khách và tổng thu du lịch", content: "4,8 triệu lượt khách (3,2 triệu nội địa, 1,6 triệu quốc tế, 2,9 triệu khách lưu trú); tổng thu 12.600 tỷ đồng (+18%)." },
+            { title: "2. Sản phẩm, hạ tầng và kết nối giao thông mới", content: "Khai thác tuyến tham quan ven biển, hệ thống trạm thông tin du khách và xe điện kết nối trung tâm." },
+            { title: "3. Chính sách và chương trình xúc tiến", content: "Triển khai chương trình xúc tiến 'Bốn mùa khám phá' với ngân sách 18 tỷ đồng." },
+            { title: "4. Hoạt động bảo tồn và phát triển cộng đồng", content: "Phục hồi không gian văn hóa, làm sạch bãi biển định kỳ, hỗ trợ hộ kinh doanh địa phương và đào tạo hướng dẫn viên." },
+            { title: "5. Kênh truyền thông chính thức", content: "Vận hành cổng thông tin du lịch, fanpage chính thức và bản đồ số 2 ngôn ngữ phục vụ du khách." }
+          ],
+          highlights: [
+            "Trách nhiệm bền vững: bảo tồn di sản, môi trường và cộng đồng",
+            "Phát triển sản phẩm mới, hạ tầng và kết nối giao thông",
+            "Chính sách, môi trường đầu tư và xúc tiến du lịch"
+          ]
+        },
+        {
+          id: "tru-cot-1-ho-so-2",
+          code: "HS-02",
+          title: "Phú Quốc – Đảo Ngọc nghỉ dưỡng & Lễ hội biển quốc tế",
+          organization: "Sun Group & Trung tâm Xúc tiến Kiên Giang",
+          registerRole: "Tổ chức quản lý & phát triển điểm đến",
+          location: "Phú Quốc, Kiên Giang",
+          website: "phuquoctourism.example.com",
+          fanpage: "social.example.com/phuquoc-island",
+          representative: "Sở Du lịch Kiên Giang",
+          quantPreScore: 4.2,
+          summary: "Phú Quốc bứt phá trên bản đồ du lịch quốc tế nhờ chính sách miễn thị thực 30 ngày, hệ sinh thái giải trí Nam Đảo và chương trình bảo tồn rạn san hô.",
+          keyMetrics: [
+            { value: "5,2 triệu", label: "Lượt khách" },
+            { value: "14.800 tỷ", label: "Tổng thu du lịch" },
+            { value: "+16,2%", label: "Tăng trưởng tổng thu" }
+          ],
+          gallery: [
+            { title: "Thị trấn Hoàng Hôn & Cầu Hôn Phú Quốc", tag: "Biểu tượng mới", gradient: "from-orange-500 via-rose-500 to-indigo-800" },
+            { title: "Khu bảo tồn biển & Rạn san hô Nam Phú Quốc", tag: "Bảo tồn biển", gradient: "from-teal-600 via-emerald-600 to-cyan-800" },
+            { title: "Chợ đêm sáng tạo VUI-Fest Bazaar", tag: "Văn hóa bản địa", gradient: "from-amber-600 via-red-500 to-purple-800" }
+          ],
+          achievements: "Đón 5,2 triệu lượt khách, khách quốc tế tăng 42% nhờ mạng đường bay thẳng quốc tế. Tổng thu đạt 14.800 tỷ đồng (+16,2%).",
+          differentiation: "Áp dụng miễn thị thực 30 ngày cho khách quốc tế kết hợp tổ hợp trình diễn nghệ thuật biển hàng đêm.",
+          operationalData: [
+            { title: "1. Số liệu khách và tổng thu du lịch", content: "5,2 triệu lượt khách; tổng thu 14.800 tỷ đồng (+16,2%)." },
+            { title: "2. Sản phẩm, hạ tầng và kết nối giao thông mới", content: "Mở rộng nhà ga quốc tế và các đường bay thẳng từ Hàn Quốc, Đài Loan, Bắc Âu, Trung Á." },
+            { title: "3. Chính sách và chương trình xúc tiến", content: "Chiến dịch quảng bá điểm đến trên các kênh truyền thông quốc tế." },
+            { title: "4. Hoạt động bảo tồn và phát triển cộng đồng", content: "Phục hồi 4,5 ha rạn san hô và giảm rác nhựa dùng một lần tại chợ đêm." },
+            { title: "5. Kênh truyền thông chính thức", content: "Hệ thống cổng thông tin đa ngữ và chiến dịch truyền thông số quốc tế." }
+          ],
+          highlights: [
+            "Trách nhiệm bền vững: bảo tồn di sản, môi trường và cộng đồng",
+            "Phát triển sản phẩm mới, hạ tầng và kết nối giao thông",
+            "Độ phủ truyền thông & nhận diện thương hiệu điểm đến"
+          ]
+        },
+        {
+          id: "tru-cot-1-ho-so-3",
+          code: "HS-03",
+          title: "Ninh Bình – Di sản thiên nhiên & Văn hóa cố đô",
+          organization: "Sở Du lịch Ninh Bình",
+          registerRole: "Cơ quan quản lý điểm đến địa phương",
+          location: "Ninh Bình, Việt Nam",
+          website: "ninhbinhtourism.example.com",
+          fanpage: "social.example.com/ninhbinh-heritage",
+          representative: "Trung tâm Xúc tiến Du lịch Ninh Bình",
+          quantPreScore: 3.4,
+          summary: "Ninh Bình phát triển du lịch di sản kép Tràng An gắn liền với sinh kế cộng đồng và bảo tồn cảnh quan thiên nhiên nguyên sơ.",
+          keyMetrics: [
+            { value: "6,1 triệu", label: "Lượt khách" },
+            { value: "7.950 tỷ", label: "Tổng thu du lịch" },
+            { value: "+15,1%", label: "Tăng trưởng tổng thu" }
+          ],
+          gallery: [
+            { title: "Quần thể danh thắng Tràng An", tag: "Di sản UNESCO", gradient: "from-emerald-700 via-teal-600 to-lime-700" },
+            { title: "Phố cổ Hoa Lư về đêm", tag: "Kinh tế đêm", gradient: "from-amber-700 via-orange-600 to-red-800" }
+          ],
+          achievements: "Đón 6,1 triệu lượt khách, tổng thu 7.950 tỷ đồng (+15,1%), kéo dài thời gian lưu trú trung bình lên 2,1 ngày.",
+          differentiation: "Mô hình đồng quản lý di sản UNESCO giữa nhà nước, doanh nghiệp và hơn 10.000 lao động địa phương.",
+          operationalData: [
+            { title: "1. Số liệu khách và tổng thu du lịch", content: "6,1 triệu lượt khách; tổng thu 7.950 tỷ đồng (+15,1%)." },
+            { title: "2. Sản phẩm, hạ tầng và kết nối giao thông mới", content: "Phố cổ Hoa Lư và các tuyến đạp xe sinh thái Vân Long." },
+            { title: "3. Chính sách và chương trình xúc tiến", content: "Tuần Du lịch Ninh Bình 'Sắc vàng Tam Cốc – Tràng An'." },
+            { title: "4. Hoạt động bảo tồn và phát triển cộng đồng", content: "100% thuyền chèo tay tại vùng lõi di sản, đào tạo 4.200 người chèo đò." },
+            { title: "5. Kênh truyền thông chính thức", content: "Cổng thông tin du lịch số và bản đồ di sản trực tuyến." }
+          ],
+          highlights: [
+            "Trách nhiệm bền vững: bảo tồn di sản, môi trường và cộng đồng",
+            "Phát triển sản phẩm mới, hạ tầng và kết nối giao thông"
+          ]
+        }
+      ]
+    };
+
+    const EXTRA_CATEGORY_PROFILES_SEED = {
+      "tru-cot-2": [
+        { title: "Vietravel – Tiên phong Hành trình Xanh Net-Zero", org: "Vietravel", loc: "TP. Hồ Chí Minh", m1: "890.000", l1: "Lượt khách", m2: "6.450 tỷ", l2: "Doanh thu", m3: "+21%", l3: "Tăng trưởng", pre: 5.0 },
+        { title: "Lữ hành Saigontourist – Kết nối Di sản & Tàu biển Quốc tế", org: "Saigontourist", loc: "TP. Hồ Chí Minh", m1: "760.000", l1: "Lượt khách", m2: "5.820 tỷ", l2: "Doanh thu", m3: "+18,5%", l3: "Tăng trưởng", pre: 4.0 }
+      ],
+      "tru-cot-3": [
+        { title: "Sofitel Legend Metropole Hanoi – Di sản Xanh Thủ Đô", org: "Metropole Hanoi", loc: "Hà Nội", m1: "9,6 / 10", l1: "Điểm OTA", m2: "4.280", l2: "Lượt review", m3: "-32%", l3: "Giảm nhựa", pre: 5.0 },
+        { title: "The Reverie Saigon – Chuẩn mực Khách sạn Đô thị", org: "The Reverie Saigon", loc: "TP. Hồ Chí Minh", m1: "9,4 / 10", l1: "Điểm OTA", m2: "3.150", l2: "Lượt review", m3: "48 giờ/năm", l3: "Đào tạo/nhân sự", pre: 4.0 }
+      ],
+      "tru-cot-4": [
+        { title: "InterContinental Danang Sun Peninsula Resort", org: "Sun Hospitality Group", loc: "Đà Nẵng", m1: "9,7 / 10", l1: "Điểm OTA", m2: "85%", l2: "Nhân sự bản địa", m3: "EarthCheck", l3: "Chứng nhận xanh", pre: 5.0 },
+        { title: "Six Senses Ninh Van Bay – Nghỉ dưỡng Sinh thái", org: "Six Senses Ninh Van Bay", loc: "Khánh Hòa", m1: "9,5 / 10", l1: "Điểm OTA", m2: "100%", l2: "Không chai nhựa", m3: "Zero Waste", l3: "Mô hình bền vững", pre: 4.0 }
+      ],
+      "tru-cot-5": [
+        { title: "Vietnam Airlines – Đường bay Xanh & Kết nối Quốc tế", org: "Vietnam Airlines", loc: "Hà Nội", m1: "86,4%", l1: "Đúng giờ (OTP)", m2: "+7 tuyến", l2: "Đường bay mới", m3: "SAF", l3: "Nhiên liệu xanh", pre: 5.0 },
+        { title: "Vietjet Air – Mở rộng Mạng bay Du lịch Châu Á – Úc", org: "Vietjet Air", loc: "TP. Hồ Chí Minh", m1: "81,2%", l1: "Đúng giờ (OTP)", m2: "+11 tuyến", l2: "Đường bay mới", m3: "16,5 triệu", l3: "Khách vận chuyển", pre: 4.0 }
+      ],
+      "tru-cot-6": [
+        { title: "Show diễn Ký Ức Hội An – Thực cảnh Văn hóa Thương cảng", org: "Đảo Ký Ức Hội An", loc: "Quảng Nam", m1: "620.000", l1: "Lượt khách", m2: "+24%", l2: "Tăng trưởng", m3: "450 người", l3: "Lao động bản địa", pre: 5.0 },
+        { title: "Tour Thám hiểm Sơn Đoòng & Hệ thống Hang động Tú Làn", org: "Oxalis Adventure", loc: "Quảng Bình", m1: "42.500", l1: "Lượt khách", m2: "100%", l2: "An toàn vận hành", m3: "520 hộ", l3: "Cộng đồng hưởng lợi", pre: 4.0 }
+      ],
+      "tien-phong-1": [
+        { title: "Ông Nguyễn Châu Á – Tiên phong Du lịch Mạo hiểm Bảo tồn", org: "Oxalis Adventure", loc: "Quảng Bình", m1: "650 việc làm", l1: "Sinh kế địa phương", m2: "14 dự án", l2: "Sáng kiến cộng đồng", m3: "100%", l3: "Chuẩn an toàn", pre: 5.0 },
+        { title: "Bà Lương Hoàng Lan – Chuỗi Làng Du lịch Cộng đồng Tây Bắc", org: "Viện Du lịch Cộng đồng", loc: "Lào Cai – Hà Giang", m1: "18 bản làng", l1: "Mô hình chuyển giao", m2: "+45%", l2: "Tăng thu nhập hộ", m3: "3 giải ASEAN", l3: "Ghi nhận khu vực", pre: 4.0 }
+      ],
+      "tien-phong-2": [
+        { title: "Dự án 'RePlastic Hội An' – Khách sạn Không Rác thải Nhựa", org: "Hiệp hội Du lịch Quảng Nam", loc: "Hội An, Quảng Nam", m1: "-48 tấn/năm", l1: "Giảm rác nhựa", m2: "120 cơ sở", l2: "Đơn vị áp dụng", m3: "6 tỉnh thành", l3: "Nhân rộng mô hình", pre: 5.0 },
+        { title: "Sáng kiến 'Tái sinh Lưới ma Đại dương & Bảo tồn Rùa biển'", org: "Vườn Quốc gia Côn Đảo", loc: "Bà Rịa – Vũng Tàu", m1: "19,5 tấn", l1: "Lưới rác thu hồi", m2: "850 rùa mẹ", l2: "Bảo vệ bãi đẻ", m3: "2.400 khách", l3: "Khách tình nguyện", pre: 4.0 }
+      ],
+      "tien-phong-3": [
+        { title: "Hội An – Điểm đến Du lịch Xanh & Giao thông Không Khói", org: "UBND TP. Hội An", loc: "Quảng Nam", m1: "32 chứng nhận", l1: "Doanh nghiệp Xanh", m2: "-40%", l2: "Giảm nhựa 1 lần", m3: "78% hộ dân", l3: "Phân loại rác", pre: 5.0 },
+        { title: "Côn Đảo – Kinh tế Tuần hoàn & Sinh thái Biển Đảo", org: "UBND Huyện Côn Đảo", loc: "Bà Rịa – Vũng Tàu", m1: "100% tàu", l1: "Không xả nhựa", m2: "18,4 ha", l2: "San hô bảo vệ", m3: "+29%", l3: "Thu nhập xanh", pre: 4.0 }
+      ],
+      "tien-phong-4": [
+        { title: "Đoàn tàu Di sản 'Kết nối Di sản Miền Trung' (Huế – Đà Nẵng)", org: "Đường sắt Việt Nam", loc: "Huế – Đà Nẵng", m1: "185.000", l1: "Hành khách", m2: "4,9 / 5,0", l2: "Đánh giá online", m3: "+310%", l3: "Tăng trưởng tuyến", pre: 5.0 },
+        { title: "Tour Đêm Văn Miếu – Quốc Tử Giám 'Tinh Hoa Đạo Học'", org: "Trung tâm VHKH Văn Miếu", loc: "Hà Nội", m1: "142.000", l1: "Lượt khách", m2: "4,85 / 5,0", l2: "Đánh giá online", m3: "3D Mapping", l3: "Công nghệ di sản", pre: 4.0 }
+      ],
+      "tien-phong-5": [
+        { title: "Hệ sinh thái Du lịch Thông minh 'Visit Da Nang AI & Smart Pass'", org: "TT Xúc tiến Du lịch Đà Nẵng", loc: "Đà Nẵng", m1: "420.000", l1: "Người dùng (MAU)", m2: "-45%", l2: "Thời gian chờ", m3: "-28%", l3: "Chi phí vận hành", pre: 5.0 },
+        { title: "Nền tảng Cá nhân hóa Hành trình AI 'iVIVU SmartTrip'", org: "Công ty CP iVIVU.com", loc: "TP. Hồ Chí Minh", m1: "+34%", l1: "Tỷ lệ chuyển đổi", m2: "1,2 triệu", l2: "Lịch trình AI", m3: "-35%", l3: "Thời gian CSKH", pre: 4.0 }
+      ],
+      "tien-phong-6": [
+        { title: "Làng Du lịch Cộng đồng Lô Lô Chải – Cực Bắc Hà Giang", org: "HTX Du lịch Lô Lô Chải", loc: "Đồng Văn, Hà Giang", m1: "92% hộ dân", l1: "Tham gia mô hình", m2: "+68%", l2: "Tăng thu nhập hộ", m3: "100%", l3: "Bảo tồn nhà cổ", pre: 5.0 },
+        { title: "Làng Rau Trà Quế – Làng Du lịch Tốt nhất Thế giới", org: "BQL Làng nghề Trà Quế", loc: "Hội An, Quảng Nam", m1: "215 hộ dân", l1: "Đón khách", m2: "+54%", l2: "Thu nhập dịch vụ", m3: "UN Tourism", l3: "Giải quốc tế", pre: 4.0 }
+      ],
+      "tien-phong-7": [
+        { title: "Hành trình Ẩm thực 'Hương Vị Cố Đô – Tinh hoa Di sản Huế'", org: "Tịnh Gia Viên", loc: "TP. Huế", m1: "Michelin", l1: "Ghi nhận quốc tế", m2: "95%", l2: "Nguyên liệu bản địa", m3: "45.000", l3: "Khách quốc tế", pre: 5.0 },
+        { title: "Anan Saigon – Ẩm thực Đường phố Việt Đương đại", org: "Nhà hàng Anan Saigon", loc: "TP. Hồ Chí Minh", m1: "1 Sao Michelin", l1: "Giải quốc tế", m2: "Asia's 50 Best", l2: "Xếp hạng châu Á", m3: "68%", l3: "Khách quốc tế", pre: 4.0 }
+      ],
+      "tien-phong-8": [
+        { title: "Khoai Lang Thang – Kể chuyện Văn hóa & Con người Việt Nam", org: "Đinh Võ Hoài Phương", loc: "TP. Hồ Chí Minh", m1: "88 triệu", l1: "Lượt tiếp cận", m2: "8,4%", l2: "Tỷ lệ tương tác", m3: "36 tập", l3: "Video điểm đến", pre: 5.0 },
+        { title: "Chan La Cà – Hành trình Di sản & Bản sắc Vùng cao", org: "Hoàng Minh Tuấn", loc: "Hà Nội", m1: "54 triệu", l1: "Lượt tiếp cận", m2: "7,1%", l2: "Tỷ lệ tương tác", m3: "100%", l3: "Minh bạch hợp tác", pre: 4.0 }
+      ],
+      "tien-phong-9": [
+        { title: "Chiến dịch 'Live Fully in Vietnam – Sống trọn vẹn tại Việt Nam'", org: "Cục Du lịch Quốc gia VN", loc: "Toàn quốc & Quốc tế", m1: "145 triệu", l1: "Lượt tiếp cận", m2: "+38%", l2: "Tìm kiếm quốc tế", m3: "4,2 triệu USD", l3: "Earned Media", pre: 5.0 },
+        { title: "Chiến dịch 'Wow Đà Nẵng – Bốn mùa Lễ hội Tuyệt vời'", org: "Sở Du lịch Đà Nẵng", loc: "Đà Nẵng", m1: "62 triệu", l1: "Lượt tiếp cận", m2: "+26%", l2: "Lượt đặt phòng", m3: "185 bài báo", l3: "Earned Media", pre: 4.0 }
+      ]
+    };
+
+    function buildFullProfilesByCategory() {
+      const map = {};
+      AWARD_CATEGORIES.forEach(cat => {
+        if (BASE_PROFILES[cat.id]) {
+          map[cat.id] = BASE_PROFILES[cat.id];
+          return;
+        }
+        const seeds = EXTRA_CATEGORY_PROFILES_SEED[cat.id] || [];
+        map[cat.id] = seeds.map((s, idx) => ({
+          id: `${cat.id}-ho-so-${idx + 1}`,
+          code: `HS-0${idx + 1}`,
+          title: s.title,
+          organization: s.org,
+          registerRole: cat.group === "tru-cot" ? "Doanh nghiệp / Tổ chức du lịch" : "Đơn vị / Cá nhân đề cử",
+          location: s.loc,
+          website: `${cat.id}.example.com`,
+          fanpage: `social.example.com/${cat.id}`,
+          representative: s.org,
+          quantPreScore: s.pre,
+          summary: `Hồ sơ đề cử hạng mục "${cat.name}" của ${s.org} tại ${s.loc}, cung cấp đầy đủ số liệu và minh chứng cho ${cat.criteriaCount} tiêu chí chấm điểm của Hội đồng.`,
+          keyMetrics: [
+            { value: s.m1, label: s.l1 },
+            { value: s.m2, label: s.l2 },
+            { value: s.m3, label: s.l3 }
+          ],
+          gallery: [
+            { title: s.title, tag: cat.name, gradient: "from-teal-600 via-emerald-600 to-cyan-800" },
+            { title: "Hình ảnh hoạt động & trải nghiệm thực tế", tag: "Thực tế vận hành", gradient: "from-sky-600 via-indigo-600 to-slate-800" },
+            { title: "Minh chứng kết quả & giải thưởng trong kỳ", tag: "Hồ sơ minh chứng", gradient: "from-amber-600 via-orange-600 to-teal-800" }
+          ],
+          achievements: `Đạt kết quả nổi bật trong kỳ xét giải: ${s.l1} đạt ${s.m1}, ${s.l2} đạt ${s.m2}, ${s.l3} đạt ${s.m3}.`,
+          differentiation: `Mô hình triển khai thực tế tại ${s.loc}, tạo giá trị khác biệt cho du khách và đóng góp bền vững cho ngành du lịch.`,
+          operationalData: cat.criteria.map((c, cIdx) => ({
+            title: `${cIdx + 1}. Thuyết minh tiêu chí ${c.code} – ${c.name}`,
+            content: `Hồ sơ đáp ứng câu hỏi "${c.question}" với số liệu kiểm chứng (${s.m1} ${s.l1}, ${s.m2} ${s.l2}) và tài liệu xác nhận kèm theo.`
+          })),
+          highlights: cat.criteria.map(c => c.name)
+        }));
+      });
+      return map;
+    }
+
+    const PROFILES_BY_CATEGORY = buildFullProfilesByCategory();
+
+    // ============================================================================
+    // 3. STATE QUẢN LÝ GỌN NHẸ
+    // ============================================================================
+    let appState = {
+      currentStep: 1, // 1: Giải thưởng, 2: Chọn hồ sơ, 3: Chấm điểm, 4: Hoàn thành
+      selectedCategoryId: "tru-cot-1",
+      selectedProfileId: "tru-cot-1-ho-so-1",
+      rightPanelPhase: "questions", // 'questions' (Ghi câu hỏi trước) -> 'scoring' (Bấm Next hiện thang điểm 1..5)
+      activeGalleryIndex: 0,
+      evaluations: {}
+    };
+
+    function loadSavedState() {
+      try {
+        const raw = localStorage.getItem("vta2026_bgk_clean_v2");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.evaluations) {
+            appState.evaluations = parsed.evaluations;
+          }
+        }
+      } catch (e) {}
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem("vta2026_bgk_clean_v2", JSON.stringify({
+          evaluations: appState.evaluations
+        }));
+      } catch (e) {}
+    }
+
+    function getCategoryById(catId) {
+      return AWARD_CATEGORIES.find(c => c.id === catId) || AWARD_CATEGORIES[0];
+    }
+
+    function getProfileById(catId, profileId) {
+      const list = PROFILES_BY_CATEGORY[catId] || [];
+      return list.find(p => p.id === profileId) || list[0];
+    }
+
+    function getOrCreateEvaluation(profileId, category) {
+      if (!appState.evaluations[profileId]) {
+        const profile = getProfileById(category.id, profileId);
+        const initialScores = {};
+        category.criteria.forEach(c => {
+          if (c.isQuant && profile) {
+            initialScores[c.code] = Math.round(profile.quantPreScore);
+          }
+        });
+        appState.evaluations[profileId] = {
+          criteriaQuestions: {},
+          scores: initialScores,
+          notes: {},
+          status: "unscored"
+        };
+      }
+      return appState.evaluations[profileId];
+    }
+
+    function computeJudgeScore(category, evalRecord) {
+      if (!evalRecord || !evalRecord.scores) return null;
+      let total = 0;
+      let count = 0;
+      category.criteria.forEach(c => {
+        const sc = evalRecord.scores[c.code];
+        if (typeof sc === "number" && sc >= 1 && sc <= 5) {
+          total += sc * c.weight;
+          count++;
+        }
+      });
+      if (count === 0) return null;
+      return {
+        weightedScore: Number(total.toFixed(2)),
+        answeredCount: count,
+        totalCriteria: category.criteria.length
+      };
+    }
+
+    // Kiểm tra điều kiện hoàn tất: chấm đủ tiêu chí + riêng 5 điểm (Xuất sắc) bắt buộc có ghi chú lý do
+    function validateScoringSubmission(category, evalRecord) {
+      const missingScores = [];
+      const missingExcellenceNotes = [];
+
+      category.criteria.forEach(c => {
+        const sc = evalRecord.scores[c.code];
+        const note = (evalRecord.notes[c.code] || "").trim();
+        if (typeof sc !== "number" || sc < 1 || sc > 5) {
+          missingScores.push(c.code);
+        } else if (sc === 5 && note.length < 3) {
+          missingExcellenceNotes.push(c.code);
+        }
+      });
+
+      return {
+        isValid: missingScores.length === 0 && missingExcellenceNotes.length === 0,
+        missingScores,
+        missingExcellenceNotes
+      };
+    }
+
+    function getCompletionStats() {
+      let truCotDone = 0;
+      let tienPhongDone = 0;
+      AWARD_CATEGORIES.forEach(cat => {
+        const profiles = PROFILES_BY_CATEGORY[cat.id] || [];
+        const hasDone = profiles.some(p => {
+          const ev = appState.evaluations[p.id];
+          return ev && ev.status === "completed";
+        });
+        if (hasDone) {
+          if (cat.group === "tru-cot") truCotDone++;
+          else tienPhongDone++;
+        }
+      });
+      return { truCotDone, tienPhongDone };
+    }
+
+    // ============================================================================
+    // 4. RENDER THANH TIẾN TRÌNH 4 BƯỚC (STYLE KHẢO SÁT)
+    // ============================================================================
+    function renderStepIndicator() {
+      const bar = document.getElementById("stepIndicatorBar");
+      if (!bar) return;
+      const steps = [
+        { num: "01", label: "Giải thưởng", step: 1 },
+        { num: "02", label: "Chọn hồ sơ", step: 2 },
+        { num: "03", label: "Đánh giá", step: 3 },
+        { num: "04", label: "Hoàn thành", step: 4 }
+      ];
+      bar.innerHTML = steps.map(s => {
+        const active = appState.currentStep === s.step;
+        const done = appState.currentStep > s.step;
+        return `
+          <button
+            type="button"
+            onclick="goToStep(${s.step})"
+            class="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition ${
+              active
+                ? 'bg-teal-600 text-white shadow-xs'
+                : done
+                ? 'bg-teal-50 text-teal-700 hover:bg-teal-100'
+                : 'text-slate-500 hover:bg-slate-100'
+            }"
+          >
+            <span class="text-[11px] font-bold ${active ? 'text-teal-100' : done ? 'text-teal-600' : 'text-slate-400'}">${done ? '✓' : s.num}</span>
+            <span class="hidden sm:inline">${s.label}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    // ============================================================================
+    // 5. BƯỚC 01: CHỌN HẠNG MỤC (2 CỘT TRỤ CỘT 6 & TIÊN PHONG 9 TINH GỌN)
+    // ============================================================================
+    function renderStep1Categories() {
+      const truCotCats = AWARD_CATEGORIES.filter(c => c.group === "tru-cot");
+      const tienPhongCats = AWARD_CATEGORIES.filter(c => c.group === "tien-phong");
+      const selectedCat = getCategoryById(appState.selectedCategoryId);
+      const stats = getCompletionStats();
+
+      function renderItem(cat) {
+        const isSelected = cat.id === appState.selectedCategoryId;
+        const profiles = PROFILES_BY_CATEGORY[cat.id] || [];
+        const scoredCount = profiles.filter(p => {
+          const ev = appState.evaluations[p.id];
+          return ev && ev.status === "completed";
+        }).length;
+
+        return `
+          <button
+            type="button"
+            onclick="selectCategory('${cat.id}')"
+            class="w-full text-left px-4 py-3 rounded-xl border transition flex items-center justify-between gap-3 ${
+              isSelected
+                ? 'border-teal-600 bg-teal-50/70 ring-1 ring-teal-600'
+                : 'border-slate-200 bg-white hover:border-teal-300 hover:bg-slate-50/60'
+            }"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+                isSelected ? 'border-teal-600 bg-teal-600 text-white' : 'border-slate-300 bg-white'
+              }">
+                ${isSelected ? '<span class="w-1.5 h-1.5 rounded-full bg-white"></span>' : ''}
+              </span>
+              <span class="text-sm font-semibold text-slate-800 truncate">${cat.name}</span>
+            </div>
+            <span class="shrink-0 text-[11px] font-medium px-2 py-0.5 rounded-full ${
+              scoredCount > 0 ? 'bg-teal-100 text-teal-800' : 'bg-slate-100 text-slate-500'
+            }">
+              ${scoredCount}/${profiles.length} hồ sơ
+            </span>
+          </button>
+        `;
+      }
+
+      return `
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200/90 shadow-xs p-5 sm:p-7">
+          <div class="mb-5">
+            <h1 class="text-lg sm:text-xl font-bold text-slate-900">Chọn hạng mục giải thưởng cần chấm</h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Chọn 1 hạng mục thuộc nhóm Trụ cột hoặc Tiên phong để xem danh sách hồ sơ đề cử.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Cột Trái: Trụ cột (6 hạng mục) -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Trụ cột</h2>
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200">
+                  ${stats.truCotDone}/6 hoàn tất
+                </span>
+              </div>
+              <div class="space-y-2">
+                ${truCotCats.map(renderItem).join("")}
+              </div>
+            </div>
+
+            <!-- Cột Phải: Tiên phong (9 hạng mục) -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Tiên phong</h2>
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200">
+                  ${stats.tienPhongDone}/9 hoàn tất
+                </span>
+              </div>
+              <div class="space-y-2">
+                ${tienPhongCats.map(renderItem).join("")}
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer bar giống trang khảo sát -->
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+            <div class="text-xs sm:text-sm text-slate-600">
+              Đang chọn: <strong class="text-slate-900">${selectedCat.name}</strong>
+              <span class="text-slate-400 ml-1">(${selectedCat.criteriaCount} tiêu chí · HĐ ${Math.round(selectedCat.councilWeight * 100)}%)</span>
+            </div>
+            <button type="button" onclick="proceedFromStep1()" class="px-5 py-2.5 rounded-xl teal-btn-primary text-xs sm:text-sm font-bold">
+              Tiếp tục →
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // 6. BƯỚC 02: DANH SÁCH HỒ SƠ CỦA HẠNG MỤC
+    // ============================================================================
+    function renderStep2Profiles() {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const profiles = PROFILES_BY_CATEGORY[category.id] || [];
+
+      return `
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200/90 shadow-xs p-5 sm:p-7">
+          <div class="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-semibold text-teal-600">${category.groupLabel}</span>
+              <h1 class="text-lg sm:text-xl font-bold text-slate-900">${category.name}</h1>
+              <p class="text-xs text-slate-500 mt-0.5">Chọn hồ sơ đề cử bên dưới để xem chi tiết bài dự thi và thực hiện chấm điểm.</p>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-700 shrink-0">
+              ${profiles.length} hồ sơ đề cử
+            </span>
+          </div>
+
+          <div class="space-y-3 mt-5">
+            ${profiles.map(p => {
+              const isSelected = p.id === appState.selectedProfileId;
+              const ev = appState.evaluations[p.id];
+              const scoreObj = computeJudgeScore(category, ev);
+              const isCompleted = ev && ev.status === "completed";
+
+              return `
+                <div
+                  onclick="selectProfileCard('${p.id}')"
+                  class="cursor-pointer p-4 rounded-xl border transition flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                    isSelected
+                      ? 'border-teal-600 bg-teal-50/50 ring-1 ring-teal-600'
+                      : 'border-slate-200 bg-white hover:border-teal-300'
+                  }"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="mt-0.5 w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
+                      isSelected ? 'border-teal-600 bg-teal-600 text-white' : 'border-slate-300 bg-white'
+                    }">
+                      ${isSelected ? '<span class="text-[10px] font-bold">✓</span>' : ''}
+                    </div>
+                    <div>
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-bold text-slate-400">${p.code}</span>
+                        <h3 class="text-sm sm:text-base font-bold text-slate-900">${p.title}</h3>
+                      </div>
+                      <p class="text-xs text-slate-500 mt-0.5">
+                        Đơn vị: <strong class="text-slate-700">${p.organization}</strong> · ${p.location}
+                      </p>
+                      <div class="flex flex-wrap items-center gap-3 mt-2 text-xs text-slate-600">
+                        ${p.keyMetrics.map(m => `<span><strong class="text-teal-700">${m.value}</strong> ${m.label}</span>`).join('<span class="text-slate-300">·</span>')}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+                    ${isCompleted && scoreObj
+                      ? `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Đã chấm: ${scoreObj.weightedScore}/5</span>`
+                      : `<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-500">Chưa chấm</span>`
+                    }
+                    <button
+                      type="button"
+                      onclick="openProfileForScoring('${p.id}', event)"
+                      class="px-3.5 py-1.5 rounded-lg teal-btn-primary text-xs font-bold"
+                    >
+                      Chấm hồ sơ →
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" onclick="goToStep(1)" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900">
+              ‹ Chọn lại giải thưởng
+            </button>
+            <button type="button" onclick="proceedFromStep2()" class="px-5 py-2.5 rounded-xl teal-btn-primary text-xs sm:text-sm font-bold">
+              Tiếp tục →
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // 7. BƯỚC 03: BỐ CỤC 2 CỘT (TRÁI: HỒ SƠ ĐỀ CỬ | PHẢI: CÂU HỎI -> NEXT -> THANG ĐIỂM 1-5)
+    // ============================================================================
+    function renderStep3Workspace() {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const profiles = PROFILES_BY_CATEGORY[category.id] || [];
+      const profile = getProfileById(category.id, appState.selectedProfileId);
+      const evalRecord = getOrCreateEvaluation(profile.id, category);
+      const galleryItem = profile.gallery[appState.activeGalleryIndex] || profile.gallery[0];
+      const scoreInfo = computeJudgeScore(category, evalRecord);
+      const validation = validateScoringSubmission(category, evalRecord);
+
+      return `
+        <!-- Thanh điều hướng mỏng phía trên -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <button type="button" onclick="goToStep(2)" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-teal-700 flex items-center gap-1">
+            <span>‹ Danh sách hồ sơ (${category.name})</span>
+          </button>
+
+          <div class="flex items-center gap-1.5">
+            ${profiles.map(p => {
+              const active = p.id === profile.id;
+              const ev = appState.evaluations[p.id];
+              const done = ev && ev.status === "completed";
+              return `
+                <button
+                  type="button"
+                  onclick="switchProfileInStep3('${p.id}')"
+                  class="px-2.5 py-1 rounded-lg text-xs font-semibold transition ${
+                    active ? 'bg-teal-600 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                  }"
+                >
+                  ${p.code} ${done ? '✓' : ''}
+                </button>
+              `;
+            }).join("")}
+          </div>
+        </div>
+
+        <!-- 2 CỘT CHÍNH -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+          <!-- CỘT TRÁI (7/12): THÔNG TIN HỒ SƠ ĐỀ CỬ (CHUẨN LINK MẪU) -->
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden p-5 sm:p-6 space-y-6">
+
+            <!-- 1. Gallery ảnh -->
+            <div>
+              <div class="relative rounded-xl overflow-hidden bg-gradient-to-br ${galleryItem.gradient} h-56 sm:h-72 p-4 flex flex-col justify-between text-white">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="px-2.5 py-1 rounded-full bg-black/30 backdrop-blur-xs font-medium">${galleryItem.tag}</span>
+                  <span class="px-2.5 py-1 rounded-md bg-black/40 font-semibold">${appState.activeGalleryIndex + 1} / ${profile.gallery.length}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button type="button" onclick="prevGalleryImage()" class="w-8 h-8 rounded-full bg-black/35 hover:bg-black/55 flex items-center justify-center text-white font-bold">‹</button>
+                  <button type="button" onclick="nextGalleryImage()" class="w-8 h-8 rounded-full bg-black/35 hover:bg-black/55 flex items-center justify-center text-white font-bold">›</button>
+                </div>
+                <div class="text-sm font-bold bg-black/35 backdrop-blur-xs px-3 py-2 rounded-lg">
+                  ${galleryItem.title}
+                </div>
+              </div>
+
+              <!-- Thumbnails -->
+              <div class="grid grid-cols-6 gap-1.5 mt-2">
+                ${profile.gallery.map((g, idx) => `
+                  <button
+                    type="button"
+                    onclick="setGalleryImage(${idx})"
+                    class="h-11 rounded-lg bg-gradient-to-br ${g.gradient} border-2 transition ${
+                      idx === appState.activeGalleryIndex ? 'border-teal-600 opacity-100' : 'border-transparent opacity-60 hover:opacity-90'
+                    }"
+                    title="${g.title}"
+                  ></button>
+                `).join("")}
+              </div>
+            </div>
+
+            <!-- 2. Tiêu đề, Đơn vị & Giới thiệu -->
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-semibold mb-2">
+                <span>🏆 ${category.name}</span>
+              </div>
+              <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900">${profile.title}</h1>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">Đơn vị / Cá nhân: <strong class="text-slate-800">${profile.organization}</strong></p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">${profile.summary}</p>
+            </div>
+
+            <!-- 3. 3 Chỉ số chính (Key Metrics) -->
+            <div class="grid grid-cols-3 gap-3">
+              ${profile.keyMetrics.map(m => `
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-center">
+                  <div class="text-lg sm:text-xl font-extrabold text-sky-600">${m.value}</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">${m.label}</div>
+                </div>
+              `).join("")}
+            </div>
+
+            <!-- 4. Thông tin đơn vị / cá nhân -->
+            <div>
+              <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 mb-2.5">Thông tin đơn vị / cá nhân</h2>
+              <div class="rounded-xl border border-slate-200 divide-y divide-slate-100 text-xs sm:text-sm">
+                <div class="grid grid-cols-12 px-3.5 py-2">
+                  <span class="col-span-5 text-slate-500">Đứng tên hồ sơ:</span>
+                  <span class="col-span-7 font-semibold text-slate-800">${profile.organization}</span>
+                </div>
+                <div class="grid grid-cols-12 px-3.5 py-2 bg-slate-50/50">
+                  <span class="col-span-5 text-slate-500">Tư cách đăng ký:</span>
+                  <span class="col-span-7 text-slate-800">${profile.registerRole}</span>
+                </div>
+                <div class="grid grid-cols-12 px-3.5 py-2">
+                  <span class="col-span-5 text-slate-500">Địa điểm:</span>
+                  <span class="col-span-7 text-slate-800">${profile.location}</span>
+                </div>
+                <div class="grid grid-cols-12 px-3.5 py-2 bg-slate-50/50">
+                  <span class="col-span-5 text-slate-500">Website / Fanpage:</span>
+                  <span class="col-span-7 text-sky-600 truncate">${profile.website} · ${profile.fanpage}</span>
+                </div>
+                <div class="grid grid-cols-12 px-3.5 py-2">
+                  <span class="col-span-5 text-slate-500">Đơn vị đại diện:</span>
+                  <span class="col-span-7 text-slate-800">${profile.representative}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Thành tích & Điểm khác biệt -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-sky-600 mb-1.5">Thành tích trong năm</h3>
+                <p class="text-xs text-slate-700 leading-relaxed">${profile.achievements}</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-sky-600 mb-1.5">Điểm khác biệt</h3>
+                <p class="text-xs text-slate-700 leading-relaxed">${profile.differentiation}</p>
+              </div>
+            </div>
+
+            <!-- 6. Số liệu hoạt động -->
+            <div>
+              <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 mb-2.5">Số liệu hoạt động</h2>
+              <div class="space-y-2">
+                ${profile.operationalData.map(item => `
+                  <div class="p-3 rounded-xl border border-slate-200/80 text-xs">
+                    <div class="font-bold text-slate-800">${item.title}</div>
+                    <p class="text-slate-600 mt-0.5 leading-relaxed">${item.content}</p>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+
+            <!-- 7. Dấu ấn nổi bật -->
+            <div>
+              <h2 class="text-xs font-bold uppercase tracking-wider text-sky-600 mb-2">Dấu ấn nổi bật</h2>
+              <div class="flex flex-wrap gap-2">
+                ${profile.highlights.map(hl => `
+                  <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">${hl}</span>
+                `).join("")}
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CỘT PHẢI (5/12): KHUNG CHẤM ĐIỂM 2 BƯỚC (GHI CÂU HỎI -> BẤM NEXT -> THANG ĐIỂM 1-5) -->
+          <div class="lg:col-span-5 lg:sticky lg:top-16 bg-white rounded-2xl border border-teal-600/70 shadow-sm overflow-hidden">
+
+            <!-- Header cột phải gọn -->
+            <div class="px-5 py-4 bg-teal-600 text-white flex items-center justify-between">
+              <div>
+                <div class="text-[11px] font-semibold text-teal-100 uppercase tracking-wider">
+                  ${appState.rightPanelPhase === "questions" ? "Bước 1 / 2 · Ghi câu hỏi tiêu chí" : "Bước 2 / 2 · Chấm điểm thang 1–5"}
+                </div>
+                <h2 class="text-sm sm:text-base font-bold mt-0.5">
+                  ${appState.rightPanelPhase === "questions" ? "Bộ tiêu chí & Câu hỏi của BGK" : "Đánh giá điểm số (1 → 5)"}
+                </h2>
+              </div>
+
+              ${scoreInfo && appState.rightPanelPhase === "scoring" ? `
+                <div class="text-right bg-white/15 px-3 py-1 rounded-lg">
+                  <div class="text-[10px] text-teal-100">Điểm HĐ</div>
+                  <div class="text-sm font-extrabold">${scoreInfo.weightedScore.toFixed(2)}/5</div>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Nội dung cột phải -->
+            <div class="p-4 sm:p-5 max-h-[78vh] overflow-y-auto custom-scrollbar">
+              ${appState.rightPanelPhase === "questions"
+                ? renderRightPhaseQuestions(category, evalRecord)
+                : renderRightPhaseScoring(category, profile, evalRecord, validation)
+              }
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    }
+
+    // ----------------------------------------------------------------------------
+    // CỘT PHẢI - BƯỚC 1: GHI CÂU HỎI VÀO TIÊU CHÍ -> BẤM NEXT
+    // ----------------------------------------------------------------------------
+    function renderRightPhaseQuestions(category, evalRecord) {
+      return `
+        <div class="space-y-3.5">
+          ${category.criteria.map((c, idx) => {
+            const qVal = evalRecord.criteriaQuestions[c.code] || "";
+            return `
+              <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/60">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-bold text-teal-700">${c.code} · Trọng số ${Math.round(c.weight * 100)}%</span>
+                  <span class="text-[11px] text-slate-400">${c.isQuant ? 'Định lượng' : 'Định tính'}</span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">${idx + 1}. ${c.name}</h3>
+                <p class="text-xs text-slate-500 mt-1 italic">"${c.question}"</p>
+
+                <textarea
+                  rows="2"
+                  oninput="handleCriterionQuestionInput('${c.code}', this.value)"
+                  placeholder="Ghi câu hỏi của BGK cho tiêu chí này..."
+                  class="mt-2.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-teal-600"
+                >${escapeHtml(qVal)}</textarea>
+              </div>
+            `;
+          }).join("")}
+
+          <div class="pt-2 flex justify-end">
+            <button
+              type="button"
+              onclick="proceedToScoringPhase()"
+              class="w-full py-2.5 px-4 rounded-xl teal-btn-primary text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5"
+            >
+              <span>Next: Chấm điểm hồ sơ (1 → 5)</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ----------------------------------------------------------------------------
+    // CỘT PHẢI - BƯỚC 2: THANG ĐIỂM 1 => 5 (RIÊNG 5 ĐIỂM XUẤT SẮC CẦN GHI CHÚ LÝ DO)
+    // ----------------------------------------------------------------------------
+    function renderRightPhaseScoring(category, profile, evalRecord, validation) {
+      const scaleLabels = [
+        { val: 1, label: "Đạt YC", numColor: "text-red-500" },
+        { val: 2, label: "Khá", numColor: "text-orange-500" },
+        { val: 3, label: "Tốt", numColor: "text-slate-600" },
+        { val: 4, label: "Rất tốt", numColor: "text-emerald-600" },
+        { val: 5, label: "Xuất sắc", numColor: "text-teal-700" }
+      ];
+
+      return `
+        <div class="space-y-3.5">
+          ${category.criteria.map((c, idx) => {
+            const currentScore = evalRecord.scores[c.code];
+            const savedQuestion = (evalRecord.criteriaQuestions[c.code] || "").trim();
+            const currentNote = evalRecord.notes[c.code] || "";
+            const isExcellence = currentScore === 5;
+            const missingNote = isExcellence && currentNote.trim().length < 3;
+
+            return `
+              <div class="p-3.5 rounded-xl border ${
+                isExcellence ? 'border-teal-500 bg-teal-50/20' : 'border-slate-200 bg-white'
+              }">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-slate-800">${idx + 1}. ${c.name}</span>
+                  <span class="text-teal-700 font-semibold shrink-0 ml-2">${Math.round(c.weight * 100)}%</span>
+                </div>
+
+                ${savedQuestion ? `
+                  <div class="mt-1.5 text-[11px] text-slate-600 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-100">
+                    <span class="font-semibold text-slate-700">Câu hỏi BGK:</span> ${escapeHtml(savedQuestion)}
+                  </div>
+                ` : ''}
+
+                ${c.isQuant ? `
+                  <div class="mt-1.5 text-[11px] text-amber-800 bg-amber-50/70 px-2.5 py-1 rounded-lg">
+                    Điểm định lượng tính sẵn từ hồ sơ: <strong>${profile.quantPreScore.toFixed(1)}/5,0</strong>
+                  </div>
+                ` : ''}
+
+                <!-- Thang điểm 1 => 5 -->
+                <div class="grid grid-cols-5 gap-1.5 mt-2.5">
+                  ${scaleLabels.map(s => {
+                    const selected = currentScore === s.val;
+                    return `
+                      <button
+                        type="button"
+                        onclick="selectCriterionScore('${c.code}', ${s.val})"
+                        class="py-2 px-1 rounded-lg border text-center transition ${
+                          selected
+                            ? 'border-teal-600 bg-teal-50 ring-1 ring-teal-600'
+                            : 'border-slate-200 bg-slate-50/60 hover:bg-slate-100'
+                        }"
+                      >
+                        <div class="text-sm font-extrabold ${s.numColor}">${s.val}</div>
+                        <div class="text-[10px] text-slate-600 font-medium">${s.label}</div>
+                      </button>
+                    `;
+                  }).join("")}
+                </div>
+
+                <!-- Mô tả ngắn của mức đang chọn -->
+                ${typeof currentScore === "number" ? `
+                  <p class="mt-2 text-[11px] text-slate-500 leading-snug">
+                    <strong class="text-slate-700">Mức ${currentScore}:</strong> ${c.levels[currentScore]}
+                  </p>
+                ` : ''}
+
+                <!-- RIÊNG 5 ĐIỂM (XUẤT SẮC): BẮT BUỘC GHI CHÚ VÌ SAO CHẤM XUẤT SẮC -->
+                ${isExcellence ? `
+                  <div class="mt-2.5 pt-2.5 border-t border-teal-200">
+                    <label class="block text-xs font-bold text-teal-900 mb-1">
+                      Ghi chú vì sao chấm Xuất sắc (5 điểm) <span class="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      rows="2"
+                      oninput="handleCriterionNoteInput('${c.code}', this.value)"
+                      placeholder="Nhập lý do từ Ban Giám khảo vì sao chấm mức 5 (Xuất sắc)..."
+                      class="w-full rounded-lg border ${
+                        missingNote ? 'border-red-400 bg-red-50/30' : 'border-teal-400 bg-white'
+                      } px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none"
+                    >${escapeHtml(currentNote)}</textarea>
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          }).join("")}
+
+          <!-- Dòng nhắc trạng thái gọn -->
+          <div class="text-xs ${validation.isValid ? 'text-teal-700 font-semibold' : 'text-amber-700'}">
+            ${validation.isValid
+              ? '✓ Đã chấm đủ điểm và ghi chú cho các tiêu chí.'
+              : validation.missingExcellenceNotes.length > 0
+              ? `Vui lòng nhập ghi chú lý do chấm Xuất sắc (5 điểm) tại: ${validation.missingExcellenceNotes.join(", ")}`
+              : `Vui lòng chọn điểm (1–5) cho tất cả tiêu chí.`
+            }
+          </div>
+
+          <!-- Nút điều hướng cuối khung -->
+          <div class="pt-1 flex items-center justify-between gap-2">
+            <button
+              type="button"
+              onclick="setRightPanelPhase('questions')"
+              class="px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50"
+            >
+              ‹ Câu hỏi
+            </button>
+            <button
+              type="button"
+              onclick="submitProfileEvaluation()"
+              ${validation.isValid ? "" : "disabled"}
+              class="flex-1 py-2.5 px-4 rounded-xl teal-btn-primary text-xs sm:text-sm font-bold"
+            >
+              Hoàn tất →
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // 8. BƯỚC 04: HOÀN THÀNH (CHUẨN TRANG KHẢO SÁT)
+    // ============================================================================
+    function renderStep4Completed() {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const profile = getProfileById(category.id, appState.selectedProfileId);
+      const evalRecord = getOrCreateEvaluation(profile.id, category);
+      const scoreInfo = computeJudgeScore(category, evalRecord);
+      const stats = getCompletionStats();
+
+      return `
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200/90 shadow-xs p-6 sm:p-8 text-center">
+          <div class="w-12 h-12 rounded-full bg-teal-600 text-white flex items-center justify-center text-2xl font-bold mx-auto">
+            ✓
+          </div>
+          <h1 class="text-xl font-extrabold text-slate-900 mt-3">Hoàn thành</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            Đã lưu kết quả chấm điểm cho hồ sơ <strong class="text-slate-800">${profile.title}</strong>.
+          </p>
+
+          <!-- Khung tóm tắt kết quả chấm -->
+          <div class="mt-5 p-4 rounded-xl bg-slate-50 border border-slate-200 text-left space-y-2.5">
+            <div class="flex items-center justify-between pb-2.5 border-b border-slate-200">
+              <div>
+                <div class="text-xs text-slate-500">${category.name}</div>
+                <div class="text-sm font-bold text-slate-900">${profile.title}</div>
+              </div>
+              <div class="text-right">
+                <div class="text-[11px] text-slate-500">Điểm tổng hợp</div>
+                <div class="text-lg font-extrabold text-teal-700">${scoreInfo ? scoreInfo.weightedScore.toFixed(2) : "0.00"} / 5</div>
+              </div>
+            </div>
+
+            ${category.criteria.map(c => {
+              const sc = evalRecord.scores[c.code] || 0;
+              const note = (evalRecord.notes[c.code] || "").trim();
+              const q = (evalRecord.criteriaQuestions[c.code] || "").trim();
+              return `
+                <div class="text-xs py-1 border-b border-slate-100 last:border-0">
+                  <div class="flex items-center justify-between">
+                    <span class="font-medium text-slate-700">${c.code} · ${c.name}</span>
+                    <span class="font-bold ${sc === 5 ? 'text-teal-700' : 'text-slate-800'}">${sc}/5 ${sc === 5 ? '(Xuất sắc)' : ''}</span>
+                  </div>
+                  ${q ? `<div class="text-[11px] text-slate-500 mt-0.5">Câu hỏi: ${escapeHtml(q)}</div>` : ''}
+                  ${sc === 5 && note ? `<div class="text-[11px] text-teal-800 mt-0.5">Lý do Xuất sắc: ${escapeHtml(note)}</div>` : ''}
+                </div>
+              `;
+            }).join("")}
+          </div>
+
+          <!-- Tiến độ chung -->
+          <div class="mt-4 flex items-center justify-center gap-4 text-xs text-slate-600">
+            <span>Trụ cột: <strong class="text-teal-700">${stats.truCotDone}/6</strong></span>
+            <span>·</span>
+            <span>Tiên phong: <strong class="text-teal-700">${stats.tienPhongDone}/9</strong></span>
+          </div>
+
+          <!-- Nút điều hướng -->
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <button type="button" onclick="goToStep(1)" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold">
+              Về danh sách
+            </button>
+            <button type="button" onclick="goToNextProfileInCategory()" class="px-5 py-2.5 rounded-xl teal-btn-primary text-xs sm:text-sm font-bold">
+              Hồ sơ tiếp theo →
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // 9. CÁC HÀM XỬ LÝ SỰ KIỆN
+    // ============================================================================
+    function renderAll() {
+      renderStepIndicator();
+      const container = document.getElementById("appStepContainer");
+      if (!container) return;
+      if (appState.currentStep === 1) container.innerHTML = renderStep1Categories();
+      else if (appState.currentStep === 2) container.innerHTML = renderStep2Profiles();
+      else if (appState.currentStep === 3) container.innerHTML = renderStep3Workspace();
+      else if (appState.currentStep === 4) container.innerHTML = renderStep4Completed();
+    }
+
+    function goToStep(stepNum) {
+      appState.currentStep = stepNum;
+      renderAll();
+    }
+
+    function selectCategory(catId) {
+      appState.selectedCategoryId = catId;
+      const list = PROFILES_BY_CATEGORY[catId] || [];
+      if (list.length > 0) appState.selectedProfileId = list[0].id;
+      appState.activeGalleryIndex = 0;
+      renderAll();
+    }
+
+    function proceedFromStep1() {
+      appState.currentStep = 2;
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function selectProfileCard(profileId) {
+      appState.selectedProfileId = profileId;
+      renderAll();
+    }
+
+    function openProfileForScoring(profileId, ev) {
+      if (ev && ev.stopPropagation) ev.stopPropagation();
+      appState.selectedProfileId = profileId;
+      appState.activeGalleryIndex = 0;
+      appState.rightPanelPhase = "questions";
+      appState.currentStep = 3;
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function proceedFromStep2() {
+      appState.activeGalleryIndex = 0;
+      appState.rightPanelPhase = "questions";
+      appState.currentStep = 3;
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function switchProfileInStep3(profileId) {
+      appState.selectedProfileId = profileId;
+      appState.activeGalleryIndex = 0;
+      appState.rightPanelPhase = "questions";
+      renderAll();
+    }
+
+    function setRightPanelPhase(phase) {
+      appState.rightPanelPhase = phase;
+      renderAll();
+    }
+
+    function proceedToScoringPhase() {
+      saveState();
+      appState.rightPanelPhase = "scoring";
+      renderAll();
+    }
+
+    function handleCriterionQuestionInput(code, val) {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const evalRecord = getOrCreateEvaluation(appState.selectedProfileId, category);
+      evalRecord.criteriaQuestions[code] = val;
+      saveState();
+    }
+
+    function selectCriterionScore(code, scoreVal) {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const evalRecord = getOrCreateEvaluation(appState.selectedProfileId, category);
+      evalRecord.scores[code] = scoreVal;
+      saveState();
+      renderAll();
+    }
+
+    function handleCriterionNoteInput(code, val) {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const evalRecord = getOrCreateEvaluation(appState.selectedProfileId, category);
+      evalRecord.notes[code] = val;
+      saveState();
+      const validation = validateScoringSubmission(category, evalRecord);
+      const submitBtn = document.querySelector('button[onclick="submitProfileEvaluation()"]');
+      if (submitBtn) {
+        submitBtn.disabled = !validation.isValid;
+      }
+    }
+
+    function submitProfileEvaluation() {
+      const category = getCategoryById(appState.selectedCategoryId);
+      const evalRecord = getOrCreateEvaluation(appState.selectedProfileId, category);
+      const validation = validateScoringSubmission(category, evalRecord);
+      if (!validation.isValid) {
+        showToast("Vui lòng chấm đủ điểm và nhập lý do cho mức 5 (Xuất sắc)");
+        return;
+      }
+      evalRecord.status = "completed";
+      saveState();
+      appState.currentStep = 4;
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goToNextProfileInCategory() {
+      const profiles = PROFILES_BY_CATEGORY[appState.selectedCategoryId] || [];
+      const idx = profiles.findIndex(p => p.id === appState.selectedProfileId);
+      const nextIdx = (idx + 1) % profiles.length;
+      appState.selectedProfileId = profiles[nextIdx].id;
+      appState.activeGalleryIndex = 0;
+      appState.rightPanelPhase = "questions";
+      appState.currentStep = 3;
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function setGalleryImage(idx) {
+      appState.activeGalleryIndex = idx;
+      renderAll();
+    }
+
+    function prevGalleryImage() {
+      const profile = getProfileById(appState.selectedCategoryId, appState.selectedProfileId);
+      const total = profile.gallery.length;
+      appState.activeGalleryIndex = (appState.activeGalleryIndex - 1 + total) % total;
+      renderAll();
+    }
+
+    function nextGalleryImage() {
+      const profile = getProfileById(appState.selectedCategoryId, appState.selectedProfileId);
+      const total = profile.gallery.length;
+      appState.activeGalleryIndex = (appState.activeGalleryIndex + 1) % total;
+      renderAll();
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const box = document.getElementById("toastBox");
+      const text = document.getElementById("toastMessage");
+      if (!box || !text) return;
+      text.textContent = msg;
+      box.classList.remove("hidden");
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => box.classList.add("hidden"), 2500);
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadSavedState();
+      renderAll();
+    });
+  </script>
+  <script src="shared/scoring-model.js"></script>
+  <script src="shared/editor-workspace.js"></script>
+</body>
+</html>
