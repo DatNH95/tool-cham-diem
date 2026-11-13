@@ -692,3 +692,23 @@ body{background-color: rgb(243, 250, 248); background-image: url("data:image/svg
 @media (prefers-reduced-motion: reduce) {
 .judge-workspace *{scroll-behavior: auto !important; transition: none !important;}
 }
+.editor-evidence-folder{display: flex; flex-direction: column; gap: 12px;}
+
+.editor-folder-link{display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; align-self: flex-start; padding: 10px 13px; background: rgb(232, 245, 243); border: 1px solid rgb(145, 213, 216); border-radius: 7px; color: rgb(0, 113, 156);}
+.editor-folder-link:hover{background: rgb(216, 238, 235);}
+.editor-photo-section h3 > span{color: rgb(100, 116, 139);}
+.editor-photo-grid{display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 14px; margin-top: 14px;}
+.editor-photo-grid figure{margin: 0px; min-width: 0px;}
+.editor-photo-link{display: block; border: 1px solid rgb(226, 232, 240); border-radius: 8px; overflow: hidden; background: rgb(237, 242, 244);}
+.editor-photo-link img{display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 0.2s;}
+.editor-photo-link:hover img{transform: scale(1.035);}
+.editor-photo-grid figcaption{line-height: 1.5; color: rgb(82, 106, 119); margin-top: 6px;}
+.editor-photo-credits{margin-top: 14px; color: rgb(100, 116, 139);}
+.editor-photo-credits summary{cursor: pointer; min-height: 24px;}
+.editor-photo-credits ul{padding-left: 16px; list-style: disc;}
+.editor-photo-credits li{margin-top: 6px; line-height: 1.6;}
+.editor-photo-credits a{color: rgb(0, 113, 156); text-decoration: underline; text-underline-offset: 2px;}
+@media (max-width: 400px) {
+.editor-photo-grid{gap: 10px;}
+
+}

@@ -16,6 +16,15 @@ let browser;
   assert.equal(page.url(),toolUrl);
   assert.equal(await page.evaluate(()=>appState.currentStep),1,'Logo returns to step 1');
   await page.evaluate(()=>{proceedFromStep1();proceedFromStep2();});
+  const folder=page.getByRole('link',{name:'Mở thư mục minh chứng',exact:true});
+  assert.equal(await folder.getAttribute('href'),'https://drive.google.com/drive/u/0/folders/1w3oIEHL7Erx0Y7LUTMkI4q6a0fi8jV9C');
+  assert.equal(await folder.getAttribute('target'),'_blank');
+  assert.equal(await page.locator('.editor-photo-grid img').count(),4);
+  await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop=e.scrollHeight);
+  await page.locator('.editor-photo-grid img').evaluateAll(images=>Promise.all(images.map(img=>img.decode())));
+  assert(await page.locator('.editor-photo-grid img').evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)));
+  await page.locator('.judge-dossier').screenshot({path:path.join(out,'dossier-gallery.png')});
+  await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop=0);
   await page.screenshot({path:path.join(out,'desktop-empty.png'),fullPage:true});
   assert.equal(await page.locator('.editor-criterion-nav button').count(),4);
   assert.equal(await page.locator('.editor-level-description').count(),5);
@@ -87,6 +96,12 @@ let browser;
     await page.evaluate(id=>{selectCategory(id);proceedFromStep2();},category.id);
     for(const code of category.codes){await page.locator(`[data-editor-criterion="${code}"]`).click();assert.equal(await page.locator('.editor-score-options button').count(),5);}
   }
+  await page.evaluate(()=>{selectCategory('tru-cot-1');proceedFromStep2();});
+  await page.getByRole('button',{name:'Đọc hồ sơ & minh chứng',exact:true}).click();
+  await page.locator('.editor-photo-section').scrollIntoViewIfNeeded();
+  await page.locator('.editor-photo-grid img').evaluateAll(images=>Promise.all(images.map(img=>img.decode())));
+  assert(await page.locator('.editor-photo-grid img').evaluateAll(images=>images.every(img=>img.naturalWidth>0)));
+  await page.locator('.editor-photo-section').screenshot({path:path.join(out,'vinwonders-gallery.png')});
   assert.deepEqual(errors,[]);
   assert.deepEqual(failed,[],'All runtime assets must be local and available');
   fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({status:'pass',viewports:[1440,1024,768,390],categories:15,errors,failedRequests:failed},null,2));

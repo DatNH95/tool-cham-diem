@@ -46,13 +46,15 @@ function renderEditorRules(){return `<details class="editor-rules"><summary>Hư�
   <p><strong>Hiệu chỉnh:</strong> SD ≥ 1,0 là dấu hiệu cần rà soát sau khi đủ phiếu; không tự loại điểm trong công cụ này.</p></div></details>`;}
 function renderEditorDossier(profile){
   const t=editorText;
+  const folder=/^https:\/\/(?:drive|docs)\.google\.com\//i.test(profile.evidenceFolderUrl||'')?profile.evidenceFolderUrl:'';
   return `
     <section class="judge-section"><h3>Tóm tắt hồ sơ</h3><p>${t(profile.summary)}</p><dl class="judge-metrics">${profile.keyMetrics.map(m=>`<div><dt>${t(m.label)}</dt><dd>${t(m.value)}</dd></div>`).join('')}</dl></section>
     <section class="judge-section"><h3>Thành tích trong năm</h3><p>${t(profile.achievements)}</p><h3>Điểm khác biệt</h3><p>${t(profile.differentiation)}</p></section>
     <section class="judge-section"><h3>Số liệu hoạt động</h3><dl class="judge-data">${profile.operationalData.map(d=>`<div><dt>${t(d.title)}</dt><dd>${t(d.content)}</dd></div>`).join('')}</dl></section>
     <section class="judge-section"><h3>Dấu ấn nổi bật</h3><ul class="judge-highlights">${profile.highlights.map(h=>`<li>${t(h)}</li>`).join('')}</ul></section>
     <details class="judge-section" data-workspace-detail="organization"><summary>Thông tin đơn vị / cá nhân</summary><dl class="judge-data">${[['Đứng tên hồ sơ',profile.organization],['Tư cách đăng ký',profile.registerRole],['Địa điểm',profile.location],['Website',profile.website],['Fanpage',profile.fanpage],['Đơn vị đại diện',profile.representative]].map(([k,v])=>`<div><dt>${k}</dt><dd>${t(v)}</dd></div>`).join('')}</dl></details>
-    <details class="judge-section" data-workspace-detail="gallery"><summary>Danh mục hình ảnh (${profile.gallery.length})</summary><ul class="judge-highlights">${profile.gallery.map(g=>`<li>${t(g.title)}</li>`).join('')}</ul><p class="judge-muted">Dữ liệu mẫu chỉ có mô tả ảnh, chưa có tệp ảnh minh chứng.</p></details>`;
+    <section class="judge-section editor-photo-section"><h3>Hình ảnh hồ sơ <span>(${profile.gallery.length})</span></h3><div class="editor-photo-grid">${profile.gallery.map(g=>`<figure><a class="editor-photo-link" href="${t(g.src)}" target="_blank" rel="noopener noreferrer" aria-label="Xem ảnh ${t(g.title)}"><img src="${t(g.src)}" alt="${t(g.alt||g.title)}" width="640" height="420" loading="lazy" decoding="async"></a><figcaption>${t(g.title)}</figcaption></figure>`).join('')}</div></section>
+    <section class="judge-section editor-evidence-folder"><div><h3>Tệp minh chứng</h3><p>Thư mục Google Drive chứa giấy tờ và tài liệu của hồ sơ.</p></div>${folder?`<a class="editor-folder-link" href="${t(folder)}" target="_blank" rel="noopener noreferrer">Mở thư mục minh chứng <span aria-hidden="true">↗</span></a>`:'<span class="editor-help">Chưa có liên kết thư mục</span>'}</section>`;
 
 }
 function renderEditorBallot(category,criterion,record,index){

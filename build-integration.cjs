@@ -23,6 +23,6 @@ let html = fs.readFileSync(root+'/tool cham diem bgk.html','utf8');
 html = html.replace(/<script src="https:\/\/cdn.tailwindcss.com\/3.4.17"><\/script>/,'<link rel="stylesheet" href="shared/utilities.css">').replace(/  <link[^>]+(?:fonts.googleapis.com|fonts.gstatic.com)[^>]*>\r?\n/g,'');
 html = html.replace(/<header class="sticky[^]*?<\/header>/, `<div id="main">${chrome(header)}</div>\n<section aria-label="Tiến trình chấm điểm" class="border-b border-slate-200 bg-white/95"><div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3"><span class="text-sm font-semibold text-teal-700">Chấm điểm Ban Giám khảo</span><div id="stepIndicatorBar" class="flex items-center gap-1 sm:gap-1.5"></div></div></section>`);
 html = html.replace('</head>', '<link rel="stylesheet" href="shared/editor-workspace.css">\n</head>');
-html = html.replace('</body>', '<script src="shared/scoring-model.js"></script>\n<script src="shared/editor-workspace.js"></script>\n</body>');
+html = html.replace('</body>', '<script src="shared/scoring-model.js"></script>\n<script src="shared/profile-media.js"></script>\n<script src="shared/editor-workspace.js"></script>\n</body>');
 fs.writeFileSync('index.html', html);
 console.log('Created index.html with shared Travel Awards branding; scoring script preserved.');

@@ -22,4 +22,8 @@ Nếu thêm utility class mới, tạo lại CSS bằng `node scripts/build-styl
 
 Tái tạo từ thư mục nguồn: `node build-integration.cjs "đường dẫn thư mục Travel Awards 2026"`.
 
+Hồ sơ có thư viện ảnh hiển thị trực tiếp từ `assets/gallery/`; bấm ảnh để mở kích thước lớn. `shared/profile-media.js` gắn các ảnh VinWonders/khách sạn/resort cho dữ liệu demo, kèm tên địa điểm; không hiển thị mục nguồn ảnh trên giao diện. Đây là ảnh minh họa giao diện, không phải minh chứng đã xác minh của ứng viên. Danh sách nguồn được giữ tại `docs/gallery-sources.md`.
+
+Mục “Tệp minh chứng” mở thư mục Google Drive trong tab mới bằng `profile.evidenceFolderUrl`. Bản demo dùng chung thư mục người dùng cung cấp; khi tích hợp thật, gắn riêng liên kết tương ứng cho từng hồ sơ. Công cụ không tự đọc nội dung Drive hoặc thay đổi quyền chia sẻ.
+
 Cập nhật nội dung đánh giá: chọn mức 1–4 hiện ô “Nội dung đánh giá (khuyến khích)”, không bắt buộc; mức 5 hiện ô giải trình Xuất sắc bắt buộc. Nội dung được lưu theo từng tiêu chí và hiện trong phần xem lại phiếu; chuyển mức điểm không xóa nội dung đã nhập.

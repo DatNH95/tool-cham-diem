@@ -12,7 +12,8 @@ const context=vm.createContext({assert,
   localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setTimeout,clearTimeout
 });
 inline.forEach(s=>vm.runInContext(s,context));
-for(const file of ['shared/scoring-model.js','shared/editor-workspace.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
+for(const file of ['shared/scoring-model.js','shared/profile-media.js','shared/editor-workspace.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
+for(const file of vm.runInContext('Object.values(PROFILES_BY_CATEGORY).flatMap(profiles=>profiles.flatMap(p=>p.gallery.map(g=>g.src)))',context))assert(fs.existsSync(file),file);
 vm.runInContext(`
   const modelWeights=[.7,.6,.5,.5,.7,.4,.9,.8,.7,.5,.7,.6,.4,.3,.5];
   for(const [i,category]of AWARD_CATEGORIES.entries()){

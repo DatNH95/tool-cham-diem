@@ -122,4 +122,10 @@ button, input, select, optgroup, textarea, ::file-selector-button{font-style:inh
 @media (max-width: 600px) {.judge-heading h1{font-size:20px;}}
 @media (max-width: 600px) {.editor-score-options span{font-size:9px;}}
 @media (max-width: 600px) {.editor-result h1{font-size:21px;}}
+.editor-evidence-folder p{font-size:12px;}
+.editor-folder-link{font-size:12px;font-weight:600;}
+.editor-photo-section h3 > span{font-size:12px;font-weight:400;}
+.editor-photo-grid figcaption{font-size:11px;}
+.editor-photo-credits{font-size:11px;}
+@media (max-width: 400px) {.editor-photo-grid figcaption{font-size:10px;}}
 .home-header{font-family:Inter,Arial,sans-serif}

@@ -45,6 +45,10 @@ let browser;
       body.querySelector('div#main').replaceWith(originalHeader.cloneNode(true));
       body.querySelector('.home-header-logo').setAttribute('href','index.html');
       body.classList.add('home');body.querySelector('#toastBox')?.remove();
+      // Static handoff shows the pictures; full-size viewing belongs to the integrated app.
+      for(const link of body.querySelectorAll('a.editor-photo-link')){
+        const frame=document.createElement('div');frame.className=link.className;frame.innerHTML=link.innerHTML;link.replaceWith(frame);
+      }
       for(const button of body.querySelectorAll('.editor-mobile-tabs button')){
         const scoring=button.textContent==='Phiếu chấm',label=document.createElement('label');
         label.innerHTML=`<input type="radio" class="editor-accessible-label" name="handoff-panel" value="${scoring?'scoring':'dossier'}" ${scoring?'checked':''}>${button.textContent}`;
@@ -67,7 +71,11 @@ let browser;
       body.append(note);
       return body.outerHTML;
     },{step,files});
-    const embedded=markup.replace(/src="(assets\/[^\"]+)"/g,(_,asset)=>`src="data:image/svg+xml;base64,${fs.readFileSync(path.join(root,asset)).toString('base64')}"`);
+    const embedded=markup.replace(/src="(assets\/[^\"]+)"/g,(_,asset)=>{
+      const mime={'.svg':'image/svg+xml','.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.webp':'image/webp'}[path.extname(asset).toLowerCase()];
+      if(!mime)throw Error('Unsupported image format: '+asset);
+      return `src="data:${mime};base64,${fs.readFileSync(path.join(root,asset)).toString('base64')}"`;
+    });
     write(file,`<!DOCTYPE html>\n<html lang="vi">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>Travel Awards 2026 — ${['Hạng mục','Hồ sơ','Phiếu chấm','Ví dụ hoàn tất'][step-1]}</title>\n${['layout','header','font','icons','handoff'].map(n=>`<link rel="stylesheet" href="css/${n}.css">`).join('\n')}\n</head>\n${embedded}\n</html>`);
   }
   await page.evaluate(()=>selectCategory('tru-cot-3'));
