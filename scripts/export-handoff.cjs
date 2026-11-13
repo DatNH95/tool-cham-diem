@@ -43,6 +43,7 @@ let browser;
       main.outerHTML=`<section id="main" class="handoff-content ${main.className}">${main.innerHTML}</section>`;
       const originalHeader=document.querySelector('#main').shadowRoot.querySelector('header');
       body.querySelector('div#main').replaceWith(originalHeader.cloneNode(true));
+      body.querySelector('.home-header-logo').setAttribute('href','index.html');
       body.classList.add('home');body.querySelector('#toastBox')?.remove();
       for(const button of body.querySelectorAll('.editor-mobile-tabs button')){
         const scoring=button.textContent==='Phiếu chấm',label=document.createElement('label');
