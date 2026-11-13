@@ -1,14 +1,18 @@
 # Travel Awards 2026 — Công cụ chấm điểm BGK
 
+Bộ HTML/CSS thuần cho Tech tích hợp nằm ở [`hand-off/`](hand-off/index.html), hướng dẫn tại [`docs/handoff.md`](docs/handoff.md). Thư mục này được tự đồng bộ và kiểm tra mỗi lần đẩy GitHub; là template tĩnh, độc lập với bản demo tương tác bên dưới.
+
 Mở `index.html` bằng Chrome hoặc Edge phiên bản mới. Giữ các thư mục `assets` và `shared` cùng cấp với file HTML.
 
-Giao diện và mã chấm điểm được kế thừa từ `tool cham diem bgk.html`. Header được đối chiếu theo https://khao-sat-travel-awards.vercel.app/: chỉ có logo liên kết về trang chủ Travel Awards, cao 65 px, khung rộng tối đa 1.100 px và viền dưới xanh nhạt. Footer, logo và CSS lấy từ `Vibe code/travel-awards-2026`. Header/footer dùng Shadow DOM để tránh ảnh hưởng CSS của công cụ; thanh tiến trình bốn bước được đặt bên dưới header.
+Giao diện và mã chấm điểm được kế thừa từ `tool cham diem bgk.html`. Header được đối chiếu theo https://khao-sat-travel-awards.vercel.app/: chỉ có logo liên kết về trang chủ Travel Awards, cao 65 px, khung rộng tối đa 1.100 px và viền dưới xanh nhạt. Logo và CSS lấy từ `Vibe code/travel-awards-2026`. Header dùng Shadow DOM để tránh ảnh hưởng CSS của công cụ; thanh tiến trình bốn bước được đặt bên dưới header. Công cụ không có footer trên tất cả các bước.
 
-Header liên kết về trang chủ Travel Awards. Các liên kết nội bộ ở footer dùng đường dẫn của website, cần cấu hình đúng gốc URL khi tích hợp. CSS tiện ích đã đóng gói tại `shared/utilities.css`, không tải Tailwind hoặc Google Fonts khi chạy. Font Inter dùng nếu có trên máy, nếu không dùng font hệ thống.
+Header liên kết về trang chủ Travel Awards. CSS tiện ích đã đóng gói tại `shared/utilities.css`, không tải Tailwind hoặc Google Fonts khi chạy. Font Inter dùng nếu có trên máy, nếu không dùng font hệ thống.
 
-Đây là bản demo front-end, chưa kết nối máy chủ hay xác thực giám khảo. Mô hình chấm được cập nhật theo tài liệu 09.11.2026: trung bình cộng các tiêu chí quy đổi thang 100, trần T1/T2/T3 và giải trình mức 1/5. Chi tiết quyết định ánh xạ và những điểm tài liệu chưa thống nhất nằm ở [docs/scoring-model.md](docs/scoring-model.md).
+Đây là bản demo front-end, chưa kết nối máy chủ hay xác thực giám khảo. Theo yêu cầu 13.11.2026, phiếu chỉ giữ điểm nguyên 1–5 cho từng tiêu chí; không yêu cầu loại minh chứng, nguồn tham chiếu, nhận xét hoặc giải trình. Điểm trung bình các tiêu chí được quy đổi thang 100. Chi tiết quyết định ánh xạ và những điểm tài liệu chưa thống nhất nằm ở [docs/scoring-model.md](docs/scoring-model.md).
 
-Bước 3 đối chiếu từng tiêu chí: hồ sơ/minh chứng bên trái, phiếu chấm bên phải; chuyển tiêu chí bằng thanh số hoặc nút Trước/Tiếp theo. Mobile chuyển vùng Hồ sơ/Phiếu chấm. Câu hỏi bổ sung là tùy chọn, không còn bước bắt buộc trước khi chấm. Thanh thao tác giữ lưu nháp và hoàn tất dễ tiếp cận; không mất vị trí cuộn khi chọn điểm. Footer và thanh tiến trình website được ẩn riêng ở bước 3.
+Bước 3 luôn hiển thị toàn bộ hồ sơ ở box bên trái, không có tab theo tiêu chí. Việc chọn tiêu chí, đọc câu hỏi và chấm điểm nằm trong box bên phải. Đổi tiêu chí không làm mất vị trí đang đọc hồ sơ. Mobile chuyển vùng Hồ sơ/Phiếu chấm. Thanh thao tác giữ lưu nháp và hoàn tất dễ tiếp cận. Thanh tiến trình website được ẩn riêng ở bước 3. Sau khi hoàn tất phiếu, thao tác chính là quay lại danh sách hồ sơ cùng hạng mục; không tự mở hồ sơ tiếp theo.
+
+Box chấm điểm chỉ hiển thị tên tiêu chí và thang điểm 1–5; hướng dẫn tiêu chí mở khi cần. Mã tiêu chí nằm ở thanh chọn, tiến độ nằm ở thanh thao tác. Tất cả mức 1–5 đều chọn được ngay; hoàn tất khi chấm đủ tiêu chí. Minh chứng và ghi chú từng nhập ở phiên bản trước được giữ trong bản lưu nhưng không tham gia điều kiện hoàn tất.
 
 Mã HTML gốc vẫn được giữ trong `index.html` để truy nguyên. `shared/scoring-model.js` áp dụng mô hình mới; `shared/editor-workspace.js` và `.css` cung cấp màn hình chấm và kết quả. Phiếu cũ được nhập thành nháp để kiểm tra lại; không ghi đè bản lưu cũ.
 

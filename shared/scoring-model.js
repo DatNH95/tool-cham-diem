@@ -1,13 +1,8 @@
-// Model reference: VnExpress Travel Award 2026 — Mô hình chấm điểm, 09.11.2026.
+// Model reference: 09.11.2026; score-only workflow requested by user on 13.11.2026.
 // This is one judge's local demo ballot, never a council aggregate or final award result.
 const JUDGE_MODEL = {
   version: '091126-v3', storageKey: 'vta2026_bgk_model_091126_v3',
   legacyKey: 'vta2026_bgk_clean_v2',
-  tiers: {
-    T1: { label: 'T1 · Minh chứng cứng', cap: 5, description: 'Số liệu công bố chính thức, kiểm toán, chứng nhận.' },
-    T2: { label: 'T2 · Minh chứng hỗ trợ', cap: 4, description: 'OTA đã kiểm chứng, case study, dữ liệu công bố.' },
-    T3: { label: 'T3 · Tự thuyết minh', cap: 3, description: 'Số liệu tự khai, tuyên bố hoặc nội dung marketing; trần 3 điểm.' }
-  },
   anchors: [
     { score: 1, label: 'Yếu', description: 'Không thuyết phục; chủ yếu tự nhận.' },
     { score: 2, label: 'Dưới kỳ vọng', description: 'Có khoảng trống rõ; bằng chứng yếu.' },
@@ -91,16 +86,7 @@ saveState = function () {
 function getEditorCriterionIssues(c, record) {
   const issues = [];
   const score = record?.scores?.[c.code];
-  const tier = JUDGE_MODEL.tiers[record?.evidenceTiers?.[c.code]];
-  const refs = String(record?.evidenceRefs?.[c.code] || '').split('\n').map(s=>s.trim()).filter(Boolean);
-  const none = record?.noEvidence?.[c.code] === true;
   if (!Number.isInteger(score) || score < 1 || score > 5) issues.push('Chưa chọn điểm');
-  if (!tier) issues.push('Chưa phân tầng minh chứng');
-  if (none && record?.evidenceTiers?.[c.code] !== 'T3') issues.push('Không có minh chứng: chỉ dùng T3');
-  if (!none && !refs.length) issues.push('Chưa ghi bằng chứng dựa vào');
-  if (!none && refs.length > 3) issues.push('Chỉ ghi tối đa 3 minh chứng');
-  if (tier && Number.isInteger(score) && score > tier.cap) issues.push(`Vượt trần ${tier.cap} điểm của ${record.evidenceTiers[c.code]}`);
-  if ([1,5].includes(score) && String(record?.notes?.[c.code] || '').trim().length < 3) issues.push(`Cần giải trình cho mức ${score}`);
   return issues;
 }
 
@@ -110,7 +96,6 @@ validateScoringSubmission = function (category, record) {
     const item = getEditorCriterionIssues(c,record);
     if (item.length) issues.push({ code:c.code, messages:item });
     if (!Number.isInteger(record?.scores?.[c.code]) || record.scores[c.code] < 1 || record.scores[c.code] > 5) missingScores.push(c.code);
-    if ([1,5].includes(record?.scores?.[c.code]) && String(record?.notes?.[c.code] || '').trim().length < 3) missingExcellenceNotes.push(c.code);
   }
   return { isValid:issues.length === 0, missingScores, missingExcellenceNotes, issues };
 };
@@ -131,7 +116,7 @@ submitProfileEvaluation = function () {
     editorUI.criterion = validation.issues[0].code;
     editorUI.showIssues = true;
     renderAll();
-    showToast('Cần hoàn thiện điểm, minh chứng và giải trình trước khi hoàn tất.');
+    showToast('Vui lòng chấm đủ điểm 1–5 cho tất cả tiêu chí.');
     return;
   }
   const previousStatus = record.status;

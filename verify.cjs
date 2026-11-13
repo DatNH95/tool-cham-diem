@@ -26,27 +26,20 @@ vm.runInContext(`
       assert(!validateScoringSubmission(category,record).isValid);
       for(const criterion of category.criteria){
         editorChooseCriterion(criterion.code);
-        for(const view of ['criterion','profile']){
-          editorUI.view=view;const markup=renderStep3Workspace();
+        {
+          const markup=renderStep3Workspace();
           assert(markup.includes('judge-dossier-title')&&markup.includes('judge-scoring-title'));
           assert(!markup.includes('undefined'));assert(markup.includes('editor-complete'));
         }
-        record.evidenceTiers[criterion.code]='T3';record.evidenceRefs[criterion.code]='Báo cáo mẫu, trang 1';record.scores[criterion.code]=3;
+        record.scores[criterion.code]=3;
       }
       assert(validateScoringSubmission(category,record).isValid);
       assert.equal(computeJudgeScore(category,record).score100,60);
       const c=category.criteria[0];
-      record.scores[c.code]=4;assert(!validateScoringSubmission(category,record).isValid,'T3 cap');
-      record.evidenceTiers[c.code]='T2';assert(validateScoringSubmission(category,record).isValid);
-      record.scores[c.code]=5;record.notes[c.code]='Minh chứng mạnh';assert(!validateScoringSubmission(category,record).isValid,'T2 cap');
-      record.evidenceTiers[c.code]='T1';assert(validateScoringSubmission(category,record).isValid);
-      record.notes[c.code]='';assert(!validateScoringSubmission(category,record).isValid,'5 requires reason');
-      record.scores[c.code]=1;assert(!validateScoringSubmission(category,record).isValid,'1 requires reason');
-      record.notes[c.code]='Chưa thuyết phục';assert(validateScoringSubmission(category,record).isValid);
-      record.evidenceRefs[c.code]='';assert(!validateScoringSubmission(category,record).isValid,'Evidence reference required');
-      record.noEvidence[c.code]=true;record.evidenceTiers[c.code]='T3';assert(validateScoringSubmission(category,record).isValid,'No evidence supports documented weak score');
-      record.noEvidence[c.code]=false;record.evidenceRefs[c.code]='a\\nb\\nc\\nd';assert(!validateScoringSubmission(category,record).isValid,'Max three references');
-      record.evidenceRefs[c.code]='Tài liệu mẫu';record.scores[c.code]=3;
+      record.evidenceTiers[c.code]='T3'; // Preserved old metadata must not restrict scoring.
+      for(const value of [1,4,5]){record.scores[c.code]=value;record.notes[c.code]='';assert(validateScoringSubmission(category,record).isValid,'Only scores required');}
+      for(const value of [0,6,1.5]){record.scores[c.code]=value;assert(!validateScoringSubmission(category,record).isValid,'Only integer scores 1-5');}
+      record.scores[c.code]=3;
       assert(saveState());
     }
   }
@@ -65,4 +58,4 @@ vm.runInContext(`
   localStorage.setItem=savedSet;submitProfileEvaluation();assert.equal(appState.currentStep,4);assert.equal(migrated.status,'completed');assert(renderStep4Completed().includes('Chưa gửi lên hệ thống VnExpress'));
   const snapshot=JSON.stringify(appState.evaluations);appState.evaluations={};loadSavedState();assert.equal(JSON.stringify(appState.evaluations),snapshot,'Reload preserves local ballot');
 `,context);
-console.log('PASS: 15 category weights; all profile/criterion views; mean conversion; PDF 80/100 example; tier caps; reasons 1/5; reference limits; legacy migration; storage failure; completion/reload.');
+console.log('PASS: 15 category weights; all profile/criterion views; mean conversion; PDF 80/100 example; score-only validation; legacy migration; storage failure; completion/reload.');

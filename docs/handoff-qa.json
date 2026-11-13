@@ -1,0 +1,89 @@
+{
+  "status": "pass",
+  "files": 9,
+  "checks": [
+    {
+      "file": "cham-diem.html",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "file": "cham-diem.html",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "file": "cham-diem.html",
+      "width": 768,
+      "status": "pass"
+    },
+    {
+      "file": "cham-diem.html",
+      "width": 390,
+      "status": "pass"
+    },
+    {
+      "file": "ho-so.html",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "file": "ho-so.html",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "file": "ho-so.html",
+      "width": 768,
+      "status": "pass"
+    },
+    {
+      "file": "ho-so.html",
+      "width": 390,
+      "status": "pass"
+    },
+    {
+      "file": "hoan-tat.html",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "file": "hoan-tat.html",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "file": "hoan-tat.html",
+      "width": 768,
+      "status": "pass"
+    },
+    {
+      "file": "hoan-tat.html",
+      "width": 390,
+      "status": "pass"
+    },
+    {
+      "file": "index.html",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "file": "index.html",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "file": "index.html",
+      "width": 768,
+      "status": "pass"
+    },
+    {
+      "file": "index.html",
+      "width": 390,
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "format": "HTML/CSS only; no scripts, layers, Shadow DOM or external runtime"
+}

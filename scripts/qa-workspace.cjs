@@ -8,44 +8,43 @@ let browser;
   const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
   const errors=[],failed=[];page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>failed.push({url:r.url(),reason:r.failure()?.errorText}));
   await page.goto(require('node:url').pathToFileURL(path.join(base,'index.html')).href,{waitUntil:'networkidle'});
+  assert.equal(await page.locator('footer').count(),0);
   await page.evaluate(()=>{selectCategory('tru-cot-3');proceedFromStep1();proceedFromStep2();});
   await page.locator('.judge-workspace').waitFor();
   await page.screenshot({path:path.join(out,'desktop-empty.png'),fullPage:true});
   assert.equal(await page.locator('.editor-criterion-nav button').count(),4);
-  assert(await page.locator('[data-score="5"]').isDisabled());
-  await page.locator('#editor-tier-input').selectOption('T3');
-  assert(await page.locator('[data-score="4"]').isDisabled());
-  await page.locator('#editor-reference-input').fill('Hồ sơ tự kê khai, trang 2');
+  assert.equal(await page.locator('.judge-scoring input,.judge-scoring select,.judge-scoring textarea').count(),0);
+  for(const score of [1,5])assert(await page.locator('[data-score="'+score+'"]').isEnabled());
   await page.locator('[data-score="1"]').click();
-  assert((await page.locator('#editor-criterion-status').innerText()).includes('Cần giải trình'));
-  await page.locator('#editor-reason-input').fill('Chưa có chứng cứ xác minh kết quả.');
   assert((await page.locator('#editor-ready-count').innerText()).startsWith('1/4'));
-  await page.locator('#editor-tier-input').selectOption('T1');
+  assert(await page.locator('#editor-complete').isDisabled());
+  await page.evaluate(()=>{const {record,criterion}=editorCurrent();record.evidenceTiers[criterion.code]='T3';});
   await page.locator('[data-score="5"]').click();
-  await page.locator('#editor-tier-input').selectOption('T3');
-  assert((await page.locator('[role="alert"]').innerText()).includes('vượt trần'));
-  await page.locator('[data-score="3"]').click();
-  await page.locator('.editor-criterion-controls').getByRole('button',{name:'Tiếp theo →',exact:true}).click();
-  assert.equal(await page.locator('#editor-reference-input').inputValue(),'');
-  for(let i=1;i<4;i++){
-    await page.locator('#editor-tier-input').selectOption('T2');
-    await page.locator('#editor-reference-input').fill('Case study minh họa, trang 3');
-    await page.locator('[data-score="4"]').click();
-    if(i<3)await page.locator('.editor-criterion-controls').getByRole('button',{name:'Tiếp theo →',exact:true}).click();
+  await page.locator('[data-score="4"]').click();
+  for(const score of [5,4,3]){
+    await page.locator('.editor-criterion-controls').getByRole('button',{name:'Tiếp theo →',exact:true}).click();
+    await page.locator('[data-score="'+score+'"]').click();
   }
   assert(await page.locator('#editor-complete').isEnabled());
   await page.screenshot({path:path.join(out,'desktop-ready.png'),fullPage:true});
   await page.screenshot({path:path.join(out,'desktop-viewport.png')});
   await page.locator('#editor-complete').click();
-  assert((await page.locator('.editor-result-score strong').innerText()).includes('75.0'));
-  await page.getByRole('button',{name:'Xem lại phiếu',exact:true}).click();
+  assert((await page.locator('.editor-result-score strong').innerText()).includes('80.0'));
+  assert.equal(await page.getByRole('button',{name:/Hồ sơ chưa chấm tiếp theo/}).count(),0);
+  await page.getByRole('button',{name:'Quay lại danh sách hồ sơ',exact:true}).click();
+  assert(await page.locator('.editor-profile-list').isVisible());
+  assert.equal(await page.locator('footer').count(),0);
+  await page.locator('.editor-profile-cards article').first().getByRole('button',{name:'Xem lại phiếu →',exact:true}).click();
   await page.reload({waitUntil:'networkidle'});
   await page.evaluate(()=>{selectCategory('tru-cot-3');proceedFromStep1();proceedFromStep2();});
-  assert.equal(await page.locator('#editor-tier-input').inputValue(),'T3');
-  await page.locator('.editor-tabs').getByRole('button',{name:'Toàn bộ hồ sơ',exact:true}).click();
+  assert.equal(await page.locator('[data-score="4"]').getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('.judge-dossier .editor-tabs').count(),0);
+  assert.equal(await page.locator('.judge-dossier .editor-criterion-nav').count(),0);
   await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop=200);
   await page.locator('[data-score="2"]').click();
   assert(await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop)>100,'Preserve dossier scroll');
+  await page.locator('.editor-criterion-controls').getByRole('button',{name:'Tiếp theo →',exact:true}).click();
+  assert(await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop)>100,'Changing criterion must preserve dossier position');
   for(const width of [1440,1024,768,390]){
     await page.setViewportSize({width,height:900});
     const dimensions=await page.evaluate(()=>({viewport:innerWidth,width:document.documentElement.scrollWidth}));
@@ -62,7 +61,7 @@ let browser;
   const categoryChecks=await page.evaluate(()=>AWARD_CATEGORIES.map(c=>({id:c.id,codes:c.criteria.map(k=>k.code)})));
   for(const category of categoryChecks){
     await page.evaluate(id=>{selectCategory(id);proceedFromStep2();},category.id);
-    for(const code of category.codes){await page.locator(`[data-editor-criterion="${code}"]`).click();assert(await page.locator('#editor-tier-input').isVisible());}
+    for(const code of category.codes){await page.locator(`[data-editor-criterion="${code}"]`).click();assert.equal(await page.locator('.editor-score-options button').count(),5);}
   }
   assert.deepEqual(errors,[]);
   assert.deepEqual(failed,[],'All runtime assets must be local and available');

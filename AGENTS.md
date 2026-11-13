@@ -17,9 +17,16 @@ Người dùng đã cho phép commit/push repo này và đồng bộ bản demo 
 
 Không tự push/deploy chỉ vì sửa code; thực hiện khi người dùng yêu cầu đẩy hoặc triển khai.
 
+## Bản bàn giao cho Tech
+
+- Mỗi lần yêu cầu đẩy GitHub, tự chạy `node scripts/export-handoff.cjs`, kiểm tra `node scripts/qa-handoff.cjs` và đưa `hand-off/` vào cùng commit với source. Dùng Playwright đã có sẵn, hoặc đặt `PLAYWRIGHT_MODULE` tới module; không cài dependency vào bộ bàn giao.
+- `hand-off/` chỉ chứa `.html` và `.css`: các mẫu giao diện tĩnh đã render đủ nội dung, không script, event handler, runtime, Shadow DOM hay thư mục phụ thuộc. Logo SVG nhúng data URI trong HTML. Hướng dẫn Tech nằm ở `docs/handoff.md` ngoài bộ bàn giao.
+- Theo format Travel Awards: `body.home > header.home-header`, nội dung trong `section#main`, không wrapper `div.home` hoặc `main`; không tự thêm footer vì công cụ hiện không có footer. CSS không có `@layer`; tách `css/font.css`, `css/icons.css`, CSS bố cục và header. Link mẫu nội bộ dùng file HTML tương đối.
+- Các mẫu mô tả 4 bước với hồ sơ Khách sạn đại diện và ví dụ kết quả, không thay thế ứng dụng hoặc backend. Không trình bày nút lưu/gửi của mẫu tĩnh là đã tích hợp. Kiểm tra nội dung, asset, link, desktop/mobile và tab Hồ sơ/Phiếu chấm; lưu báo cáo QA ở docs, screenshot trong tmp.
+
 ## Mô hình chấm 09.11.2026
 
-- Tham chiếu `docs/scoring-model.md` trước khi sửa nghiệp vụ. Bản chạy dùng trung bình cộng quy đổi /100, T1/T2/T3 trần 5/4/3, lý do bắt buộc mức 1/5; tỷ lệ Hàng không và Chuyển đổi số là 70/30.
+- Tham chiếu `docs/scoring-model.md` trước khi sửa nghiệp vụ. Cập nhật theo yêu cầu 13.11.2026: chỉ chọn điểm nguyên 1–5 cho từng tiêu chí, không có loại minh chứng, nguồn tham chiếu, nhận xét hoặc câu hỏi bổ sung; không áp dụng trần T1/T2/T3 và không yêu cầu giải trình mức 1/5. Giữ trung bình cộng quy đổi /100; tỷ lệ Hàng không và Chuyển đổi số là 70/30.
 - `index.html` giữ mã gốc để truy nguyên; mô hình/giao diện được áp dụng bởi `shared/scoring-model.js` rồi `shared/editor-workspace.js`. Không tái tạo HTML để ghi đè chỉnh sửa ngoài phạm vi.
 - Không tự tạo minh chứng đã xác minh, điểm độc giả, điểm Hội đồng tổng hợp hay quy tắc cắt biên. Ánh xạ OTA KS-5/RS-5 thành minh chứng là quyết định demo đã ghi rõ, cần đối chiếu danh mục cuối cùng khi tích hợp.
 - Giữ bản nháp cũ khi nâng mô hình; lỗi lưu phải chặn hoàn tất và báo rõ. Kiểm tra `node verify.cjs`; khi đổi UI, chạy thêm `scripts/qa-workspace.cjs` với Playwright. Không commit `tmp/` hoặc screenshot QA.

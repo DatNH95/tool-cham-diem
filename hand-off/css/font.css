@@ -1,0 +1,120 @@
+:root, :host{--font-sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";--font-mono:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-weight-extrabold:800;--default-font-family:var(--font-sans);--default-mono-font-family:var(--font-mono);}
+html, :host{font-family:var(--default-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings, normal);font-variation-settings:var(--default-font-variation-settings, normal);}
+h1, h2, h3, h4, h5, h6{font-size:inherit;font-weight:inherit;}
+b, strong{font-weight:bolder;}
+code, kbd, samp, pre{font-family:var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);font-feature-settings:var(--default-mono-font-feature-settings, normal);font-variation-settings:var(--default-mono-font-variation-settings, normal);font-size:1em;}
+small{font-size:80%;}
+sub, sup{font-size:75%;}
+button, input, select, optgroup, textarea, ::file-selector-button{font-style:inherit;font-variant-ligatures:inherit;font-variant-caps:inherit;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-variant-alternates:inherit;font-variant-position:inherit;font-variant-emoji:inherit;font-weight:inherit;font-stretch:inherit;font-size:inherit;font-family:inherit;font-optical-sizing:inherit;font-size-adjust:inherit;font-kerning:inherit;font-language-override:inherit;font-feature-settings:inherit;font-variation-settings:inherit;}
+:where(select:is([multiple], [size])) optgroup{font-weight:bolder;}
+.text-2xl{font-size:var(--text-2xl);}
+.text-lg{font-size:var(--text-lg);}
+.text-sm{font-size:var(--text-sm);}
+.text-xl{font-size:var(--text-xl);}
+.text-xs{font-size:var(--text-xs);}
+.text-\[10px\]{font-size:10px;}
+.text-\[11px\]{font-size:11px;}
+.font-bold{font-weight:var(--font-weight-bold);}
+.font-extrabold{font-weight:var(--font-weight-extrabold);}
+.font-medium{font-weight:var(--font-weight-medium);}
+.font-semibold{font-weight:var(--font-weight-semibold);}
+.italic{font-style:italic;}
+@media (width >= 40rem) {.sm\:text-2xl{font-size:var(--text-2xl);}}
+@media (width >= 40rem) {.sm\:text-base{font-size:var(--text-base);}}
+@media (width >= 40rem) {.sm\:text-sm{font-size:var(--text-sm);}}
+@media (width >= 40rem) {.sm\:text-xl{font-size:var(--text-xl);}}
+*{font-family:Inter, -apple-system, BlinkMacSystemFont, sans-serif;}
+.judge-workspace{font-size:14px;}
+.judge-back{font-weight:600;}
+.judge-switch{font-size:12px;}
+.judge-switch select{font-size:13px;}
+.judge-heading h1{font-size:24px;font-weight:700;}
+.judge-heading > div > p:last-child{font-size:13px;}
+.judge-eyebrow{font-size:11px;font-weight:600;}
+.judge-status{font-size:12px;}
+.judge-panel-title h2{font-size:16px;font-weight:700;}
+.judge-panel-title > span{font-size:12px;}
+.judge-section h3, .judge-section summary{font-weight:700;font-size:14px;}
+.judge-metrics dt{font-size:11px;}
+.judge-metrics dd{font-size:19px;font-weight:700;}
+.judge-data dt{font-size:12px;}
+.judge-data dd{font-size:13px;}
+.judge-total span{font-size:11px;}
+.judge-total strong{font-size:22px;}
+.judge-total small{font-size:12px;font-weight:400;}
+.judge-save span{font-size:11px;}
+.judge-save button{font-size:12px;font-weight:600;}
+.judge-gallery > span{font-size:12px;}
+.judge-gallery button{font-size:20px;}
+.judge-muted{font-size:12px !important;}
+@media (max-width: 1023px) {.judge-heading h1{font-size:21px;}}
+@media (max-width: 600px) {.judge-metrics dd{font-size:17px;}}
+.judge-heading h1{font-size:23px;}
+.editor-model-bar{font-size:12px;}
+.editor-model-bar p span{font-size:11px;}
+.editor-model-bar i{font-style:normal;}
+.editor-rules{font-size:12px;}
+.editor-criterion-nav button{font-size:12px;}
+.editor-criterion-nav button > span{font-size:11px;}
+.editor-criterion-nav > span{font-size:12px;}
+.judge-total strong{font-size:25px;}
+.judge-total span{font-size:10px;}
+.editor-tabs button{font-size:12px;}
+.editor-tabs button[aria-pressed="true"]{font-weight:600;}
+.editor-unverified{font-size:10px !important;}
+.editor-criterion-context h3{font-size:17px;}
+.editor-criterion-context p:last-child{font-size:13px;}
+.editor-reference-preview{font-size:13px;}
+.editor-tier{font-size:11px;font-weight:600;}
+.editor-tier-guide p{font-size:12px;}
+.editor-tier-guide strong{font-weight:600;}
+.editor-text-action{font-size:12px;}
+.editor-import-note{font-size:12px;}
+.editor-ballot-criterion h3{font-size:16px;font-weight:700;}
+.editor-field > label, .editor-section-line > label, .editor-rubric > label{font-size:12px;font-weight:600;}
+.editor-field label small{font-weight:400;}
+.editor-field select, .editor-field textarea, .editor-rubric textarea{font-size:13px;}
+.editor-help{font-size:11px;}
+.editor-checkbox{font-size:11px !important;font-weight:400 !important;}
+.editor-score-field legend{font-size:12px;font-weight:600;}
+.editor-score-options strong{font-size:20px;}
+.editor-score-options span{font-size:10px;}
+.editor-score-explanation{font-size:11px;}
+.editor-error{font-size:12px;}
+.editor-rubric{font-size:12px;}
+.editor-rubric dt{font-weight:600;}
+.editor-criterion-controls{font-size:12px;}
+.editor-criterion-controls button{font-weight:600;}
+.editor-action-progress label{font-size:12px;font-weight:600;}
+.editor-action-progress > span{font-size:10px;}
+.editor-primary, .editor-secondary{font-size:12px;font-weight:600;}
+.editor-result-check{font-size:24px;}
+.editor-result h1{font-weight:700;font-size:24px;}
+.editor-result > p{font-size:13px;}
+.editor-local-notice{font-size:11px !important;}
+.editor-result-score > span{font-size:12px;}
+.editor-result-score > strong{font-size:44px;}
+.editor-result-score small{font-size:18px;font-weight:400;}
+.editor-result-score p{font-size:12px;}
+.editor-result-details{font-size:12px;}
+.editor-result-details summary{font-weight:600;}
+.editor-result-details article > div span{font-weight:700;}
+.judge-scoring .editor-criterion-nav > span{font-size:11px;}
+.editor-criterion-guidance{font-size:12px;}
+.editor-profile-list h1{font-size:22px;font-weight:700;}
+.editor-profile-list-heading p:last-child, .editor-profile-cards article p:last-child{font-size:12px;}
+.editor-profile-cards h2{font-size:16px;font-weight:600;}
+.editor-profile-state{font-size:11px;}
+.editor-profile-list-footer > span{font-size:11px;}
+@media (max-width: 600px) {.editor-profile-list h1{font-size:20px;}}
+@media (max-width: 1023px) {.editor-mobile-tabs button{font-size:12px;}}
+@media (max-width: 1023px) {.editor-mobile-tabs button[aria-pressed="true"]{font-weight:600;}}
+@media (max-width: 1023px) {.judge-heading h1{font-size:21px;}}
+@media (max-width: 600px) {.editor-criterion-nav > span{font-size:11px;}}
+@media (max-width: 600px) {.judge-heading h1{font-size:20px;}}
+@media (max-width: 600px) {.editor-score-options span{font-size:9px;}}
+@media (max-width: 600px) {.editor-result h1{font-size:21px;}}
+.home-header{font-family:Inter,Arial,sans-serif}

@@ -1,5 +1,5 @@
-// Independent local ballot. Evidence classifications are judge inputs, not verification.
-const editorUI={profile:null,criterion:null,view:'criterion',mobilePanel:'scoring',showIssues:false};
+// Independent local ballot: select scores only, as requested on 13.11.2026.
+const editorUI={profile:null,criterion:null,mobilePanel:'scoring',showIssues:false};
 const editorText=v=>escapeHtml(v??'');
 function editorCurrent(){
   const category=getCategoryById(appState.selectedCategoryId),profile=getProfileById(category.id,appState.selectedProfileId),record=getOrCreateEvaluation(profile.id,category);
@@ -9,93 +9,80 @@ function editorCurrent(){
 }
 function editorChooseCriterion(code){editorUI.criterion=code;editorUI.showIssues=false;renderAll();}
 function editorMoveCriterion(offset){const {category,index}=editorCurrent();if(category.criteria[index+offset])editorChooseCriterion(category.criteria[index+offset].code);}
-function editorChangeView(view){editorUI.view=view;renderAll();}
 function editorSwitchPanel(panel){editorUI.mobilePanel=panel;renderAll();}
 function editorStoreChange(){editorCurrent().record.status='draft';saveState();}
-function editorSetTier(code,value){
-  const {record}=editorCurrent();if(!JUDGE_MODEL.tiers[value]&&value!=='')return;
-  record.evidenceTiers[code]=value;if(value!=='T3')record.noEvidence[code]=false;
-  // Keep and flag scores above a newly selected cap; do not alter a judge's decision.
-  editorStoreChange();renderAll();
-}
-function editorSetNoEvidence(code,checked){const {record}=editorCurrent();record.noEvidence[code]=checked;if(checked)record.evidenceTiers[code]='T3';editorStoreChange();renderAll();}
-function editorSetReference(code,value){
-  editorCurrent().record.evidenceRefs[code]=value;editorStoreChange();updateEditorSummary();
-  const e=document.getElementById('editor-reference-preview');if(e)e.textContent=value.trim()||'Chưa ghi nhận tham chiếu minh chứng cho tiêu chí này.';
-}
-handleCriterionNoteInput=function(code,value){editorCurrent().record.notes[code]=value;editorStoreChange();updateEditorSummary();};
-handleCriterionQuestionInput=function(code,value){editorCurrent().record.criteriaQuestions[code]=value;editorStoreChange();updateEditorSummary();};
 selectCriterionScore=function(code,value){
-  const {record}=editorCurrent(),tier=JUDGE_MODEL.tiers[record.evidenceTiers[code]];
-  if(!Number.isInteger(value)||value<1||value>5||!tier||value>tier.cap)return;
+  const {record}=editorCurrent();
+  if(!Number.isInteger(value)||value<1||value>5)return;
   record.scores[code]=value;editorStoreChange();renderAll();
 };
-function editorValidationLabel(v){return v.isValid?'Đủ thông tin để hoàn tất phiếu.':`Còn ${v.issues.length} tiêu chí cần hoàn thiện điểm hoặc minh chứng.`;}
+function editorCriterionFeedback(criterion,record){
+  return getEditorCriterionIssues(criterion,record).filter(message=>
+    !message.startsWith('Vượt trần') && (editorUI.showIssues || !message.startsWith('Chưa'))
+  ).join(' · ');
+}
 function updateEditorSummary(){
   if(appState.currentStep!==3)return;
   const {category,record,criterion}=editorCurrent(),validation=validateScoringSubmission(category,record),ready=category.criteria.length-validation.issues.length;
   const update=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
-  update('editor-validation',editorValidationLabel(validation));update('editor-ready-count',`${ready}/${category.criteria.length} tiêu chí hợp lệ`);
+  update('editor-ready-count',`${ready}/${category.criteria.length} tiêu chí hợp lệ`);
   update('editor-ballot-status',record.status==='completed'?'Đã hoàn tất phiếu':'Đang chấm độc lập');
   update('editor-storage-status',editorStorageState==='error'?'Chưa lưu được · Dữ liệu còn trong phiên':'Đã lưu nháp trên trình duyệt');
   const button=document.getElementById('editor-complete');if(button)button.disabled=!validation.isValid;
   const progress=document.getElementById('editor-progress');if(progress)progress.value=ready;
   for(const c of category.criteria){const chip=document.querySelector(`[data-editor-criterion="${c.code}"]`);if(chip){const valid=!getEditorCriterionIssues(c,record).length;chip.classList.toggle('is-ready',valid);chip.setAttribute('aria-label',`${c.code} · ${c.name} · ${valid?'Đủ thông tin':'Cần hoàn thiện'}`);}}
-  update('editor-reference-count',`${String(record.evidenceRefs[criterion.code]||'').split('\n').filter(s=>s.trim()).length}/3 minh chứng`);
-  const messages=getEditorCriterionIssues(criterion,record);update('editor-criterion-status',messages.length?messages.join(' · '):'Tiêu chí đã đủ điểm, bằng chứng và giải trình.');
+  const feedback=editorCriterionFeedback(criterion,record);
+  update('editor-criterion-status',feedback);
+  const status=document.getElementById('editor-criterion-status');if(status)status.hidden=!feedback;
 }
 function renderEditorRules(){return `<details class="editor-rules"><summary>Hướng dẫn chấm & công thức</summary><div class="editor-rules-content">
   <p><strong>Chấm độc lập:</strong> không hiển thị điểm giám khảo khác trong phiếu này.</p>
   <p><strong>Điểm cá nhân:</strong> trung bình cộng các tiêu chí ÷ 5 × 100. Chỉ hiện kết quả khi chấm đủ; các tiêu chí có vai trò ngang nhau.</p>
-  <p><strong>Trần minh chứng:</strong> T1 tối đa 5; T2 tối đa 4; T3 tối đa 3. Mức 1 và 5 bắt buộc giải trình. Mỗi tiêu chí ghi tối đa 3 minh chứng.</p>
   <p><strong>Điểm cuối:</strong> điểm Hội đồng × %HĐ + điểm Độc giả × %ĐG. Phiếu cá nhân chưa có dữ liệu để tính điểm cuối.</p>
   <p><strong>Hiệu chỉnh:</strong> SD ≥ 1,0 là dấu hiệu cần rà soát sau khi đủ phiếu; không tự loại điểm trong công cụ này.</p></div></details>`;}
-function renderEditorDossier(profile,criterion,record){
+function renderEditorDossier(profile){
   const t=editorText;
-  if(editorUI.view==='profile')return `
+  return `
     <section class="judge-section"><h3>Tóm tắt hồ sơ</h3><p>${t(profile.summary)}</p><dl class="judge-metrics">${profile.keyMetrics.map(m=>`<div><dt>${t(m.label)}</dt><dd>${t(m.value)}</dd></div>`).join('')}</dl></section>
     <section class="judge-section"><h3>Thành tích trong năm</h3><p>${t(profile.achievements)}</p><h3>Điểm khác biệt</h3><p>${t(profile.differentiation)}</p></section>
     <section class="judge-section"><h3>Số liệu hoạt động</h3><dl class="judge-data">${profile.operationalData.map(d=>`<div><dt>${t(d.title)}</dt><dd>${t(d.content)}</dd></div>`).join('')}</dl></section>
     <section class="judge-section"><h3>Dấu ấn nổi bật</h3><ul class="judge-highlights">${profile.highlights.map(h=>`<li>${t(h)}</li>`).join('')}</ul></section>
     <details class="judge-section" data-workspace-detail="organization"><summary>Thông tin đơn vị / cá nhân</summary><dl class="judge-data">${[['Đứng tên hồ sơ',profile.organization],['Tư cách đăng ký',profile.registerRole],['Địa điểm',profile.location],['Website',profile.website],['Fanpage',profile.fanpage],['Đơn vị đại diện',profile.representative]].map(([k,v])=>`<div><dt>${k}</dt><dd>${t(v)}</dd></div>`).join('')}</dl></details>
     <details class="judge-section" data-workspace-detail="gallery"><summary>Danh mục hình ảnh (${profile.gallery.length})</summary><ul class="judge-highlights">${profile.gallery.map(g=>`<li>${t(g.title)}</li>`).join('')}</ul><p class="judge-muted">Dữ liệu mẫu chỉ có mô tả ảnh, chưa có tệp ảnh minh chứng.</p></details>`;
-  const tier=JUDGE_MODEL.tiers[record.evidenceTiers[criterion.code]];
-  return `<section class="judge-section editor-criterion-context"><p class="judge-eyebrow">Đối chiếu ${t(criterion.code)}</p><h3>${t(criterion.name)}</h3><p>${t(criterion.question)}</p></section>
-    <section class="judge-section"><div class="editor-section-line"><h3>Bằng chứng dựa vào</h3><span class="editor-tier">${tier?t(record.evidenceTiers[criterion.code]):'Chưa phân tầng'}</span></div><p class="editor-reference-preview" id="editor-reference-preview">${t(record.evidenceRefs[criterion.code])||'Chưa ghi nhận tham chiếu minh chứng cho tiêu chí này.'}</p><p class="judge-muted">${record.noEvidence[criterion.code]?'Giám khảo xác nhận chưa có minh chứng phù hợp. Trần 3 điểm.':'Tham chiếu do giám khảo nhập ở bảng chấm. Chưa có bộ tệp đã xác minh từ Ban thư ký.'}</p></section>
-    <section class="judge-section"><h3>Phân tầng bằng chứng</h3><div class="editor-tier-guide">${Object.entries(JUDGE_MODEL.tiers).map(([key,v])=>`<div><span class="editor-tier">${key}</span><p>${t(v.description)}<strong>Trần ${v.cap} điểm</strong></p></div>`).join('')}</div></section>
-    <details class="judge-section" data-workspace-detail="summary" open><summary>Nội dung tự thuyết minh của hồ sơ</summary><p>${t(profile.summary)}</p><p class="judge-muted">Dữ liệu mẫu, chưa xác minh; không tự coi là bằng chứng T1/T2.</p></details><button type="button" class="editor-text-action" onclick="editorChangeView('profile')">Mở toàn bộ thông tin hồ sơ →</button>`;
+
 }
 function renderEditorBallot(category,criterion,record,index){
-  const t=editorText,code=criterion.code,selected=record.scores[code],tier=JUDGE_MODEL.tiers[record.evidenceTiers[code]],extreme=[1,5].includes(selected),issues=getEditorCriterionIssues(criterion,record);
+  const t=editorText,code=criterion.code,selected=record.scores[code];
   const anchor=JUDGE_MODEL.anchors.find(a=>a.score===selected);
-  return `<div class="editor-ballot-criterion"><p class="judge-eyebrow">Tiêu chí ${index+1}/${category.criteria.length} · ${t(code)}</p><h3>${t(criterion.name)}</h3></div>
-    <div class="editor-field"><label for="editor-tier-input">Phân tầng minh chứng <span aria-hidden="true">*</span></label><select id="editor-tier-input" data-editor-field="tier" onchange="editorSetTier('${code}',this.value)" required><option value="">Chọn tầng bằng chứng</option>${Object.entries(JUDGE_MODEL.tiers).map(([key,v])=>`<option value="${key}" ${record.evidenceTiers[code]===key?'selected':''}>${t(v.label)} · Trần ${v.cap} điểm</option>`).join('')}</select><p class="editor-help">Giám khảo phân loại theo tài liệu đang có; không thay thế xác minh của Ban thư ký.</p></div>
-    <div class="editor-field"><div class="editor-section-line"><label for="editor-reference-input">Bằng chứng dựa vào ${record.noEvidence[code]?'':'<span aria-hidden="true">*</span>'}</label><span id="editor-reference-count" class="editor-help">${String(record.evidenceRefs[code]||'').split('\n').filter(s=>s.trim()).length}/3 minh chứng</span></div><textarea id="editor-reference-input" data-editor-field="reference" rows="2" oninput="editorSetReference('${code}',this.value)" placeholder="Mỗi dòng một tài liệu/nguồn, kèm trang hoặc số liệu liên quan" ${record.noEvidence[code]?'disabled':''}>${t(record.evidenceRefs[code])}</textarea><label class="editor-checkbox"><input type="checkbox" ${record.noEvidence[code]?'checked':''} onchange="editorSetNoEvidence('${code}',this.checked)">Không có minh chứng phù hợp để đối chiếu</label></div>
-    <fieldset class="editor-score-field"><legend>Điểm đánh giá <span aria-hidden="true">*</span></legend><p class="editor-help">${tier?`${record.evidenceTiers[code]} cho phép tối đa ${tier.cap} điểm.`:'Chọn tầng minh chứng để mở thang điểm.'}</p><div class="editor-score-options">${JUDGE_MODEL.anchors.map(a=>`<button type="button" data-score="${a.score}" aria-label="${a.score} điểm · ${a.label}" aria-pressed="${selected===a.score}" onclick="selectCriterionScore('${code}',${a.score})" ${!tier||a.score>tier.cap?'disabled':''} title="${t(a.description)}${tier&&a.score>tier.cap?' Vượt trần minh chứng.':''}"><strong>${a.score}</strong><span>${a.label}</span></button>`).join('')}</div><p class="editor-score-explanation">${anchor?`<strong>${anchor.score} · ${anchor.label}:</strong> ${t(anchor.description)}`:'Chưa chọn điểm cho tiêu chí này.'}</p>${tier&&selected>tier.cap?`<p class="editor-error" role="alert">Điểm ${selected} vượt trần ${tier.cap} của ${record.evidenceTiers[code]}. Vui lòng chọn lại; công cụ giữ nguyên điểm cũ để bạn kiểm tra.</p>`:''}</fieldset>
-    <div class="editor-field"><label for="editor-reason-input">Lý do đánh giá ${extreme?'<span aria-hidden="true">*</span>':'<small>(khuyến khích)</small>'}</label><textarea id="editor-reason-input" data-editor-field="reason" rows="2" oninput="handleCriterionNoteInput('${code}',this.value)" placeholder="Nêu kết quả đối chiếu; bắt buộc giải trình khi chấm 1 hoặc 5" ${extreme?'required':''}>${t(record.notes[code])}</textarea></div>
-    <details class="editor-rubric" data-workspace-detail="rubric"><summary>Mô tả neo 1–3–5 & câu hỏi bổ sung</summary><dl>${[1,3,5].map(n=>`<div><dt>${n} · ${JUDGE_MODEL.anchors[n-1].label}</dt><dd>${t(JUDGE_MODEL.anchors[n-1].description)}</dd></div>`).join('')}</dl><label for="editor-question-input">Câu hỏi bổ sung (tùy chọn)</label><textarea id="editor-question-input" rows="2" data-editor-field="question" oninput="handleCriterionQuestionInput('${code}',this.value)">${t(record.criteriaQuestions[code])}</textarea></details><p id="editor-criterion-status" class="editor-help ${editorUI.showIssues&&issues.length?'editor-error':''}" aria-live="polite">${issues.length?issues.join(' · '):'Tiêu chí đã đủ điểm, bằng chứng và giải trình.'}</p>`;
+  const feedback=editorCriterionFeedback(criterion,record);
+  return `<div class="editor-ballot-criterion"><h3>${t(criterion.name)}</h3>
+    <details class="editor-criterion-guidance" data-workspace-detail="guidance"><summary>Hướng dẫn tiêu chí</summary><p>${t(criterion.question)}</p></details></div>
+    <fieldset class="editor-score-field"><legend>Điểm đánh giá <span aria-hidden="true">*</span></legend>
+      <div class="editor-score-options">${JUDGE_MODEL.anchors.map(a=>`<button type="button" data-score="${a.score}" aria-label="${a.score} điểm · ${a.label}" aria-pressed="${selected===a.score}" onclick="selectCriterionScore('${code}',${a.score})" title="${t(a.description)}"><strong>${a.score}</strong><span>${a.label}</span></button>`).join('')}</div>
+      ${anchor?`<p class="editor-score-explanation">${t(anchor.description)}</p>`:''}</fieldset>
+    <p id="editor-criterion-status" class="editor-error" aria-live="polite" ${feedback?'':'hidden'}>${t(feedback)}</p>`;
 }
+
 renderStep3Workspace=function(){
   const {category,profile,record,criterion,index}=editorCurrent(),t=editorText,profiles=PROFILES_BY_CATEGORY[category.id]||[],score=computeJudgeScore(category,record),validation=validateScoringSubmission(category,record),ready=category.criteria.length-validation.issues.length;
   return `<section class="judge-workspace" aria-label="Không gian đánh giá hồ sơ" data-profile="${t(profile.id)}" data-criterion="${criterion.code}">
     <div class="judge-toolbar"><button type="button" onclick="goToStep(2)" class="judge-back">‹ Danh sách hồ sơ</button><label class="judge-switch">Chuyển hồ sơ<select aria-label="Chuyển hồ sơ trong hạng mục" onchange="switchProfileInStep3(this.value)">${profiles.map(p=>`<option value="${t(p.id)}" ${p.id===profile.id?'selected':''}>${t(p.code)} · ${t(p.title)}${appState.evaluations[p.id]?.status==='completed'?' · Đã chấm':''}</option>`).join('')}</select></label></div>
     <header class="judge-heading"><div><p class="judge-eyebrow">${t(profile.code)} · ${t(category.name)}</p><h1>${t(profile.title)}</h1><p>${t(profile.organization)}</p></div><span id="editor-ballot-status" class="judge-status">${record.status==='completed'?'Đã hoàn tất phiếu':'Đang chấm độc lập'}</span></header>
     <div class="editor-model-bar"><p><strong>Phiếu cá nhân · Vòng chung khảo</strong><span>Dữ liệu mẫu; chưa xác minh minh chứng hoặc kết nối editor VnExpress.</span></p><span>Hội đồng ${Math.round(category.councilWeight*100)}% <i>·</i> Độc giả ${Math.round(category.readerWeight*100)}%</span></div>
-    ${record.importedLegacy?'<p class="editor-import-note">Đã giữ ghi chú và điểm nhập tay từ bản cũ. Cần đối chiếu minh chứng theo mô hình mới trước khi hoàn tất; bản lưu cũ vẫn được giữ nguyên.</p>':''}
+    ${record.importedLegacy?'<p class="editor-import-note">Đã giữ lại điểm nhập tay từ bản cũ. Vui lòng kiểm tra lại trước khi hoàn tất; bản lưu cũ vẫn được giữ nguyên.</p>':''}
     ${renderEditorRules()}
-    <nav class="editor-criterion-nav" aria-label="Các tiêu chí đánh giá">${category.criteria.map((c,i)=>`<button type="button" data-editor-criterion="${c.code}" class="${c.code===criterion.code?'is-active ':''}${!getEditorCriterionIssues(c,record).length?'is-ready':''}" ${c.code===criterion.code?'aria-current="step"':''} aria-label="${c.code} · ${t(c.name)} · ${!getEditorCriterionIssues(c,record).length?'Đủ thông tin':'Cần hoàn thiện'}" onclick="editorChooseCriterion('${c.code}')"><span>${String(i+1).padStart(2,'0')}</span>${c.code}<i aria-hidden="true"></i></button>`).join('')}<span id="editor-ready-count">${ready}/${category.criteria.length} tiêu chí hợp lệ</span></nav>
+
     <div class="editor-mobile-tabs" role="group" aria-label="Chuyển vùng làm việc"><button type="button" aria-pressed="${editorUI.mobilePanel==='scoring'}" onclick="editorSwitchPanel('scoring')">Phiếu chấm</button><button type="button" aria-pressed="${editorUI.mobilePanel==='dossier'}" onclick="editorSwitchPanel('dossier')">Đọc hồ sơ & minh chứng</button></div>
-    <div class="judge-columns" data-mobile-panel="${editorUI.mobilePanel}"><section class="judge-dossier judge-panel" aria-labelledby="judge-dossier-title"><div class="judge-panel-title"><h2 id="judge-dossier-title">Hồ sơ & minh chứng</h2>${criterion.code === "DD-1" ? "" : '<span class="editor-unverified">Dữ liệu chưa xác minh</span>'}</div><div class="editor-tabs" role="group" aria-label="Nội dung hồ sơ"><button type="button" aria-pressed="${editorUI.view==='criterion'}" onclick="editorChangeView('criterion')">Theo tiêu chí ${criterion.code}</button><button type="button" aria-pressed="${editorUI.view==='profile'}" onclick="editorChangeView('profile')">Toàn bộ hồ sơ</button></div><div class="judge-scroll" data-workspace-scroll="dossier">${renderEditorDossier(profile,criterion,record)}</div></section>
-    <section class="judge-scoring judge-panel" aria-labelledby="judge-scoring-title"><div class="judge-panel-title"><div><p class="judge-eyebrow">Phiếu đánh giá độc lập</p><h2 id="judge-scoring-title">Bảng chấm điểm</h2></div><div class="judge-total"><span>Điểm giám khảo</span><strong>${score?.complete?score.score100.toFixed(1):'—'}<small>/100</small></strong><span>${score?.complete?`TB ${score.average.toFixed(2)}/5`:`Đã chọn ${score?.answeredCount||0}/${category.criteria.length} điểm`}</span></div></div><div class="judge-scroll" data-workspace-scroll="scoring">${renderEditorBallot(category,criterion,record,index)}</div><div class="editor-criterion-controls"><button type="button" onclick="editorMoveCriterion(-1)" ${index===0?'disabled':''}>← Trước</button><span>${index+1} / ${category.criteria.length}</span><button type="button" onclick="editorMoveCriterion(1)" ${index===category.criteria.length-1?'disabled':''}>Tiếp theo →</button></div></section></div>
-    <div class="editor-action-bar"><div class="editor-action-progress"><label id="editor-validation" for="editor-progress">${editorValidationLabel(validation)}</label><progress id="editor-progress" value="${ready}" max="${category.criteria.length}"></progress><span id="editor-storage-status" role="status">${editorStorageState==='error'?'Chưa lưu được · Dữ liệu còn trong phiên':editorStorageState==='saved'?'Đã lưu nháp trên trình duyệt':'Bản demo · Lưu nháp trên trình duyệt'}</span></div><div class="editor-actions"><button type="button" class="editor-secondary" onclick="saveEditorDraft()">Lưu nháp</button><button type="button" id="editor-complete" class="editor-primary" onclick="submitProfileEvaluation()" ${validation.isValid?'':'disabled'}>Hoàn tất phiếu chấm</button></div></div></section>`;
+    <div class="judge-columns" data-mobile-panel="${editorUI.mobilePanel}"><section class="judge-dossier judge-panel" aria-labelledby="judge-dossier-title"><div class="judge-panel-title"><h2 id="judge-dossier-title">Hồ sơ & minh chứng</h2></div><div class="judge-scroll" data-workspace-scroll="dossier">${renderEditorDossier(profile)}</div></section>
+    <section class="judge-scoring judge-panel" aria-labelledby="judge-scoring-title"><div class="judge-panel-title"><div><h2 id="judge-scoring-title">Chấm điểm theo tiêu chí</h2></div><div class="judge-total"><span>Điểm giám khảo</span><strong>${score?.complete?score.score100.toFixed(1):'—'}<small>/100</small></strong>${score?.complete?`<span>TB ${score.average.toFixed(2)}/5</span>`:""}</div></div><nav class="editor-criterion-nav" aria-label="Các tiêu chí đánh giá">${category.criteria.map((c,i)=>`<button type="button" data-editor-criterion="${c.code}" class="${c.code===criterion.code?'is-active ':''}${!getEditorCriterionIssues(c,record).length?'is-ready':''}" ${c.code===criterion.code?'aria-current="step"':''} aria-label="${c.code} · ${t(c.name)} · ${!getEditorCriterionIssues(c,record).length?'Đủ thông tin':'Cần hoàn thiện'}" onclick="editorChooseCriterion('${c.code}')">${c.code}<i aria-hidden="true"></i></button>`).join('')}</nav><div class="judge-scroll" data-workspace-scroll="scoring">${renderEditorBallot(category,criterion,record,index)}</div><div class="editor-criterion-controls"><button type="button" onclick="editorMoveCriterion(-1)" ${index===0?'disabled':''}>← Trước</button><button type="button" onclick="editorMoveCriterion(1)" ${index===category.criteria.length-1?'disabled':''}>Tiếp theo →</button></div></section></div>
+    <div class="editor-action-bar"><div class="editor-action-progress"><label id="editor-ready-count" for="editor-progress">${ready}/${category.criteria.length} tiêu chí hợp lệ</label><progress id="editor-progress" value="${ready}" max="${category.criteria.length}"></progress><span id="editor-storage-status" role="status">${editorStorageState==='error'?'Chưa lưu được · Dữ liệu còn trong phiên':editorStorageState==='saved'?'Đã lưu nháp trên trình duyệt':'Bản demo · Lưu nháp trên trình duyệt'}</span></div><div class="editor-actions"><button type="button" class="editor-secondary" onclick="saveEditorDraft()">Lưu nháp</button><button type="button" id="editor-complete" class="editor-primary" onclick="submitProfileEvaluation()" ${validation.isValid?'':'disabled'}>Hoàn tất phiếu chấm</button></div></div></section>`;
 };
 function saveEditorDraft(){showToast(saveState()?'Đã lưu phiếu trên trình duyệt này; chưa gửi lên hệ thống.':'Không thể lưu nháp. Vui lòng kiểm tra quyền lưu trữ trình duyệt.');updateEditorSummary();}
 renderStep4Completed=function(){
   const {category,profile,record}=editorCurrent(),score=computeJudgeScore(category,record),t=editorText;
-  if(!score?.complete||!validateScoringSubmission(category,record).isValid||record.status!=='completed')return `<section class="editor-result"><h1>Phiếu chưa hoàn tất</h1><p>Cần kiểm tra điểm, minh chứng và giải trình trước khi hoàn tất.</p><button class="editor-primary" onclick="goToStep(3)">Trở lại phiếu chấm</button></section>`;
-  return `<section class="editor-result"><span class="editor-result-check" aria-hidden="true">✓</span><p class="judge-eyebrow">Phiếu cá nhân · ${t(category.name)}</p><h1>Đã hoàn tất phiếu chấm</h1><p>${t(profile.title)}</p><p class="editor-local-notice">Đã lưu trên trình duyệt này. Chưa gửi lên hệ thống VnExpress.</p><div class="editor-result-score"><span>Điểm giám khảo quy đổi</span><strong>${score.score100.toFixed(1)}<small>/100</small></strong><p>Trung bình ${score.average.toFixed(2)}/5 × 20 · ${category.criteria.length} tiêu chí</p></div><p class="editor-result-context">Điểm Hội đồng và điểm cuối của giải chờ tổng hợp các phiếu, dữ liệu độc giả và điều kiện hợp lệ. Đây là kết quả của một giám khảo.</p><details class="editor-result-details"><summary>Xem lại điểm & căn cứ đánh giá</summary>${category.criteria.map(c=>`<article><div><strong>${t(c.code)} · ${t(c.name)}</strong><span>${record.scores[c.code]}/5 · ${t(record.evidenceTiers[c.code])}</span></div><p><strong>Bằng chứng:</strong> ${record.noEvidence[c.code]?'Chưa có minh chứng phù hợp':t(record.evidenceRefs[c.code])}</p>${record.notes[c.code]?`<p><strong>Lý do:</strong> ${t(record.notes[c.code])}</p>`:''}</article>`).join('')}</details><div class="editor-result-actions"><button type="button" class="editor-secondary" onclick="goToStep(3)">Xem lại phiếu</button><button type="button" class="editor-secondary" onclick="goToStep(2)">Danh sách hồ sơ</button><button type="button" class="editor-primary" onclick="editorNextUnfinished()">Hồ sơ chưa chấm tiếp theo →</button></div></section>`;
+  if(!score?.complete||!validateScoringSubmission(category,record).isValid||record.status!=='completed')return `<section class="editor-result"><h1>Phiếu chưa hoàn tất</h1><p>Cần chấm đủ điểm các tiêu chí trước khi hoàn tất.</p><button class="editor-primary" onclick="goToStep(3)">Trở lại phiếu chấm</button></section>`;
+  return `<section class="editor-result"><span class="editor-result-check" aria-hidden="true">✓</span><p class="judge-eyebrow">Phiếu cá nhân · ${t(category.name)}</p><h1>Đã hoàn tất phiếu chấm</h1><p>${t(profile.title)}</p><p class="editor-local-notice">Đã lưu trên trình duyệt này. Chưa gửi lên hệ thống VnExpress.</p><div class="editor-result-score"><span>Điểm giám khảo quy đổi</span><strong>${score.score100.toFixed(1)}<small>/100</small></strong><p>Trung bình ${score.average.toFixed(2)}/5 × 20 · ${category.criteria.length} tiêu chí</p></div><p class="editor-result-context">Điểm Hội đồng và điểm cuối của giải chờ tổng hợp các phiếu, dữ liệu độc giả và điều kiện hợp lệ. Đây là kết quả của một giám khảo.</p><details class="editor-result-details"><summary>Xem lại điểm từng tiêu chí</summary>${category.criteria.map(c=>`<article><div><strong>${t(c.code)} · ${t(c.name)}</strong><span>${record.scores[c.code]}/5</span></div></article>`).join('')}</details><div class="editor-result-actions"><button type="button" class="editor-secondary" onclick="goToStep(3)">Xem lại phiếu</button><button type="button" class="editor-primary" onclick="goToStep(2)">Quay lại danh sách hồ sơ</button></div></section>`;
 };
-function editorNextUnfinished(){const {category,profile}=editorCurrent(),profiles=PROFILES_BY_CATEGORY[category.id]||[],start=profiles.findIndex(p=>p.id===profile.id),next=Array.from({length:profiles.length},(_,i)=>profiles[(start+i+1)%profiles.length]).find(p=>appState.evaluations[p.id]?.status!=='completed');if(next)openProfileForScoring(next.id);else{goToStep(2);showToast('Đã chấm hết hồ sơ trong hạng mục này.');}}
 renderStep2Profiles=function(){
   const category=getCategoryById(appState.selectedCategoryId),profiles=PROFILES_BY_CATEGORY[category.id]||[],t=editorText;
   const completed=profiles.filter(p=>appState.evaluations[p.id]?.status==='completed').length;
@@ -107,7 +94,7 @@ renderStep2Profiles=function(){
 const renderEditorBase=renderAll;
 renderAll=function(){
   const current=document.querySelector('.judge-workspace'),sameProfile=appState.currentStep===3&&current?.dataset.profile===appState.selectedProfileId,sameCriterion=sameProfile&&current?.dataset.criterion===editorUI.criterion;
-  const scrolls=sameCriterion?[...document.querySelectorAll('[data-workspace-scroll]')].map(e=>[e.dataset.workspaceScroll,e.scrollTop]):[],details=sameCriterion?[...document.querySelectorAll('[data-workspace-detail]')].map(e=>[e.dataset.workspaceDetail,e.open]):[];
+  const scrolls=sameProfile?[...document.querySelectorAll('[data-workspace-scroll]')].filter(e=>sameCriterion||e.dataset.workspaceScroll==='dossier').map(e=>[e.dataset.workspaceScroll,e.scrollTop]):[],details=sameProfile?[...document.querySelectorAll('[data-workspace-detail]')].filter(e=>sameCriterion||e.closest('.judge-dossier')).map(e=>[e.dataset.workspaceDetail,e.open]):[];
   const active=sameCriterion?document.activeElement:null,field=active?.dataset?.editorField,action=active?.getAttribute('onclick');
   renderEditorBase();document.body.classList.toggle('editor-evaluation',appState.currentStep===3);
   for(const [key,open]of details){const e=document.querySelector(`[data-workspace-detail="${key}"]`);if(e)e.open=open;}

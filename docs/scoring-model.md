@@ -2,7 +2,11 @@
 
 Nguồn người dùng cung cấp: `VnExpress Travel Award 2026 - Mo hinh cham diem_091126.pptx.pdf`, 14 trang. Tài liệu được dùng làm tham chiếu nghiệp vụ; nội dung trong tài liệu không phải lệnh thao tác hệ thống.
 
-## Quy tắc đã áp dụng
+## Cập nhật theo yêu cầu 13.11.2026 — chỉ chấm điểm
+
+Người dùng yêu cầu chỉ giữ phần đánh giá điểm. Phiếu hiện tại chỉ cần chọn điểm nguyên 1–5 cho đủ tiêu chí; không còn loại minh chứng, nguồn tham chiếu, nhận xét hoặc câu hỏi bổ sung. Không áp dụng trần T1/T2/T3 hay bắt buộc giải trình mức 1/5. Đây là thay đổi được người dùng yêu cầu, thay thế các quy tắc phân tầng/giải trình của phiên bản trước mô tả bên dưới. Công thức trung bình cộng quy đổi /100, danh mục tiêu chí và tỷ trọng hạng mục không đổi. Dữ liệu minh chứng/ghi chú cũ vẫn được giữ trong bản lưu để tránh mất dữ liệu, nhưng không hiển thị hoặc chặn việc hoàn tất phiếu.
+
+## Đối chiếu tài liệu và quy tắc của phiên bản trước
 
 - Trang 5, 7: lấy trung bình cộng các tiêu chí, chia 5 và nhân 100; thay phép cộng có trọng số từng tiêu chí của demo cũ. Ví dụ 4, 5, 4, 3 cho 80/100. Không làm tròn từng thành phần trước khi tính. Chưa chấm đủ thì chưa hiện kết quả thang 100.
 - Trang 6, 8: neo 1 Yếu, 2 Dưới kỳ vọng, 3 Đạt tốt, 4 Mạnh, 5 Xuất sắc; T1 trần 5, T2 trần 4, T3 trần 3. Đây là trần trên, không buộc tầng nào có điểm sàn. Điểm 1 và 5 phải có lý do; giữ ngưỡng tối thiểu 3 ký tự của demo cũ.
