@@ -4,7 +4,7 @@ Nguồn người dùng cung cấp: `VnExpress Travel Award 2026 - Mo hinh cham d
 
 ## Cập nhật theo yêu cầu 13.11.2026 — chỉ chấm điểm
 
-Người dùng yêu cầu chỉ giữ phần đánh giá điểm. Phiếu hiện tại chỉ cần chọn điểm nguyên 1–5 cho đủ tiêu chí; không còn loại minh chứng, nguồn tham chiếu, nhận xét hoặc câu hỏi bổ sung. Không áp dụng trần T1/T2/T3 hay bắt buộc giải trình mức 1/5. Đây là thay đổi được người dùng yêu cầu, thay thế các quy tắc phân tầng/giải trình của phiên bản trước mô tả bên dưới. Công thức trung bình cộng quy đổi /100, danh mục tiêu chí và tỷ trọng hạng mục không đổi. Dữ liệu minh chứng/ghi chú cũ vẫn được giữ trong bản lưu để tránh mất dữ liệu, nhưng không hiển thị hoặc chặn việc hoàn tất phiếu.
+Người dùng yêu cầu chỉ giữ phần đánh giá điểm. Phiếu hiện tại chỉ cần chọn điểm nguyên 1–5 cho đủ tiêu chí; không còn loại minh chứng, nguồn tham chiếu, nhận xét chung hoặc câu hỏi bổ sung. Riêng mức 5 — Xuất sắc hiển thị ô giải trình bắt buộc. Không áp dụng trần T1/T2/T3; chỉ mức 5 bắt buộc giải trình, mức 1–4 không yêu cầu. Đây là thay đổi được người dùng yêu cầu, thay thế các quy tắc phân tầng/giải trình của phiên bản trước mô tả bên dưới. Công thức trung bình cộng quy đổi /100, danh mục tiêu chí và tỷ trọng hạng mục không đổi. Dữ liệu minh chứng/ghi chú cũ vẫn được giữ trong bản lưu để tránh mất dữ liệu, nhưng không hiển thị hoặc chặn việc hoàn tất phiếu.
 
 ## Đối chiếu tài liệu và quy tắc của phiên bản trước
 
@@ -33,3 +33,5 @@ Bộ HTML gốc có 59 tiêu chí, bao gồm KS-5 và RS-5 về điểm OTA/revi
 - Khi nhập bản cũ, giữ điểm nhập tay và ghi chú, bỏ điểm định lượng tự điền, đổi trạng thái thành nháp và yêu cầu đối chiếu minh chứng. Không tự coi bản cũ là phiếu hợp lệ theo mô hình mới.
 - Nếu không lưu được do quyền trình duyệt/dung lượng, giữ người dùng trong phiếu, báo lỗi và không chuyển sang màn hình hoàn tất.
 - Tất cả là dữ liệu trên trình duyệt, chưa gửi lên VnExpress. Xóa dữ liệu trình duyệt có thể làm mất phiếu.
+
+Cập nhật nội dung đánh giá: chọn mức 1–4 hiện ô “Nội dung đánh giá (khuyến khích)”, không bắt buộc; mức 5 hiện ô giải trình Xuất sắc bắt buộc. Nội dung được lưu theo từng tiêu chí và hiện trong phần xem lại phiếu; chuyển mức điểm không xóa nội dung đã nhập.

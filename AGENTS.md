@@ -26,7 +26,10 @@ Không tự push/deploy chỉ vì sửa code; thực hiện khi người dùng y
 
 ## Mô hình chấm 09.11.2026
 
-- Tham chiếu `docs/scoring-model.md` trước khi sửa nghiệp vụ. Cập nhật theo yêu cầu 13.11.2026: chỉ chọn điểm nguyên 1–5 cho từng tiêu chí, không có loại minh chứng, nguồn tham chiếu, nhận xét hoặc câu hỏi bổ sung; không áp dụng trần T1/T2/T3 và không yêu cầu giải trình mức 1/5. Giữ trung bình cộng quy đổi /100; tỷ lệ Hàng không và Chuyển đổi số là 70/30.
+- Tham chiếu `docs/scoring-model.md` trước khi sửa nghiệp vụ. Cập nhật theo yêu cầu 13.11.2026: chỉ chọn điểm nguyên 1–5 cho từng tiêu chí, không có loại minh chứng, nguồn tham chiếu, nhận xét chung hoặc câu hỏi bổ sung; không áp dụng trần T1/T2/T3. Riêng mức 5 — Xuất sắc phải có giải trình (tối thiểu 3 ký tự sau khi bỏ khoảng trắng); mức 1–4 không yêu cầu. Giữ trung bình cộng quy đổi /100; tỷ lệ Hàng không và Chuyển đổi số là 70/30.
 - `index.html` giữ mã gốc để truy nguyên; mô hình/giao diện được áp dụng bởi `shared/scoring-model.js` rồi `shared/editor-workspace.js`. Không tái tạo HTML để ghi đè chỉnh sửa ngoài phạm vi.
 - Không tự tạo minh chứng đã xác minh, điểm độc giả, điểm Hội đồng tổng hợp hay quy tắc cắt biên. Ánh xạ OTA KS-5/RS-5 thành minh chứng là quyết định demo đã ghi rõ, cần đối chiếu danh mục cuối cùng khi tích hợp.
 - Giữ bản nháp cũ khi nâng mô hình; lỗi lưu phải chặn hoàn tất và báo rõ. Kiểm tra `node verify.cjs`; khi đổi UI, chạy thêm `scripts/qa-workspace.cjs` với Playwright. Không commit `tmp/` hoặc screenshot QA.
+
+Cập nhật nội dung đánh giá: chọn mức 1–4 hiện ô “Nội dung đánh giá (khuyến khích)”, không bắt buộc; mức 5 hiện ô giải trình Xuất sắc bắt buộc. Nội dung được lưu theo từng tiêu chí và hiện trong phần xem lại phiếu; chuyển mức điểm không xóa nội dung đã nhập.
+- Mô tả nội dung tiêu chí và mô tả từng mức 1–5 lấy từ question/levels của bộ tiêu chí gốc, hiển thị trực tiếp trong lựa chọn điểm. Không thay bằng mô tả chung hoặc tự viết lại nội dung chính thức.

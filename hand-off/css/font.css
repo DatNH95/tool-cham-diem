@@ -104,6 +104,11 @@ button, input, select, optgroup, textarea, ::file-selector-button{font-style:inh
 .editor-result-details article > div span{font-weight:700;}
 .judge-scoring .editor-criterion-nav > span{font-size:11px;}
 .editor-criterion-guidance{font-size:12px;}
+.editor-criterion-description{font-size:13px;}
+.editor-rubric-options button > strong{font-size:17px;}
+.editor-rubric-options .editor-level-body b{font-size:12px;font-weight:600;}
+.editor-rubric-options .editor-level-description{font-size:12px;}
+.editor-rubric-options .editor-level-check{font-size:14px;font-weight:700;}
 .editor-profile-list h1{font-size:22px;font-weight:700;}
 .editor-profile-list-heading p:last-child, .editor-profile-cards article p:last-child{font-size:12px;}
 .editor-profile-cards h2{font-size:16px;font-weight:600;}

@@ -25,6 +25,7 @@ vm.runInContext(`
       assert.equal(computeJudgeScore(category,record),null);
       assert(!validateScoringSubmission(category,record).isValid);
       for(const criterion of category.criteria){
+        for(const value of [1,2,3,4,5])assert(typeof criterion.levels?.[value]==='string'&&criterion.levels[value].trim(),'Every criterion needs five score descriptions');
         editorChooseCriterion(criterion.code);
         {
           const markup=renderStep3Workspace();
@@ -37,7 +38,9 @@ vm.runInContext(`
       assert.equal(computeJudgeScore(category,record).score100,60);
       const c=category.criteria[0];
       record.evidenceTiers[c.code]='T3'; // Preserved old metadata must not restrict scoring.
-      for(const value of [1,4,5]){record.scores[c.code]=value;record.notes[c.code]='';assert(validateScoringSubmission(category,record).isValid,'Only scores required');}
+      for(const value of [1,4]){record.scores[c.code]=value;record.notes[c.code]='';assert(validateScoringSubmission(category,record).isValid,'No reason required below 5');}
+      record.scores[c.code]=5;record.notes[c.code]='   ';assert(!validateScoringSubmission(category,record).isValid,'5 requires an explanation');
+      record.notes[c.code]='Kết quả vượt trội';assert(validateScoringSubmission(category,record).isValid);
       for(const value of [0,6,1.5]){record.scores[c.code]=value;assert(!validateScoringSubmission(category,record).isValid,'Only integer scores 1-5');}
       record.scores[c.code]=3;
       assert(saveState());

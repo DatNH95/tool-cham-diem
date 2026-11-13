@@ -622,6 +622,15 @@ body{background-color: rgb(243, 250, 248); background-image: url("data:image/svg
 .judge-workspace [hidden]{display: none !important;}
 .editor-evidence-group{display: grid; grid-template-columns: minmax(145px, 0.8fr) minmax(0px, 1.2fr); gap: 12px; align-items: start;}
 .editor-evidence-group .editor-field{margin-bottom: 0px;}
+.editor-criterion-description{line-height: 1.7; color: rgb(82, 106, 119); margin: 8px 0px 0px;}
+.editor-score-options.editor-rubric-options{grid-template-columns: 1fr; gap: 8px;}
+.editor-rubric-options button{flex-direction: row; align-items: flex-start; justify-content: flex-start; text-align: left; padding: 12px; gap: 12px; min-height: 64px;}
+.editor-rubric-options button > strong{display: flex; justify-content: center; align-items: center; width: 30px; height: 30px; border-radius: 6px; background: rgb(232, 238, 242); flex-shrink: 0;}
+.editor-rubric-options button[aria-pressed="true"] > strong{color: rgb(255, 255, 255); background: rgb(0, 113, 156);}
+.editor-rubric-options .editor-level-body{display: flex; flex-direction: column; gap: 4px; flex: 1 1 0%; min-width: 0px;}
+.editor-rubric-options .editor-level-body b{line-height: 1.4;}
+.editor-rubric-options .editor-level-description{line-height: 1.65; color: rgb(82, 106, 119);}
+.editor-rubric-options .editor-level-check{width: 16px; flex-shrink: 0; color: rgb(0, 113, 156); line-height: 30px;}
 @media (max-width: 600px) {
 .editor-evidence-group{grid-template-columns: 1fr;}
 }

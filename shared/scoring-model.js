@@ -87,6 +87,7 @@ function getEditorCriterionIssues(c, record) {
   const issues = [];
   const score = record?.scores?.[c.code];
   if (!Number.isInteger(score) || score < 1 || score > 5) issues.push('Chưa chọn điểm');
+  if (score === 5 && String(record?.notes?.[c.code] || '').trim().length < 3) issues.push('Cần giải trình lý do đánh giá Xuất sắc');
   return issues;
 }
 
@@ -96,6 +97,7 @@ validateScoringSubmission = function (category, record) {
     const item = getEditorCriterionIssues(c,record);
     if (item.length) issues.push({ code:c.code, messages:item });
     if (!Number.isInteger(record?.scores?.[c.code]) || record.scores[c.code] < 1 || record.scores[c.code] > 5) missingScores.push(c.code);
+    if (record?.scores?.[c.code] === 5 && String(record?.notes?.[c.code] || '').trim().length < 3) missingExcellenceNotes.push(c.code);
   }
   return { isValid:issues.length === 0, missingScores, missingExcellenceNotes, issues };
 };
@@ -116,7 +118,7 @@ submitProfileEvaluation = function () {
     editorUI.criterion = validation.issues[0].code;
     editorUI.showIssues = true;
     renderAll();
-    showToast('Vui lòng chấm đủ điểm 1–5 cho tất cả tiêu chí.');
+    showToast('Vui lòng chấm đủ tiêu chí và giải trình các mức 5 — Xuất sắc.');
     return;
   }
   const previousStatus = record.status;

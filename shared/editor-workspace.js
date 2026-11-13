@@ -11,6 +11,9 @@ function editorChooseCriterion(code){editorUI.criterion=code;editorUI.showIssues
 function editorMoveCriterion(offset){const {category,index}=editorCurrent();if(category.criteria[index+offset])editorChooseCriterion(category.criteria[index+offset].code);}
 function editorSwitchPanel(panel){editorUI.mobilePanel=panel;renderAll();}
 function editorStoreChange(){editorCurrent().record.status='draft';saveState();}
+handleCriterionNoteInput=function(code,value){
+  editorCurrent().record.notes[code]=value;editorStoreChange();updateEditorSummary();
+};
 selectCriterionScore=function(code,value){
   const {record}=editorCurrent();
   if(!Number.isInteger(value)||value<1||value>5)return;
@@ -36,6 +39,7 @@ function updateEditorSummary(){
   const status=document.getElementById('editor-criterion-status');if(status)status.hidden=!feedback;
 }
 function renderEditorRules(){return `<details class="editor-rules"><summary>Hướng dẫn chấm & công thức</summary><div class="editor-rules-content">
+  <p><strong>Mức Xuất sắc:</strong> điểm 5 cần giải trình lý do trước khi hoàn tất phiếu.</p>
   <p><strong>Chấm độc lập:</strong> không hiển thị điểm giám khảo khác trong phiếu này.</p>
   <p><strong>Điểm cá nhân:</strong> trung bình cộng các tiêu chí ÷ 5 × 100. Chỉ hiện kết quả khi chấm đủ; các tiêu chí có vai trò ngang nhau.</p>
   <p><strong>Điểm cuối:</strong> điểm Hội đồng × %HĐ + điểm Độc giả × %ĐG. Phiếu cá nhân chưa có dữ liệu để tính điểm cuối.</p>
@@ -56,10 +60,10 @@ function renderEditorBallot(category,criterion,record,index){
   const anchor=JUDGE_MODEL.anchors.find(a=>a.score===selected);
   const feedback=editorCriterionFeedback(criterion,record);
   return `<div class="editor-ballot-criterion"><h3>${t(criterion.name)}</h3>
-    <details class="editor-criterion-guidance" data-workspace-detail="guidance"><summary>Hướng dẫn tiêu chí</summary><p>${t(criterion.question)}</p></details></div>
+    <p class="editor-criterion-description">${t(criterion.question)}</p></div>
     <fieldset class="editor-score-field"><legend>Điểm đánh giá <span aria-hidden="true">*</span></legend>
-      <div class="editor-score-options">${JUDGE_MODEL.anchors.map(a=>`<button type="button" data-score="${a.score}" aria-label="${a.score} điểm · ${a.label}" aria-pressed="${selected===a.score}" onclick="selectCriterionScore('${code}',${a.score})" title="${t(a.description)}"><strong>${a.score}</strong><span>${a.label}</span></button>`).join('')}</div>
-      ${anchor?`<p class="editor-score-explanation">${t(anchor.description)}</p>`:''}</fieldset>
+      <div class="editor-score-options editor-rubric-options">${JUDGE_MODEL.anchors.map(a=>`<button type="button" data-score="${a.score}" aria-label="${a.score} điểm · ${a.label}" aria-describedby="editor-level-${code}-${a.score}" aria-pressed="${selected===a.score}" onclick="selectCriterionScore('${code}',${a.score})"><strong>${a.score}</strong><span class="editor-level-body"><b>${a.label}</b><span id="editor-level-${code}-${a.score}" class="editor-level-description">${t(criterion.levels?.[a.score] || a.description)}</span></span><span class="editor-level-check" aria-hidden="true">${selected===a.score?'✓':''}</span></button>`).join('')}</div></fieldset>
+    ${anchor?`<div class="editor-field"><label for="editor-reason-input">${selected===5?'Giải trình vì sao đánh giá Xuất sắc <span aria-hidden="true">*</span>':'Nội dung đánh giá <small>(khuyến khích)</small>'}</label><textarea id="editor-reason-input" data-editor-field="reason" rows="3" oninput="handleCriterionNoteInput('${code}',this.value)" placeholder="${selected===5?'Nêu kết quả nổi bật và căn cứ để đánh giá 5 điểm':'Nhập nhận xét, điểm mạnh hoặc nội dung cần cải thiện'}" ${selected===5?'required':''}>${t(record.notes[code])}</textarea></div>`:''}
     <p id="editor-criterion-status" class="editor-error" aria-live="polite" ${feedback?'':'hidden'}>${t(feedback)}</p>`;
 }
 
@@ -81,7 +85,7 @@ function saveEditorDraft(){showToast(saveState()?'Đã lưu phiếu trên trình
 renderStep4Completed=function(){
   const {category,profile,record}=editorCurrent(),score=computeJudgeScore(category,record),t=editorText;
   if(!score?.complete||!validateScoringSubmission(category,record).isValid||record.status!=='completed')return `<section class="editor-result"><h1>Phiếu chưa hoàn tất</h1><p>Cần chấm đủ điểm các tiêu chí trước khi hoàn tất.</p><button class="editor-primary" onclick="goToStep(3)">Trở lại phiếu chấm</button></section>`;
-  return `<section class="editor-result"><span class="editor-result-check" aria-hidden="true">✓</span><p class="judge-eyebrow">Phiếu cá nhân · ${t(category.name)}</p><h1>Đã hoàn tất phiếu chấm</h1><p>${t(profile.title)}</p><p class="editor-local-notice">Đã lưu trên trình duyệt này. Chưa gửi lên hệ thống VnExpress.</p><div class="editor-result-score"><span>Điểm giám khảo quy đổi</span><strong>${score.score100.toFixed(1)}<small>/100</small></strong><p>Trung bình ${score.average.toFixed(2)}/5 × 20 · ${category.criteria.length} tiêu chí</p></div><p class="editor-result-context">Điểm Hội đồng và điểm cuối của giải chờ tổng hợp các phiếu, dữ liệu độc giả và điều kiện hợp lệ. Đây là kết quả của một giám khảo.</p><details class="editor-result-details"><summary>Xem lại điểm từng tiêu chí</summary>${category.criteria.map(c=>`<article><div><strong>${t(c.code)} · ${t(c.name)}</strong><span>${record.scores[c.code]}/5</span></div></article>`).join('')}</details><div class="editor-result-actions"><button type="button" class="editor-secondary" onclick="goToStep(3)">Xem lại phiếu</button><button type="button" class="editor-primary" onclick="goToStep(2)">Quay lại danh sách hồ sơ</button></div></section>`;
+  return `<section class="editor-result"><span class="editor-result-check" aria-hidden="true">✓</span><p class="judge-eyebrow">Phiếu cá nhân · ${t(category.name)}</p><h1>Đã hoàn tất phiếu chấm</h1><p>${t(profile.title)}</p><p class="editor-local-notice">Đã lưu trên trình duyệt này. Chưa gửi lên hệ thống VnExpress.</p><div class="editor-result-score"><span>Điểm giám khảo quy đổi</span><strong>${score.score100.toFixed(1)}<small>/100</small></strong><p>Trung bình ${score.average.toFixed(2)}/5 × 20 · ${category.criteria.length} tiêu chí</p></div><p class="editor-result-context">Điểm Hội đồng và điểm cuối của giải chờ tổng hợp các phiếu, dữ liệu độc giả và điều kiện hợp lệ. Đây là kết quả của một giám khảo.</p><details class="editor-result-details"><summary>Xem lại điểm từng tiêu chí</summary>${category.criteria.map(c=>`<article><div><strong>${t(c.code)} · ${t(c.name)}</strong><span>${record.scores[c.code]}/5</span></div>${record.notes[c.code]?.trim()?`<p><strong>${record.scores[c.code]===5?"Giải trình Xuất sắc":"Nội dung đánh giá"}:</strong> ${t(record.notes[c.code])}</p>`:""}</article>`).join('')}</details><div class="editor-result-actions"><button type="button" class="editor-secondary" onclick="goToStep(3)">Xem lại phiếu</button><button type="button" class="editor-primary" onclick="goToStep(2)">Quay lại danh sách hồ sơ</button></div></section>`;
 };
 renderStep2Profiles=function(){
   const category=getCategoryById(appState.selectedCategoryId),profiles=PROFILES_BY_CATEGORY[category.id]||[],t=editorText;
