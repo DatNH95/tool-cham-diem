@@ -4,9 +4,9 @@ Bộ HTML/CSS thuần cho Tech tích hợp nằm ở [`hand-off/`](hand-off/inde
 
 Mở `index.html` bằng Chrome hoặc Edge phiên bản mới. Giữ các thư mục `assets` và `shared` cùng cấp với file HTML.
 
-Giao diện và mã chấm điểm được kế thừa từ `tool cham diem bgk.html`. Header được đối chiếu theo https://khao-sat-travel-awards.vercel.app/: chỉ có logo liên kết về trang chủ Travel Awards, cao 65 px, khung rộng tối đa 1.100 px và viền dưới xanh nhạt. Logo và CSS lấy từ `Vibe code/travel-awards-2026`. Header dùng Shadow DOM để tránh ảnh hưởng CSS của công cụ; thanh tiến trình bốn bước được đặt bên dưới header. Công cụ không có footer trên tất cả các bước.
+Giao diện và mã chấm điểm được kế thừa từ `tool cham diem bgk.html`. Header được đối chiếu theo https://khao-sat-travel-awards.vercel.app/: chỉ có logo quay về bước 1 của công cụ, cao 65 px, khung rộng tối đa 1.100 px và viền dưới xanh nhạt. Logo và CSS lấy từ `Vibe code/travel-awards-2026`. Header dùng Shadow DOM để tránh ảnh hưởng CSS của công cụ; thanh tiến trình bốn bước được đặt bên dưới header. Công cụ không có footer trên tất cả các bước.
 
-Header liên kết về trang chủ Travel Awards. CSS tiện ích đã đóng gói tại `shared/utilities.css`, không tải Tailwind hoặc Google Fonts khi chạy. Font Inter dùng nếu có trên máy, nếu không dùng font hệ thống.
+Bấm logo ở header quay về bước 1 của công cụ, giữ dữ liệu phiếu đã lưu. CSS tiện ích đã đóng gói tại `shared/utilities.css`, không tải Tailwind hoặc Google Fonts khi chạy. Font Inter dùng nếu có trên máy, nếu không dùng font hệ thống.
 
 Đây là bản demo front-end, chưa kết nối máy chủ hay xác thực giám khảo. Theo yêu cầu 13.11.2026, phiếu chỉ giữ điểm nguyên 1–5 cho từng tiêu chí; không yêu cầu loại minh chứng, nguồn tham chiếu hoặc nhận xét chung. Riêng mức 5 — Xuất sắc bắt buộc nhập giải trình. Điểm trung bình các tiêu chí được quy đổi thang 100. Chi tiết quyết định ánh xạ và những điểm tài liệu chưa thống nhất nằm ở [docs/scoring-model.md](docs/scoring-model.md).
 

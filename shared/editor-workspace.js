@@ -72,7 +72,7 @@ renderStep3Workspace=function(){
   return `<section class="judge-workspace" aria-label="Không gian đánh giá hồ sơ" data-profile="${t(profile.id)}" data-criterion="${criterion.code}">
     <div class="judge-toolbar"><button type="button" onclick="goToStep(2)" class="judge-back">‹ Danh sách hồ sơ</button><label class="judge-switch">Chuyển hồ sơ<select aria-label="Chuyển hồ sơ trong hạng mục" onchange="switchProfileInStep3(this.value)">${profiles.map(p=>`<option value="${t(p.id)}" ${p.id===profile.id?'selected':''}>${t(p.code)} · ${t(p.title)}${appState.evaluations[p.id]?.status==='completed'?' · Đã chấm':''}</option>`).join('')}</select></label></div>
     <header class="judge-heading"><div><p class="judge-eyebrow">${t(profile.code)} · ${t(category.name)}</p><h1>${t(profile.title)}</h1><p>${t(profile.organization)}</p></div><span id="editor-ballot-status" class="judge-status">${record.status==='completed'?'Đã hoàn tất phiếu':'Đang chấm độc lập'}</span></header>
-    <div class="editor-model-bar"><p><strong>Phiếu cá nhân · Vòng chung khảo</strong><span>Dữ liệu mẫu; chưa xác minh minh chứng hoặc kết nối editor VnExpress.</span></p><span>Hội đồng ${Math.round(category.councilWeight*100)}% <i>·</i> Độc giả ${Math.round(category.readerWeight*100)}%</span></div>
+    <div class="editor-model-bar"><p><strong>Phiếu cá nhân · Vòng chung khảo</strong></p><span>Hội đồng ${Math.round(category.councilWeight*100)}% <i>·</i> Độc giả ${Math.round(category.readerWeight*100)}%</span></div>
     ${record.importedLegacy?'<p class="editor-import-note">Đã giữ lại điểm nhập tay từ bản cũ. Vui lòng kiểm tra lại trước khi hoàn tất; bản lưu cũ vẫn được giữ nguyên.</p>':''}
     ${renderEditorRules()}
 
