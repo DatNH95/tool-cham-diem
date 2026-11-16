@@ -20,10 +20,10 @@ let browser;
     assert.equal(await page.locator('footer,div.home').count(),0);
     assert(await page.locator('#appStepContainer').innerText());
     if(file==='cham-diem.html'){
-      assert.equal(await page.locator('.editor-photo-grid img').count(),4);
+      // Registrations without direct image URLs must not inherit demo photos.
       await page.locator('.editor-photo-grid img').evaluateAll(images=>Promise.all(images.map(img=>{img.loading='eager';return img.decode();})));
       assert(await page.locator('.editor-photo-grid img').evaluateAll(images=>images.every(img=>img.naturalWidth>0)),'Embedded gallery pictures must decode');
-      assert.equal(await page.locator('.editor-folder-link').getAttribute('target'),'_blank');
+      if(await page.locator('.editor-folder-link').count())assert.equal(await page.locator('.editor-folder-link').getAttribute('target'),'_blank');
     }
     const ids=await page.locator('[id]').evaluateAll(nodes=>nodes.map(n=>n.id));assert.equal(ids.length,new Set(ids).size,'Unique IDs');
     for(const width of [1440,1024,768,390]){

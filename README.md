@@ -24,6 +24,14 @@ Tái tạo từ thư mục nguồn: `node build-integration.cjs "đường dẫn
 
 Hồ sơ có thư viện ảnh hiển thị trực tiếp từ `assets/gallery/`; bấm ảnh để mở kích thước lớn. `shared/profile-media.js` gắn các ảnh VinWonders/khách sạn/resort cho dữ liệu demo, kèm tên địa điểm; không hiển thị mục nguồn ảnh trên giao diện. Đây là ảnh minh họa giao diện, không phải minh chứng đã xác minh của ứng viên. Danh sách nguồn được giữ tại `docs/gallery-sources.md`.
 
-Mục “Tệp minh chứng” mở thư mục Google Drive trong tab mới bằng `profile.evidenceFolderUrl`. Bản demo dùng chung thư mục người dùng cung cấp; khi tích hợp thật, gắn riêng liên kết tương ứng cho từng hồ sơ. Công cụ không tự đọc nội dung Drive hoặc thay đổi quyền chia sẻ.
+Mục “Tệp minh chứng” mở thư mục Google Drive trong tab mới bằng `profile.evidenceFolderUrl`. Hồ sơ thực dùng liên kết tương ứng từ file Excel; ô thiếu giữ trống, không gắn thư mục demo. Công cụ không tự đọc nội dung Drive hoặc thay đổi quyền chia sẻ.
+
+## Dữ liệu hồ sơ thực ngày 16.11.2026
+
+`shared/registration-data.js` nạp sau lớp demo để thay toàn bộ danh sách bằng 21 hồ sơ của file xuất ngày 16.11.2026, phân vào 9 hạng mục. Sáu hạng mục không có hồ sơ trong file để trống, không trộn ứng viên demo vào dữ liệu thật. ID `submission-<mã gốc>` tách biệt với điểm demo đã lưu. Nội dung theo tiêu chí và số liệu được giữ nguyên sau khi giải mã HTML; không tự tính lại hoặc xác nhận tính chính xác của số liệu tự khai.
+
+Mỗi hồ sơ dùng link minh chứng riêng từ file: 17 liên kết (16 Google Drive, 1 website do người nộp cung cấp); 4 hồ sơ thiếu link không được gán link demo. Có 33 ảnh của 4 hồ sơ, được tải về `assets/registration/`; hồ sơ không có ảnh trực tiếp trong file không dùng ảnh minh họa thay thế. Trạng thái đăng ký “Chờ duyệt” được giữ nguyên, tách biệt với trạng thái phiếu chấm.
+
+Tái nhập: `python scripts/import-registration.py "đường dẫn file xuất.xls"` bằng Python 3 có sẵn. File .xls của nguồn là bảng HTML UTF-8, không cần Excel để đọc. Nhãn trường chuyên môn lấy từ `data/registration-field-labels.json` đã đối chiếu biểu mẫu đăng ký theo từng hạng mục, vì tiêu đề cột dùng chung trong file xuất không phản ánh đúng nhãn của mọi hạng mục. Báo cáo đối soát nằm ở `docs/registration-import.json`; danh sách tải ảnh phát sinh nằm trong `tmp/registration-downloads.json`.
 
 Cập nhật nội dung đánh giá: chọn mức 1–4 hiện ô “Nội dung đánh giá (khuyến khích)”, không bắt buộc; mức 5 hiện ô giải trình Xuất sắc bắt buộc. Nội dung được lưu theo từng tiêu chí và hiện trong phần xem lại phiếu; chuyển mức điểm không xóa nội dung đã nhập.

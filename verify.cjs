@@ -12,9 +12,19 @@ const context=vm.createContext({assert,
   localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setTimeout,clearTimeout
 });
 inline.forEach(s=>vm.runInContext(s,context));
-for(const file of ['shared/scoring-model.js','shared/profile-media.js','shared/editor-workspace.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
+for(const file of ['shared/scoring-model.js','shared/profile-media.js','shared/registration-data.js','shared/editor-workspace.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
 for(const file of vm.runInContext('Object.values(PROFILES_BY_CATEGORY).flatMap(profiles=>profiles.flatMap(p=>p.gallery.map(g=>g.src)))',context))assert(fs.existsSync(file),file);
 vm.runInContext(`
+  assert.equal(REGISTRATION_DATA.profiles.length,21);
+  assert.equal(new Set(REGISTRATION_DATA.profiles.map(p=>p.id)).size,21);
+  assert.equal(PROFILES_BY_CATEGORY['tru-cot-1'][0].sourceId,'597');
+  assert.equal(PROFILES_BY_CATEGORY['tru-cot-1'][0].title,'Khu di tích quốc gia đặc biệt Lam Kinh');
+  assert(PROFILES_BY_CATEGORY['tru-cot-1'][0].evidenceFolderUrl.includes('1VzzthSB7RMPCKJWz4oywvnWVoJfGnwWn'));
+  assert.equal(PROFILES_BY_CATEGORY['tru-cot-5'].length,0);
+  assert.equal(REGISTRATION_DATA.profiles.filter(p=>!p.evidenceFolderUrl).length,4);
+  assert.equal(REGISTRATION_DATA.profiles.find(p=>p.sourceId==='641').evidenceFolderUrl,'https://drive.google.com/drive/folders/1ohDG8ODbqu40ywTJcwwqMduIaeLONczZ?usp=sharing');
+  assert.equal(REGISTRATION_DATA.profiles.reduce((n,p)=>n+p.gallery.length,0),33);
+  for(const p of REGISTRATION_DATA.profiles){assert(!p.id.includes('ho-so-'));assert.equal(p.registrationStatus,'Chờ duyệt');assert(!('email' in p));assert(!('phone' in p));}
   const modelWeights=[.7,.6,.5,.5,.7,.4,.9,.8,.7,.5,.7,.6,.4,.3,.5];
   for(const [i,category]of AWARD_CATEGORIES.entries()){
     assert.equal(category.councilWeight,modelWeights[i]);assert(Math.abs(category.readerWeight+category.councilWeight-1)<1e-9);

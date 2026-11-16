@@ -1,5 +1,7 @@
 # Bàn giao HTML/CSS cho Tech
 
+Cập nhật 16.11.2026: đã xuất lại từ nguồn đang dùng 21 hồ sơ đăng ký thực. Các template bước 2–4 lấy hồ sơ Khách sạn đại diện hiện có, giữ trạng thái đăng ký và thông tin theo nguồn; điểm 80/100 và giải trình ở trang hoàn tất vẫn chỉ là ví dụ giao diện. Dữ liệu còn lại và cách nhập xem `docs/registration-data.md`. Ảnh trong template được nhúng data URI; không phụ thuộc `assets/registration/` khi bàn giao. Không xem bộ template 4 trang là bản xuất toàn bộ 21 hồ sơ.
+
 Lấy nguyên thư mục `hand-off/` trên GitHub và mở `index.html`. Bộ này chỉ chứa HTML/CSS thuần, không cần Node.js, React, Next.js, Tailwind runtime, JavaScript hoặc kết nối mạng. Logo SVG được nhúng trong HTML để không cần thư mục ảnh đi kèm.
 
 | File | Mẫu giao diện |

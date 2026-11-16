@@ -1,0 +1,172 @@
+{
+  "Điểm đến du lịch của năm": {
+    "fields": [
+      "Số liệu khách và tổng thu du lịch",
+      "Sản phẩm, hạ tầng và kết nối giao thông mới",
+      "Chính sách và chương trình xúc tiến",
+      "Hoạt động bảo tồn và phát triển cộng đồng",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Trách nhiệm bền vững: bảo tồn di sản, môi trường và cộng đồng",
+      "Phát triển sản phẩm mới, hạ tầng và kết nối giao thông",
+      "Chính sách, môi trường đầu tư và xúc tiến du lịch"
+    ]
+  },
+  "Doanh nghiệp lữ hành của năm": {
+    "fields": [
+      "Doanh thu và lượt khách",
+      "Kết quả theo phân khúc",
+      "Sản phẩm tour tiêu biểu",
+      "Quy mô nhân sự",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Trách nhiệm bền vững: du lịch có trách nhiệm với điểm đến và đối tác địa phương",
+      "Đa dạng và chất lượng sản phẩm tour",
+      "Năng lực vận hành, chất lượng đội ngũ nhân sự và hướng dẫn viên",
+      "Ứng dụng công nghệ, đổi mới sản phẩm"
+    ]
+  },
+  "Khách sạn của năm": {
+    "fields": [
+      "Quy mô và hiệu quả kinh doanh",
+      "Đánh giá trên các nền tảng OTA",
+      "Quy mô và đào tạo nhân sự",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Thực hành bền vững, bảo vệ môi trường",
+      "Chất lượng cơ sở vật chất và tiện nghi",
+      "Chất lượng dịch vụ và phát triển đội ngũ nhân sự",
+      "Đổi mới trải nghiệm khách hàng"
+    ]
+  },
+  "Khu nghỉ dưỡng của năm (Resort)": {
+    "fields": [
+      "Quy mô và hiệu quả kinh doanh",
+      "Đánh giá trên các nền tảng OTA",
+      "Quy mô và đào tạo nhân sự",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Thực hành bền vững, bảo vệ môi trường",
+      "Không gian, kiến trúc và cảnh quan",
+      "Trải nghiệm và dịch vụ nghỉ dưỡng cao cấp (spa, ẩm thực, giải trí) cung cấp cho du khách tại khu nghỉ",
+      "Bản sắc địa phương và tính độc đáo tại khu nghỉ"
+    ]
+  },
+  "Hãng hàng không du lịch của năm": {
+    "fields": [
+      "Mạng đường bay và tần suất",
+      "Số hành khách vận chuyển",
+      "Tỷ lệ chuyến bay đúng giờ (OTP)",
+      "Chương trình giá và kích cầu",
+      "Hợp tác quảng bá điểm đến",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Trách nhiệm bền vững: giảm phát thải, nhiên liệu bền vững",
+      "Mạng đường bay, tần suất và đường bay du lịch mới",
+      "Chính sách giá và chương trình kích cầu du lịch",
+      "Hợp tác quảng bá điểm đến với địa phương/doanh nghiệp",
+      "Đổi mới trải nghiệm khách hàng"
+    ]
+  },
+  "Trải nghiệm du lịch của năm": {
+    "fields": [
+      "Lượng khách và tăng trưởng",
+      "Hiệu quả truyền thông",
+      "Đánh giá trên các nền tảng",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Giá trị cộng đồng và di sản của sản phẩm trải nghiệm",
+      "Tính sáng tạo, độc đáo của sản phẩm trải nghiệm",
+      "Chất lượng tổ chức, chuyên nghiệp trong vận hành"
+    ]
+  },
+  "Sáng kiến du lịch bền vững của năm": {
+    "fields": [
+      "Sáng kiến và phạm vi triển khai",
+      "Kết quả và tác động",
+      "So sánh trước và sau triển khai"
+    ],
+    "narratives": [
+      "Mức độ đổi mới so với thực hành hiện tại",
+      "Tính khả thi và hiệu quả đo lường được",
+      "Tác động môi trường và xã hội cụ thể",
+      "Khả năng nhân rộng"
+    ]
+  },
+  "Điểm đến du lịch xanh của năm": {
+    "fields": [
+      "Chứng nhận xanh hoặc bền vững",
+      "Kết quả phát triển du lịch xanh"
+    ],
+    "narratives": [
+      "Mức độ đổi mới trong chính sách và hành động môi trường",
+      "Hiệu quả đo lường được",
+      "Sự tham gia và hưởng lợi của cộng đồng địa phương và doanh nghiệp"
+    ]
+  },
+  "Sản phẩm du lịch sáng tạo của năm": {
+    "fields": [
+      "Giới thiệu sản phẩm",
+      "Hiệu quả kinh doanh",
+      "Kênh truyền thông chính thức"
+    ],
+    "narratives": [
+      "Tính mới và độc đáo",
+      "Tiềm năng phát triển và khả năng nhân rộng dài hạn"
+    ]
+  },
+  "Chuyển đổi số xuất sắc trong du lịch": {
+    "fields": [
+      "Giải pháp và thời gian triển khai",
+      "Công nghệ sử dụng",
+      "Hiệu quả vận hành"
+    ],
+    "narratives": [
+      "Mức độ ứng dụng công nghệ (AI, dữ liệu, ứng dụng…)",
+      "Hiệu quả cải thiện trải nghiệm khách hàng",
+      "Hiệu quả vận hành nội bộ"
+    ]
+  },
+  "Làng du lịch cộng đồng tiêu biểu của năm": {
+    "fields": [
+      "Giới thiệu mô hình",
+      "Kết quả hoạt động du lịch",
+      "Sự tham gia và sinh kế cộng đồng"
+    ],
+    "narratives": [
+      "Tính đặc sắc, khác biệt của mô hình (bảo tồn văn hóa, bản sắc địa phương)",
+      "Tính bền vững trong vận hành",
+      "Mức độ tham gia và hưởng lợi của cộng đồng địa phương"
+    ]
+  },
+  "Trải nghiệm ẩm thực du lịch của năm": {
+    "fields": [
+      "Doanh thu và lượt khách",
+      "Mô hình và trải nghiệm ẩm thực",
+      "Giải thưởng hoặc xếp hạng",
+      "Kênh truyền thông chính thức",
+      "Đánh giá trên các nền tảng"
+    ],
+    "narratives": [
+      "Chất lượng và tính đặc trưng, sáng tạo của ẩm thực",
+      "Chất lượng trải nghiệm phục vụ du khách"
+    ]
+  },
+  "Chiến dịch quảng bá du lịch của năm": {
+    "fields": [
+      "Chiến dịch và thời gian triển khai",
+      "KPI mục tiêu và kết quả",
+      "Hiệu quả truyền thông và kích cầu"
+    ],
+    "narratives": [
+      "Tính sáng tạo và thông điệp chiến dịch",
+      "Hiệu quả đóng góp về tăng trưởng du lịch và tăng trưởng thương hiệu điểm đến đo lường được"
+    ]
+  }
+}

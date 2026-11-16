@@ -45,6 +45,7 @@ function renderEditorRules(){return `<details class="editor-rules"><summary>Hư�
   <p><strong>Điểm cuối:</strong> điểm Hội đồng × %HĐ + điểm Độc giả × %ĐG. Phiếu cá nhân chưa có dữ liệu để tính điểm cuối.</p>
   <p><strong>Hiệu chỉnh:</strong> SD ≥ 1,0 là dấu hiệu cần rà soát sau khi đủ phiếu; không tự loại điểm trong công cụ này.</p></div></details>`;}
 function renderEditorDossier(profile){
+  if(profile.dataSource)return renderRegisteredDossier(profile);
   const t=editorText;
   const folder=/^https:\/\/(?:drive|docs)\.google\.com\//i.test(profile.evidenceFolderUrl||'')?profile.evidenceFolderUrl:'';
   return `
@@ -56,6 +57,19 @@ function renderEditorDossier(profile){
     <section class="judge-section editor-photo-section"><h3>Hình ảnh hồ sơ <span>(${profile.gallery.length})</span></h3><div class="editor-photo-grid">${profile.gallery.map(g=>`<figure><a class="editor-photo-link" href="${t(g.src)}" target="_blank" rel="noopener noreferrer" aria-label="Xem ảnh ${t(g.title)}"><img src="${t(g.src)}" alt="${t(g.alt||g.title)}" width="640" height="420" loading="lazy" decoding="async"></a><figcaption>${t(g.title)}</figcaption></figure>`).join('')}</div></section>
     <section class="judge-section editor-evidence-folder"><div><h3>Tệp minh chứng</h3><p>Thư mục Google Drive chứa giấy tờ và tài liệu của hồ sơ.</p></div>${folder?`<a class="editor-folder-link" href="${t(folder)}" target="_blank" rel="noopener noreferrer">Mở thư mục minh chứng <span aria-hidden="true">↗</span></a>`:'<span class="editor-help">Chưa có liên kết thư mục</span>'}</section>`;
 
+}
+function renderRegisteredDossier(profile){
+  const t=editorText;
+  const safeLink=value=>/^https?:\/\/[^\s<>"\x00-\x1f]+$/i.test(value||'')?value:'';
+  const folder=safeLink(profile.evidenceFolderUrl);
+  const paragraphs=(heading,text)=>text?`<section class="judge-section editor-source-text"><h3>${heading}</h3><p>${t(text)}</p></section>`:'';
+  const sections=(heading,items)=>(items||[]).length?`<section class="judge-section editor-source-text"><h3>${heading}</h3>${items.map(item=>`<article class="editor-source-section"><h4>${t(item.title)}</h4><p>${t(item.content)}</p></article>`).join('')}</section>`:'';
+  const info=[['Mã hồ sơ',profile.sourceId],['Đứng tên hồ sơ',profile.organization],['Tư cách đăng ký',profile.registerRole],['Địa chỉ',profile.location],['Quốc gia',profile.country],['Website',profile.website],['Fanpage',profile.fanpage],['Đơn vị đại diện đề cử',profile.representative],['Trạng thái đăng ký',profile.registrationStatus],['Ngày đăng ký',profile.registeredAt]];
+  return paragraphs('Giới thiệu tổng quan',profile.summary)+paragraphs('Thành tích nổi bật trong năm xét giải',profile.achievements)+paragraphs('Điểm khác biệt của đề cử',profile.differentiation)+
+    sections('Số liệu hoạt động',profile.operationalData)+sections('Nội dung theo tiêu chí',profile.criterionNarratives)+
+    `<details class="judge-section" data-workspace-detail="organization"><summary>Thông tin đơn vị</summary><dl class="judge-data">${info.map(([label,value])=>`<div><dt>${label}</dt><dd>${safeLink(value)?`<a href="${t(value)}" target="_blank" rel="noopener noreferrer">${t(value)}</a>`:t(value)||'Chưa cung cấp'}</dd></div>`).join('')}</dl></details>`+
+    (profile.gallery.length?`<section class="judge-section editor-photo-section"><h3>Hình ảnh hồ sơ (${profile.gallery.length})</h3><div class="editor-photo-grid">${profile.gallery.map(g=>`<figure><a class="editor-photo-link" href="${t(g.src)}" target="_blank" rel="noopener noreferrer" aria-label="Xem ${t(g.alt)}"><img src="${t(g.src)}" alt="${t(g.alt)}" width="640" height="420" loading="lazy" decoding="async"></a><figcaption>${t(g.title)}</figcaption></figure>`).join('')}</div></section>`:'')+
+    `<section class="judge-section editor-evidence-folder"><div><h3>Tệp minh chứng</h3><p>Giấy tờ và tài liệu do hồ sơ cung cấp.</p></div>${folder?`<a class="editor-folder-link" href="${t(folder)}" target="_blank" rel="noopener noreferrer">Mở thư mục minh chứng <span aria-hidden="true">↗</span></a><span class="editor-help">${t(folder.match(/^https?:\/\/([^/?#]+)/i)?.[1])}</span>`:'<span class="editor-help">Chưa có liên kết thư mục trong dữ liệu hồ sơ.</span>'}${profile.attachments.length?`<ul class="editor-attachment-list">${profile.attachments.filter(a=>safeLink(a.url)).map(a=>`<li><a href="${t(a.url)}" target="_blank" rel="noopener noreferrer">${t(a.title)} ↗</a></li>`).join('')}</ul>`:''}</section>`;
 }
 function renderEditorBallot(category,criterion,record,index){
   const t=editorText,code=criterion.code,selected=record.scores[code];
@@ -74,7 +88,7 @@ renderStep3Workspace=function(){
   return `<section class="judge-workspace" aria-label="Không gian đánh giá hồ sơ" data-profile="${t(profile.id)}" data-criterion="${criterion.code}">
     <div class="judge-toolbar"><button type="button" onclick="goToStep(2)" class="judge-back">‹ Danh sách hồ sơ</button><label class="judge-switch">Chuyển hồ sơ<select aria-label="Chuyển hồ sơ trong hạng mục" onchange="switchProfileInStep3(this.value)">${profiles.map(p=>`<option value="${t(p.id)}" ${p.id===profile.id?'selected':''}>${t(p.code)} · ${t(p.title)}${appState.evaluations[p.id]?.status==='completed'?' · Đã chấm':''}</option>`).join('')}</select></label></div>
     <header class="judge-heading"><div><p class="judge-eyebrow">${t(profile.code)} · ${t(category.name)}</p><h1>${t(profile.title)}</h1><p>${t(profile.organization)}</p></div><span id="editor-ballot-status" class="judge-status">${record.status==='completed'?'Đã hoàn tất phiếu':'Đang chấm độc lập'}</span></header>
-    <div class="editor-model-bar"><p><strong>Phiếu cá nhân · Vòng chung khảo</strong></p><span>Hội đồng ${Math.round(category.councilWeight*100)}% <i>·</i> Độc giả ${Math.round(category.readerWeight*100)}%</span></div>
+    <div class="editor-model-bar"><p><strong>Phiếu cá nhân${profile.dataSource?` · ${t(profile.registrationStatus)}`:" · Vòng chung khảo"}</strong></p><span>Hội đồng ${Math.round(category.councilWeight*100)}% <i>·</i> Độc giả ${Math.round(category.readerWeight*100)}%</span></div>
     ${record.importedLegacy?'<p class="editor-import-note">Đã giữ lại điểm nhập tay từ bản cũ. Vui lòng kiểm tra lại trước khi hoàn tất; bản lưu cũ vẫn được giữ nguyên.</p>':''}
     ${renderEditorRules()}
 
@@ -92,13 +106,14 @@ renderStep4Completed=function(){
 renderStep2Profiles=function(){
   const category=getCategoryById(appState.selectedCategoryId),profiles=PROFILES_BY_CATEGORY[category.id]||[],t=editorText;
   const completed=profiles.filter(p=>appState.evaluations[p.id]?.status==='completed').length;
-  return `<section class="editor-profile-list"><div class="editor-profile-list-heading"><div><p class="judge-eyebrow">${t(category.groupLabel)} · Danh sách hồ sơ</p><h1>${t(category.name)}</h1><p>Chọn hồ sơ để đối chiếu minh chứng và chấm độc lập.</p></div><span class="judge-status">${completed}/${profiles.length} phiếu hoàn tất</span></div><div class="editor-profile-cards">${profiles.map(p=>{
+  return `<section class="editor-profile-list"><div class="editor-profile-list-heading"><div><p class="judge-eyebrow">${t(category.groupLabel)} · Danh sách hồ sơ</p><h1>${t(category.name)}</h1><p>Chọn hồ sơ để đối chiếu minh chứng và chấm độc lập.</p></div><span class="judge-status">${completed}/${profiles.length} phiếu hoàn tất</span></div><div class="editor-profile-cards">${profiles.length?"":'<p class="editor-help">Chưa có hồ sơ trong file dữ liệu.</p>'}${profiles.map(p=>{
     const record=appState.evaluations[p.id],score=computeJudgeScore(category,record),done=record?.status==='completed';
     return `<article><div><p class="judge-eyebrow">${t(p.code)}</p><h2>${t(p.title)}</h2><p>${t(p.organization)}</p></div><div><span class="editor-profile-state">${done?`${score.score100.toFixed(1)}/100 · Đã hoàn tất`:record?'Đang chấm · Bản nháp':'Chưa chấm'}</span><button type="button" class="${done?'editor-secondary':'editor-primary'}" onclick="openProfileForScoring('${p.id}')">${done?'Xem lại phiếu':'Mở phiếu chấm'} →</button></div></article>`;
-  }).join('')}</div><div class="editor-profile-list-footer"><button type="button" class="editor-secondary" onclick="goToStep(1)">‹ Chọn hạng mục khác</button><span>Dữ liệu mẫu · Phiếu lưu trên trình duyệt này</span></div></section>`;
+  }).join('')}</div><div class="editor-profile-list-footer"><button type="button" class="editor-secondary" onclick="goToStep(1)">‹ Chọn hạng mục khác</button><span>Phiếu lưu trên trình duyệt này</span></div></section>`;
 };
 const renderEditorBase=renderAll;
 renderAll=function(){
+  if(appState.currentStep>=3&&!(PROFILES_BY_CATEGORY[appState.selectedCategoryId]||[]).length)appState.currentStep=2;
   const current=document.querySelector('.judge-workspace'),sameProfile=appState.currentStep===3&&current?.dataset.profile===appState.selectedProfileId,sameCriterion=sameProfile&&current?.dataset.criterion===editorUI.criterion;
   const scrolls=sameProfile?[...document.querySelectorAll('[data-workspace-scroll]')].filter(e=>sameCriterion||e.dataset.workspaceScroll==='dossier').map(e=>[e.dataset.workspaceScroll,e.scrollTop]):[],details=sameProfile?[...document.querySelectorAll('[data-workspace-detail]')].filter(e=>sameCriterion||e.closest('.judge-dossier')).map(e=>[e.dataset.workspaceDetail,e.open]):[];
   const active=sameCriterion?document.activeElement:null,field=active?.dataset?.editorField,action=active?.getAttribute('onclick');

@@ -17,14 +17,9 @@ let browser;
   assert.equal(await page.evaluate(()=>appState.currentStep),1,'Logo returns to step 1');
   await page.evaluate(()=>{proceedFromStep1();proceedFromStep2();});
   const folder=page.getByRole('link',{name:'Mở thư mục minh chứng',exact:true});
-  assert.equal(await folder.getAttribute('href'),'https://drive.google.com/drive/u/0/folders/1w3oIEHL7Erx0Y7LUTMkI4q6a0fi8jV9C');
+  assert.equal(await folder.getAttribute('href'),'https://drive.google.com/drive/u/0/folders/13HJYqnAp4ginUFjvtvVuYjv5Vy03mdHc');
   assert.equal(await folder.getAttribute('target'),'_blank');
-  assert.equal(await page.locator('.editor-photo-grid img').count(),4);
-  await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop=e.scrollHeight);
-  await page.locator('.editor-photo-grid img').evaluateAll(images=>Promise.all(images.map(img=>img.decode())));
-  assert(await page.locator('.editor-photo-grid img').evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)));
-  await page.locator('.judge-dossier').screenshot({path:path.join(out,'dossier-gallery.png')});
-  await page.locator('[data-workspace-scroll="dossier"]').evaluate(e=>e.scrollTop=0);
+  assert.equal(await page.locator('.editor-photo-grid img').count(),0,'No demo photos for a real profile without photos');
   await page.screenshot({path:path.join(out,'desktop-empty.png'),fullPage:true});
   assert.equal(await page.locator('.editor-criterion-nav button').count(),4);
   assert.equal(await page.locator('.editor-level-description').count(),5);
@@ -91,19 +86,32 @@ let browser;
   await page.getByRole('button',{name:'Phiếu chấm',exact:true}).click();
   assert(await page.locator('.judge-scoring').isVisible());
   // The complete 15-category path must work with every criterion in the real DOM.
-  const categoryChecks=await page.evaluate(()=>AWARD_CATEGORIES.map(c=>({id:c.id,codes:c.criteria.map(k=>k.code)})));
+  const categoryChecks=await page.evaluate(()=>AWARD_CATEGORIES.filter(c=>PROFILES_BY_CATEGORY[c.id].length).map(c=>({id:c.id,codes:c.criteria.map(k=>k.code)})));
   for(const category of categoryChecks){
     await page.evaluate(id=>{selectCategory(id);proceedFromStep2();},category.id);
     for(const code of category.codes){await page.locator(`[data-editor-criterion="${code}"]`).click();assert.equal(await page.locator('.editor-score-options button').count(),5);}
   }
   await page.evaluate(()=>{selectCategory('tru-cot-1');proceedFromStep2();});
   await page.getByRole('button',{name:'Đọc hồ sơ & minh chứng',exact:true}).click();
-  await page.locator('.editor-photo-section').scrollIntoViewIfNeeded();
-  await page.locator('.editor-photo-grid img').evaluateAll(images=>Promise.all(images.map(img=>img.decode())));
-  assert(await page.locator('.editor-photo-grid img').evaluateAll(images=>images.every(img=>img.naturalWidth>0)));
-  await page.locator('.editor-photo-section').screenshot({path:path.join(out,'vinwonders-gallery.png')});
+  assert((await page.locator('.judge-heading h1').innerText()).includes('Lam Kinh'));
+  assert((await page.locator('.editor-folder-link').getAttribute('href')).includes('1VzzthSB7RMPCKJWz4oywvnWVoJfGnwWn'));
+  await page.locator('.judge-dossier').screenshot({path:path.join(out,'lam-kinh-real-profile.png')});
+  const records=await page.evaluate(()=>REGISTRATION_DATA.profiles.map(p=>({id:p.id,category:p.categoryId,folder:p.evidenceFolderUrl,photos:p.gallery.length})));
+  for(const record of records){
+    await page.evaluate(r=>{selectCategory(r.category);openProfileForScoring(r.id);},record);
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`Imported profile overflows: ${record.id}`);
+    if(record.folder)assert.equal(await page.locator('.editor-folder-link').getAttribute('href'),record.folder);
+    else assert.equal(await page.locator('.editor-folder-link').count(),0,'Never substitute a shared folder');
+    assert.equal(await page.locator('.editor-photo-grid img').count(),record.photos);
+    if(record.photos){
+      await page.locator('.editor-photo-grid img').evaluateAll(images=>Promise.all(images.map(img=>{img.loading='eager';return img.decode();})));
+      assert(await page.locator('.editor-photo-grid img').evaluateAll(images=>images.every(img=>img.naturalWidth>0)));
+    }
+  }
+  await page.evaluate(()=>{selectCategory('tru-cot-5');goToStep(3);});
+  assert(await page.getByText('Chưa có hồ sơ trong file dữ liệu.',{exact:true}).isVisible());
   assert.deepEqual(errors,[]);
-  assert.deepEqual(failed,[],'All runtime assets must be local and available');
-  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({status:'pass',viewports:[1440,1024,768,390],categories:15,errors,failedRequests:failed},null,2));
-  console.log(JSON.stringify({status:'pass',viewports:[1440,1024,768,390],categories:15,failedRequests:failed,screenshots:out}));
+  assert.deepEqual(failed,[],'All imported images must be available');
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({status:'pass',viewports:[1440,1024,768,390],categoryDefinitions:15,categoriesWithRegistrations:categoryChecks.length,profiles:records.length,photos:records.reduce((n,p)=>n+p.photos,0),errors,failedRequests:failed},null,2));
+  console.log(JSON.stringify({status:'pass',viewports:[1440,1024,768,390],categoriesWithRegistrations:categoryChecks.length,profiles:records.length,photos:records.reduce((n,p)=>n+p.photos,0),failedRequests:failed,screenshots:out}));
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();});

@@ -1,0 +1,29 @@
+{
+  "source": "Danh_sach_ho_so_Travel-Awards-2026_2026_11_16_103212.xls",
+  "count": 21,
+  "categories": {
+    "Doanh nghiệp lữ hành của năm": 5,
+    "Trải nghiệm ẩm thực du lịch của năm": 1,
+    "Khu nghỉ dưỡng của năm (Resort)": 7,
+    "Sản phẩm du lịch sáng tạo của năm": 2,
+    "Làng du lịch cộng đồng tiêu biểu của năm": 1,
+    "Chuyển đổi số xuất sắc trong du lịch": 1,
+    "Khách sạn của năm": 2,
+    "Sáng kiến du lịch bền vững của năm": 1,
+    "Điểm đến du lịch của năm": 1
+  },
+  "photos": 33,
+  "folderLinks": 17,
+  "withoutFolder": [
+    "643",
+    "637",
+    "579",
+    "578"
+  ],
+  "nonDriveLink": [
+    "646"
+  ],
+  "sourceStatuses": {
+    "Chờ duyệt": 21
+  }
+}

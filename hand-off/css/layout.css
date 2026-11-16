@@ -712,3 +712,9 @@ body{background-color: rgb(243, 250, 248); background-image: url("data:image/svg
 .editor-photo-grid{gap: 10px;}
 
 }
+.editor-source-text p{white-space: pre-line; overflow-wrap: anywhere;}
+.editor-source-section{margin-top: 18px;}
+.editor-source-section h4{line-height: 1.6; color: rgb(0, 113, 156); margin-bottom: 6px;}
+.editor-attachment-list{list-style: disc; margin: 0px; padding-left: 18px; line-height: 1.8;}
+.editor-attachment-list a{color: rgb(0, 113, 156); text-decoration: underline; text-underline-offset: 2px;}
+.judge-data dd a{color: rgb(0, 113, 156); overflow-wrap: anywhere;}

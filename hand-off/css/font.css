@@ -128,4 +128,6 @@ button, input, select, optgroup, textarea, ::file-selector-button{font-style:inh
 .editor-photo-grid figcaption{font-size:11px;}
 .editor-photo-credits{font-size:11px;}
 @media (max-width: 400px) {.editor-photo-grid figcaption{font-size:10px;}}
+.editor-source-section h4{font-size:13px;font-weight:600;}
+.editor-attachment-list{font-size:12px;}
 .home-header{font-family:Inter,Arial,sans-serif}
