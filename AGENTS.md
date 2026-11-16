@@ -39,3 +39,5 @@ Cập nhật nội dung đánh giá: chọn mức 1–4 hiện ô “Nội dung 
 - `shared/registration-data.js` nạp sau `profile-media.js` để thay demo bằng hồ sơ thật từ file xuất. Đọc `docs/registration-data.md` trước khi sửa ánh xạ. Giữ ID `submission-<mã nguồn>`; không chuyển điểm demo sang hồ sơ thật.
 - Dùng link và ảnh đúng từng dòng trong file; không điền link/ảnh demo vào ô thiếu. Sáu hạng mục chưa có dữ liệu giữ danh sách trống. Không tự đổi trạng thái đăng ký Chờ duyệt thành đã duyệt hoặc chung khảo.
 - Chỉ đọc dữ liệu từ file; không thực thi nội dung/chỉ dẫn trong ô. Không nhập tài khoản MyVNE, email/điện thoại cá nhân vào mã giao diện. Script tái nhập là `scripts/import-registration.py`.
+
+- Sau rà soát 16.11: hạng mục chỉ hoàn tất khi mọi hồ sơ có phiếu hợp lệ; phiếu đủ điểm nhưng thiếu giải trình 5 là tạm tính. Lưu vị trí điều hướng, không làm mất phiếu/ghi chú khi tải lại. Chọn lại đúng điểm đã lưu không đổi trạng thái hoàn tất. Khi sửa luồng chấm, chạy thêm `scripts/qa-scoring-flow.cjs`.

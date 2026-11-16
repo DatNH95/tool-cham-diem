@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "profilesCompleted": 21,
+  "categoryCompletion": {
+    "truCotDone": 4,
+    "tienPhongDone": 5
+  },
+  "checks": [
+    "missing-criterion navigation",
+    "resume after reload",
+    "provisional score for missing excellence note",
+    "all 21 ballot calculations",
+    "completed category requires every ballot",
+    "same-score preserves completion",
+    "quota failure blocks completion",
+    "retry save"
+  ],
+  "consoleErrors": []
+}

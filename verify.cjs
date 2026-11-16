@@ -58,6 +58,24 @@ vm.runInContext(`
     }
   }
   const hotel=getCategoryById('tru-cot-3');assert.equal(hotel.criteria.length,4);assert(!hotel.criteria.some(c=>c.code==='KS-5'));
+  for(const category of AWARD_CATEGORIES){
+    const n=category.criteria.length;
+    for(let sample=0;sample<5**n;sample++){
+      let digits=sample,sum=0;const record={scores:{}};
+      category.criteria.forEach(c=>{const s=digits%5+1;digits=Math.floor(digits/5);record.scores[c.code]=s;sum+=s;});
+      record.scores.UNKNOWN=5;
+      const result=computeJudgeScore(category,record);
+      assert(result.complete);assert.equal(result.sum,sum);assert.equal(result.maxScore,5*n);
+      assert(Math.abs(result.score100-sum/(5*n)*100)<1e-10);
+      assert(result.score100>=20&&result.score100<=100);
+    }
+  }
+  const multiple=getCategoryById('tru-cot-2'),members=PROFILES_BY_CATEGORY[multiple.id];
+  members[0]&& (appState.evaluations[members[0].id].status='completed');
+  assert.equal(getCompletionStats().truCotDone,0,'One ballot does not complete a multi-profile category');
+  members.forEach(p=>appState.evaluations[p.id].status='completed');
+  assert.equal(getCompletionStats().truCotDone,1,'Every ballot completes category');
+  members.forEach(p=>appState.evaluations[p.id].status='draft');
   assert.equal(getCategoryById('tru-cot-4').criteria.length,4);
   const example=createEditorEvaluation();hotel.criteria.forEach((c,i)=>example.scores[c.code]=[4,5,4,3][i]);
   assert.equal(computeJudgeScore(hotel,example).score100,80,'PDF example');
@@ -70,6 +88,10 @@ vm.runInContext(`
   const savedSet=localStorage.setItem;localStorage.setItem=()=>{throw Error('Quota denied');};
   appState.currentStep=3;submitProfileEvaluation();assert.equal(appState.currentStep,3);assert.notEqual(migrated.status,'completed');assert.equal(editorStorageState,'error');
   localStorage.setItem=savedSet;submitProfileEvaluation();assert.equal(appState.currentStep,4);assert.equal(migrated.status,'completed');assert(renderStep4Completed().includes('Chưa gửi lên hệ thống VnExpress'));
+  goToStep(3);selectCriterionScore(cat.criteria[0].code,migrated.scores[cat.criteria[0].code]);assert.equal(migrated.status,'completed','Selecting unchanged score preserves completion');
+  const lastCategory=appState.selectedCategoryId,lastProfile=appState.selectedProfileId;
+  appState.currentStep=1;appState.selectedCategoryId='tru-cot-4';loadSavedState();
+  assert.equal(appState.currentStep,3);assert.equal(appState.selectedCategoryId,lastCategory);assert.equal(appState.selectedProfileId,lastProfile);
   const snapshot=JSON.stringify(appState.evaluations);appState.evaluations={};loadSavedState();assert.equal(JSON.stringify(appState.evaluations),snapshot,'Reload preserves local ballot');
 `,context);
 console.log('PASS: 15 category weights; all profile/criterion views; mean conversion; PDF 80/100 example; score-only validation; legacy migration; storage failure; completion/reload.');

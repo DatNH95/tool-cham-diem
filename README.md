@@ -18,6 +18,8 @@ Mã HTML gốc vẫn được giữ trong `index.html` để truy nguyên. `shar
 
 Kiểm tra logic: `node verify.cjs`. Kiểm tra trình duyệt: `node scripts/qa-workspace.cjs` với Playwright đã có sẵn (hoặc đặt `PLAYWRIGHT_MODULE` đến module Playwright, `CHROME_PATH` đến Chrome). Ảnh và báo cáo QA nằm trong `tmp/qa`, không đưa vào Git.
 
+Kiểm tra trọn luồng 21 hồ sơ: `node scripts/qa-scoring-flow.cjs`; báo cáo ở `docs/scoring-flow-qa.json`. Công cụ lưu vị trí để tiếp tục sau tải lại; hạng mục hoàn tất khi đã hoàn tất mọi hồ sơ. Điểm còn thiếu giải trình mức 5 được ghi rõ là tạm tính.
+
 Nếu thêm utility class mới, tạo lại CSS bằng `node scripts/build-styles.cjs "đường dẫn package tailwindcss 4"`. CSS đã tạo sẵn được đưa cùng mã nguồn; công cụ không cần Node.js khi sử dụng.
 
 Tái tạo từ thư mục nguồn: `node build-integration.cjs "đường dẫn thư mục Travel Awards 2026"`.

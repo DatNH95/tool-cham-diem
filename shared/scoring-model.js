@@ -37,6 +37,7 @@ function createEditorEvaluation() {
 
 getOrCreateEvaluation = function (profileId, category) {
   let record = appState.evaluations[profileId];
+  if(!record || typeof record!=='object' || Array.isArray(record))record=null;
   if (!record || record.modelVersion !== JUDGE_MODEL.version) {
     const old = record;
     record = createEditorEvaluation();
@@ -72,12 +73,22 @@ loadSavedState = function () {
       }
     }
     editorStorageState = 'saved';
+    const navigation=parsed.navigation;
+    if(navigation&&getCategoryById(navigation.categoryId).id===navigation.categoryId){
+      const profiles=PROFILES_BY_CATEGORY[navigation.categoryId]||[];
+      if([1,2,3].includes(navigation.step)){
+        appState.selectedCategoryId=navigation.categoryId;
+        appState.selectedProfileId=profiles.find(p=>p.id===navigation.profileId)?.id||profiles[0]?.id||null;
+        appState.currentStep=profiles.length?navigation.step:Math.min(navigation.step,2);
+      }
+    }
   } catch { editorStorageState = 'error'; }
 };
 
 saveState = function () {
   try {
-    localStorage.setItem(JUDGE_MODEL.storageKey, JSON.stringify({ modelVersion: JUDGE_MODEL.version, evaluations: appState.evaluations }));
+    const navigation={step:appState.currentStep===4?2:appState.currentStep,categoryId:appState.selectedCategoryId,profileId:appState.selectedProfileId};
+    localStorage.setItem(JUDGE_MODEL.storageKey, JSON.stringify({ modelVersion: JUDGE_MODEL.version, evaluations: appState.evaluations,navigation }));
     editorStorageState = 'saved';
     return true;
   } catch { editorStorageState = 'error'; return false; }
@@ -107,7 +118,20 @@ computeJudgeScore = function (category, record) {
   if (!scores.length) return null;
   const average = scores.reduce((a,b)=>a+b,0)/scores.length;
   const complete = scores.length === category.criteria.length;
-  return { average, weightedScore:Number(average.toFixed(2)), score100:average*20, answeredCount:scores.length, totalCriteria:category.criteria.length, complete };
+  const sum=scores.reduce((a,b)=>a+b,0),maxScore=category.criteria.length*5;
+  return { sum,maxScore,average, weightedScore:Number(average.toFixed(2)), score100:sum*100/(scores.length*5), answeredCount:scores.length, totalCriteria:category.criteria.length, complete };
+};
+
+function isEditorBallotCompleted(category,profileId){
+  const record=appState.evaluations[profileId];
+  return record?.status==='completed'&&validateScoringSubmission(category,record).isValid;
+}
+getCompletionStats=function(){
+  const done=group=>AWARD_CATEGORIES.filter(c=>c.group===group).filter(c=>{
+    const profiles=PROFILES_BY_CATEGORY[c.id]||[];
+    return profiles.length>0&&profiles.every(p=>isEditorBallotCompleted(c,p.id));
+  }).length;
+  return {truCotDone:done('tru-cot'),tienPhongDone:done('tien-phong')};
 };
 
 submitProfileEvaluation = function () {
@@ -122,14 +146,16 @@ submitProfileEvaluation = function () {
     return;
   }
   const previousStatus = record.status;
+  const previousStep=appState.currentStep;
   record.status = 'completed';
+  appState.currentStep=4;
   if (!saveState()) {
     record.status = previousStatus;
+    appState.currentStep=previousStep;
     updateEditorSummary();
     showToast('Chưa lưu được phiếu. Vui lòng kiểm tra quyền lưu trữ của trình duyệt.');
     return;
   }
-  appState.currentStep = 4;
   renderAll();
   window.scrollTo({top:0,behavior:'smooth'});
 };

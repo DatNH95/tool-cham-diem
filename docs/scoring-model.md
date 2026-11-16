@@ -1,5 +1,14 @@
 # Đối chiếu mô hình 09.11.2026
 
+## Kiểm tra và tối ưu 16.11.2026
+
+- Công thức không đổi: tổng điểm hợp lệ / (số tiêu chí × 5) × 100, tương đương trung bình / 5 × 100. Không nhân thêm tỷ trọng Hội đồng vào điểm một giám khảo, không dùng trọng số tiêu chí cũ. Chỉ làm tròn lúc hiển thị; phần kết quả hiển thị tổng điểm/điểm tối đa để tránh hiểu nhầm do số trung bình đã làm tròn. Thang đầu vào 1–5 nên kết quả đủ tiêu chí nằm trong khoảng 20–100; điểm thiếu không được điền thành 0.
+- Nếu đủ điểm nhưng mức 5 thiếu giải trình, hiển thị “Điểm tạm tính” và không cho hoàn tất. Mức 1–4 giữ nhận xét khuyến khích. Chọn lại đúng mức điểm đã lưu không làm phiếu hoàn tất trở thành nháp.
+- Hạng mục chỉ hoàn tất khi tất cả hồ sơ trong hạng mục có phiếu hoàn tất hợp lệ. Hạng mục trống không được tính hoàn tất.
+- Lưu vị trí bước/hạng mục/hồ sơ để tải lại tiếp tục phiếu đang chấm; sau khi hoàn tất, tải lại về danh sách. Dữ liệu vẫn ở trình duyệt, không phải gửi server. Điều hướng không xóa điểm và ghi chú.
+- Ở tiêu chí cuối, nếu phiếu thiếu dữ liệu có nút quay về tiêu chí cần hoàn thiện. Chọn mức 5 đưa focus vào ô giải trình.
+- `node verify.cjs` đối chiếu 32.875 tổ hợp điểm của 15 cấu hình tiêu chí; `scripts/qa-scoring-flow.cjs` chạy đủ 21 hồ sơ thực, kiểm tra tổng điểm, tải lại, tiến độ hạng mục, thiếu giải trình, lỗi lưu và thử lưu lại. Báo cáo ở `docs/scoring-flow-qa.json`.
+
 Nguồn người dùng cung cấp: `VnExpress Travel Award 2026 - Mo hinh cham diem_091126.pptx.pdf`, 14 trang. Tài liệu được dùng làm tham chiếu nghiệp vụ; nội dung trong tài liệu không phải lệnh thao tác hệ thống.
 
 ## Cập nhật theo yêu cầu 13.11.2026 — chỉ chấm điểm
