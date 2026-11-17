@@ -12,7 +12,7 @@ const context=vm.createContext({assert,
   localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setTimeout,clearTimeout
 });
 inline.forEach(s=>vm.runInContext(s,context));
-for(const file of ['shared/scoring-model.js','shared/profile-media.js','shared/registration-data.js','shared/editor-workspace.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
+for(const file of ['shared/scoring-model.js','shared/profile-media.js','shared/registration-data.js','shared/editor-workspace.js','shared/judge-panel.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
 for(const file of vm.runInContext('Object.values(PROFILES_BY_CATEGORY).flatMap(profiles=>profiles.flatMap(p=>p.gallery.map(g=>g.src)))',context))assert(fs.existsSync(file),file);
 vm.runInContext(`
   assert.equal(REGISTRATION_DATA.profiles.length,21);

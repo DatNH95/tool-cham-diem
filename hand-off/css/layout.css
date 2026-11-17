@@ -718,3 +718,32 @@ body{background-color: rgb(243, 250, 248); background-image: url("data:image/svg
 .editor-attachment-list{list-style: disc; margin: 0px; padding-left: 18px; line-height: 1.8;}
 .editor-attachment-list a{color: rgb(0, 113, 156); text-decoration: underline; text-underline-offset: 2px;}
 .judge-data dd a{color: rgb(0, 113, 156); overflow-wrap: anywhere;}
+.judge-council{margin-top: 12px; border: 1px solid rgb(219, 227, 232); border-radius: 10px; background: rgb(255, 255, 255); padding: 14px 16px;}
+.judge-council-heading{display: flex; justify-content: space-between; align-items: center; gap: 12px;}
+.judge-council-heading h2{margin: 0px;}
+.judge-council-heading p{color: rgb(100, 116, 139); margin-top: 3px;}
+.judge-council-count{color: rgb(0, 113, 156); white-space: nowrap;}
+.judge-council-details{margin-top: 10px;}
+.judge-council-details summary{cursor: pointer; color: rgb(0, 113, 156); min-height: 28px;}
+.judge-council-roster{display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 8px; list-style: none; margin: 8px 0px; padding: 0px;}
+.judge-council-roster li{display: flex; gap: 10px; align-items: center; padding: 10px; border: 1px solid rgb(226, 232, 240); border-radius: 7px; min-width: 0px;}
+.judge-council-avatar{display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; background: rgb(232, 245, 243); color: rgb(0, 113, 156); border-radius: 50%;}
+.judge-council-roster li > div{min-width: 0px;}
+.judge-council-roster strong{display: block; overflow-wrap: anywhere;}
+.judge-council-roster small{margin-left: 6px; color: rgb(0, 113, 156);}
+.judge-council-state{display: block; color: rgb(100, 116, 139); margin-top: 3px;}
+.judge-council-state.is-submitted{color: rgb(1, 131, 75);}
+.judge-council-roster .is-current-judge{border-color: rgb(0, 113, 156); background: rgb(241, 249, 251);}
+.judge-council-note{color: rgb(100, 116, 139); margin-top: 10px;}
+.judge-council-owner{border-top: 1px solid rgb(238, 242, 245); padding-top: 10px; margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap;}
+.judge-council-owner > span{color: rgb(100, 116, 139);}
+
+@media (max-width: 1023px) {
+.judge-council-roster{grid-template-columns: repeat(2, minmax(0px, 1fr));}
+}
+@media (max-width: 600px) {
+.judge-council-heading{align-items: flex-start; flex-direction: column; gap: 6px;}
+.judge-council-roster{grid-template-columns: 1fr;}
+}
+.judge-council-owner label{display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: rgb(100, 116, 139);}
+.judge-council-owner select{max-width: 100%; padding: 5px 8px; border: 1px solid rgb(219, 227, 232); border-radius: 5px; background: rgb(255, 255, 255); color: rgb(24, 59, 75); line-height: inherit;}

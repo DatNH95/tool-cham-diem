@@ -31,8 +31,23 @@ for (const category of AWARD_CATEGORIES) {
 let editorStorageState = 'idle';
 let editorImportedLegacy = false;
 
+
+function getEditorJudgeId(){return typeof JUDGE_PANEL_DATA!=='undefined'?JUDGE_PANEL_DATA.currentJudgeId:'demo-judge-01';}
+function getEditorJudgeStorageKey(id=getEditorJudgeId()){
+ if(!id||typeof id!=='string')throw Error('Missing judge identity');
+ return id==='demo-judge-01'?JUDGE_MODEL.storageKey:JUDGE_MODEL.storageKey+':judge:'+encodeURIComponent(id);
+}
+function switchEditorDemoJudge(id){
+ if(!JUDGE_PANEL_DATA.judges.some(j=>j.id===id&&j.id.startsWith('demo-')))return false;
+ if(!saveState()){showToast('Không thể lưu phiếu hiện tại; chưa chuyển BGK.');return false;}
+ const previous=JUDGE_PANEL_DATA.currentJudgeId,records=appState.evaluations;
+ JUDGE_PANEL_DATA.currentJudgeId=id;appState.evaluations={};editorStorageState='idle';loadSavedState();
+ if(editorStorageState==='error'){JUDGE_PANEL_DATA.currentJudgeId=previous;appState.evaluations=records;showToast('Không thể mở phiếu BGK.');return false;}
+ if(appState.currentStep===4)appState.currentStep=2;
+ renderAll();return true;
+}
 function createEditorEvaluation() {
-  return { modelVersion: JUDGE_MODEL.version, criteriaQuestions: {}, scores: {}, notes: {}, evidenceTiers: {}, evidenceRefs: {}, noEvidence: {}, status: 'unscored' };
+  return { editionId:'travel-awards-2026',judgeId:getEditorJudgeId(), modelVersion: JUDGE_MODEL.version, criteriaQuestions: {}, scores: {}, notes: {}, evidenceTiers: {}, evidenceRefs: {}, noEvidence: {}, status: 'unscored' };
 }
 
 getOrCreateEvaluation = function (profileId, category) {
@@ -54,17 +69,20 @@ getOrCreateEvaluation = function (profileId, category) {
   for (const key of ['criteriaQuestions','scores','notes','evidenceTiers','evidenceRefs','noEvidence']) {
     if (!record[key] || typeof record[key] !== 'object' || Array.isArray(record[key])) record[key] = {};
   }
+  record.editionId='travel-awards-2026';record.profileId=profileId;record.judgeId=getEditorJudgeId();
+  record.judgeName=typeof JUDGE_PANEL_DATA!=='undefined'?JUDGE_PANEL_DATA.judges.find(j=>j.id===record.judgeId)?.name:record.judgeName;
   return record;
 };
 
 loadSavedState = function () {
   try {
-    const current = localStorage.getItem(JUDGE_MODEL.storageKey);
-    const raw = current || localStorage.getItem(JUDGE_MODEL.legacyKey);
+    const current = localStorage.getItem(getEditorJudgeStorageKey());
+    const raw = current || (getEditorJudgeId()==='demo-judge-01'?localStorage.getItem(JUDGE_MODEL.legacyKey):null);
     if (!raw) return;
     const parsed = JSON.parse(raw);
     if (!parsed?.evaluations || typeof parsed.evaluations !== 'object' || Array.isArray(parsed.evaluations)) return;
-    appState.evaluations = parsed.evaluations;
+    if(parsed.judgeId&&parsed.judgeId!==getEditorJudgeId())throw Error('Ballot owner mismatch');
+    appState.evaluations=Object.fromEntries(Object.entries(parsed.evaluations).filter(([,r])=>!r?.judgeId||r.judgeId===getEditorJudgeId()));
     editorImportedLegacy = !current;
     for (const category of AWARD_CATEGORIES) for (const p of PROFILES_BY_CATEGORY[category.id] || []) {
       if (appState.evaluations[p.id]) {
@@ -88,7 +106,7 @@ loadSavedState = function () {
 saveState = function () {
   try {
     const navigation={step:appState.currentStep===4?2:appState.currentStep,categoryId:appState.selectedCategoryId,profileId:appState.selectedProfileId};
-    localStorage.setItem(JUDGE_MODEL.storageKey, JSON.stringify({ modelVersion: JUDGE_MODEL.version, evaluations: appState.evaluations,navigation }));
+    localStorage.setItem(getEditorJudgeStorageKey(), JSON.stringify({editionId:'travel-awards-2026',judgeId:getEditorJudgeId(), modelVersion: JUDGE_MODEL.version, evaluations: appState.evaluations,navigation }));
     editorStorageState = 'saved';
     return true;
   } catch { editorStorageState = 'error'; return false; }
@@ -146,11 +164,16 @@ submitProfileEvaluation = function () {
     return;
   }
   const previousStatus = record.status;
+  const previousJudge={id:record.judgeId,name:record.judgeName};
+  const currentJudge=typeof JUDGE_PANEL_DATA==='undefined'?null:JUDGE_PANEL_DATA.judges.find(j=>j.id===JUDGE_PANEL_DATA.currentJudgeId);
+  if(currentJudge){record.judgeId=currentJudge.id;record.judgeName=currentJudge.name;}
   const previousStep=appState.currentStep;
   record.status = 'completed';
   appState.currentStep=4;
   if (!saveState()) {
     record.status = previousStatus;
+    if(previousJudge.id===undefined)delete record.judgeId;else record.judgeId=previousJudge.id;
+    if(previousJudge.name===undefined)delete record.judgeName;else record.judgeName=previousJudge.name;
     appState.currentStep=previousStep;
     updateEditorSummary();
     showToast('Chưa lưu được phiếu. Vui lòng kiểm tra quyền lưu trữ của trình duyệt.');

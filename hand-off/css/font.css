@@ -130,4 +130,16 @@ button, input, select, optgroup, textarea, ::file-selector-button{font-style:inh
 @media (max-width: 400px) {.editor-photo-grid figcaption{font-size:10px;}}
 .editor-source-section h4{font-size:13px;font-weight:600;}
 .editor-attachment-list{font-size:12px;}
+.judge-council-heading h2{font-size:14px;font-weight:700;}
+.judge-council-heading p{font-size:11px;}
+.judge-council-count{font-size:12px;}
+.judge-council-details summary{font-size:12px;}
+.judge-council-avatar{font-size:11px;}
+.judge-council-roster strong{font-size:12px;}
+.judge-council-roster small{font-size:10px;}
+.judge-council-state{font-size:11px;}
+.judge-council-note{font-size:11px;}
+.judge-council-owner{font-size:12px;}
+.judge-council-owner > strong{font-weight:600;}
+.judge-council-owner select{font-style:inherit;font-variant-ligatures:inherit;font-variant-caps:inherit;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-variant-alternates:inherit;font-variant-position:inherit;font-variant-emoji:inherit;font-weight:inherit;font-stretch:inherit;font-size:inherit;font-family:inherit;font-optical-sizing:inherit;font-size-adjust:inherit;font-kerning:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-language-override:inherit;}
 .home-header{font-family:Inter,Arial,sans-serif}

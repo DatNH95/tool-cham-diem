@@ -100,6 +100,7 @@ renderStep3Workspace=function(){
     <header class="judge-heading"><div><p class="judge-eyebrow">${t(profile.code)} · ${t(category.name)}</p><h1>${t(profile.title)}</h1><p>${t(profile.organization)}</p></div><span id="editor-ballot-status" class="judge-status">${record.status==='completed'?'Đã hoàn tất phiếu':'Đang chấm độc lập'}</span></header>
     <div class="editor-model-bar"><p><strong>Phiếu cá nhân${profile.dataSource?` · ${t(profile.registrationStatus)}`:" · Vòng chung khảo"}</strong></p><span>Hội đồng ${Math.round(category.councilWeight*100)}% <i>·</i> Độc giả ${Math.round(category.readerWeight*100)}%</span></div>
     ${record.importedLegacy?'<p class="editor-import-note">Đã giữ lại điểm nhập tay từ bản cũ. Vui lòng kiểm tra lại trước khi hoàn tất; bản lưu cũ vẫn được giữ nguyên.</p>':''}
+    ${renderJudgePanel(profile)}
     ${renderEditorRules()}
 
     <div class="editor-mobile-tabs" role="group" aria-label="Chuyển vùng làm việc"><button type="button" aria-pressed="${editorUI.mobilePanel==='scoring'}" onclick="editorSwitchPanel('scoring')">Phiếu chấm</button><button type="button" aria-pressed="${editorUI.mobilePanel==='dossier'}" onclick="editorSwitchPanel('dossier')">Đọc hồ sơ & minh chứng</button></div>
@@ -118,14 +119,14 @@ renderStep2Profiles=function(){
   const completed=profiles.filter(p=>isEditorBallotCompleted(category,p.id)).length;
   return `<section class="editor-profile-list"><div class="editor-profile-list-heading"><div><p class="judge-eyebrow">${t(category.groupLabel)} · Danh sách hồ sơ</p><h1>${t(category.name)}</h1><p>Chọn hồ sơ để đối chiếu minh chứng và chấm độc lập.</p></div><span class="judge-status">${completed}/${profiles.length} phiếu hoàn tất</span></div><div class="editor-profile-cards">${profiles.length?"":'<p class="editor-help">Chưa có hồ sơ trong file dữ liệu.</p>'}${profiles.map(p=>{
     const record=appState.evaluations[p.id],score=computeJudgeScore(category,record),done=isEditorBallotCompleted(category,p.id);
-    return `<article><div><p class="judge-eyebrow">${t(p.code)}</p><h2>${t(p.title)}</h2><p>${t(p.organization)}</p></div><div><span class="editor-profile-state">${done?`${score.score100.toFixed(1)}/100 · Đã hoàn tất`:score?'Đang chấm · Bản nháp':'Chưa chấm'}</span><button type="button" class="${done?'editor-secondary':'editor-primary'}" onclick="openProfileForScoring('${p.id}')">${done?'Xem lại phiếu':score?'Tiếp tục chấm':'Mở phiếu chấm'} →</button></div></article>`;
+    return `<article><div><p class="judge-eyebrow editor-profile-judge">${t(p.code)}${done?` · Người chấm phiếu này: <strong>${t(record.judgeName||"Chưa ghi nhận tên BGK")}</strong>`:""}</p><h2>${t(p.title)}</h2><p>${t(p.organization)}</p></div><div><span class="editor-profile-state">${done?`${score.score100.toFixed(1)}/100 · Đã hoàn tất`:score?'Đang chấm · Bản nháp':'Chưa chấm'}</span><button type="button" class="${done?'editor-secondary':'editor-primary'}" onclick="openProfileForScoring('${p.id}')">${done?'Xem lại phiếu':score?'Tiếp tục chấm':'Mở phiếu chấm'} →</button></div></article>`;
   }).join('')}</div><div class="editor-profile-list-footer"><button type="button" class="editor-secondary" onclick="goToStep(1)">‹ Chọn hạng mục khác</button><span>Phiếu lưu trên trình duyệt này</span></div></section>`;
 };
 const renderEditorBase=renderAll;
 renderAll=function(){
   if(appState.currentStep>=3&&!(PROFILES_BY_CATEGORY[appState.selectedCategoryId]||[]).length)appState.currentStep=2;
   const current=document.querySelector('.judge-workspace'),sameProfile=appState.currentStep===3&&current?.dataset.profile===appState.selectedProfileId,sameCriterion=sameProfile&&current?.dataset.criterion===editorUI.criterion;
-  const scrolls=sameProfile?[...document.querySelectorAll('[data-workspace-scroll]')].filter(e=>sameCriterion||e.dataset.workspaceScroll==='dossier').map(e=>[e.dataset.workspaceScroll,e.scrollTop]):[],details=sameProfile?[...document.querySelectorAll('[data-workspace-detail]')].filter(e=>sameCriterion||e.closest('.judge-dossier')).map(e=>[e.dataset.workspaceDetail,e.open]):[];
+  const scrolls=sameProfile?[...document.querySelectorAll('[data-workspace-scroll]')].filter(e=>sameCriterion||e.dataset.workspaceScroll==='dossier').map(e=>[e.dataset.workspaceScroll,e.scrollTop]):[],details=sameProfile?[...document.querySelectorAll('[data-workspace-detail]')].filter(e=>sameCriterion||e.closest('.judge-dossier')||e.dataset.workspaceDetail==='council').map(e=>[e.dataset.workspaceDetail,e.open]):[];
   const active=sameCriterion?document.activeElement:null,field=active?.dataset?.editorField,action=active?.getAttribute('onclick');
   renderEditorBase();document.body.classList.toggle('editor-evaluation',appState.currentStep===3);
   for(const [key,open]of details){const e=document.querySelector(`[data-workspace-detail="${key}"]`);if(e)e.open=open;}

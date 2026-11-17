@@ -37,6 +37,8 @@ let browser;
     assert.equal((await page.locator('.editor-result-score strong').innerText()).replace('/100',''),(sum/(5*record.codes.length)*100).toFixed(1));
     await page.getByRole('button',{name:'Quay lại danh sách hồ sơ',exact:true}).click();
     assert(await page.locator('.editor-profile-list').isVisible());
+    const nameLine=page.locator('.editor-profile-cards article').filter({has:page.getByText('HS-'+record.id.replace('submission-',''),{exact:false})}).locator('.editor-profile-judge');
+    assert((await nameLine.innerText()).includes('Nguyễn Minh Anh'));
   }
   assert.deepEqual(await page.evaluate(()=>getCompletionStats()),{truCotDone:4,tienPhongDone:5});
   await page.reload({waitUntil:'networkidle'});
