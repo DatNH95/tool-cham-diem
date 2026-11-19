@@ -37,3 +37,9 @@ Cập nhật theo yêu cầu: dùng 13 tên minh họa, mô phỏng 5 BGK đã c
 - Có lựa chọn Chuyển BGK thử nghiệm, nhớ tài khoản thử nghiệm theo tab. Lỗi lưu chặn chuyển để giữ nội dung đang nhập. Trạng thái đã lưu được ưu tiên hơn trạng thái minh họa của roster.
 - Đây là mô phỏng trình duyệt. Khi tích hợp, bỏ lựa chọn thử nghiệm, lấy judge_id từ session server; server kiểm tra quyền và UNIQUE(edition_id, entry_id, judge_id), upsert chỉ phiếu của chủ sở hữu. API danh sách BGK chỉ trả tên/trạng thái, không trả điểm hoặc giải trình của người khác. Dùng version/revision để phát hiện xung đột hai tab của cùng BGK; localStorage không thay thế xác thực hay cơ chế đồng thời ở database.
 - Kiểm tra: scripts/qa-judge-isolation.cjs chạy hai tab cùng hồ sơ 597, lưu hai phiếu 60/80 cùng ghi chú riêng, tải lại, chuyển BGK và chặn chuyển khi lỗi lưu. Không thay công thức hay tổng hợp Hội đồng.
+
+## Rà soát 18.11.2026
+
+- Bước 2 liệt kê tên các BGK có phiếu hoàn tất hợp lệ, không dùng trạng thái minh họa của roster để điền danh sách này. Điểm hiển thị vẫn là của BGK đang thao tác.
+- Kiểm tra tài khoản theo tab sau tải lại mà không gọi chuyển lại bằng test. Đã sửa việc chưa ghi tài khoản đã chọn vào sessionStorage.
+- Dữ liệu lưu lỗi JSON hoặc sai cấu trúc được giữ nguyên; không tự ghi đè. Khi chuyển BGK gặp lỗi đọc, quay lại BGK trước.

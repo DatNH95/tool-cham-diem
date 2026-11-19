@@ -30,6 +30,7 @@ for (const category of AWARD_CATEGORIES) {
 
 let editorStorageState = 'idle';
 let editorImportedLegacy = false;
+const editorUnreadableJudgeKeys=new Set();
 
 
 function getEditorJudgeId(){return typeof JUDGE_PANEL_DATA!=='undefined'?JUDGE_PANEL_DATA.currentJudgeId:'demo-judge-01';}
@@ -44,6 +45,7 @@ function switchEditorDemoJudge(id){
  JUDGE_PANEL_DATA.currentJudgeId=id;appState.evaluations={};editorStorageState='idle';loadSavedState();
  if(editorStorageState==='error'){JUDGE_PANEL_DATA.currentJudgeId=previous;appState.evaluations=records;showToast('Không thể mở phiếu BGK.');return false;}
  if(appState.currentStep===4)appState.currentStep=2;
+ try{sessionStorage.setItem('vta2026_demo_judge',id);}catch{}
  renderAll();return true;
 }
 function createEditorEvaluation() {
@@ -80,7 +82,7 @@ loadSavedState = function () {
     const raw = current || (getEditorJudgeId()==='demo-judge-01'?localStorage.getItem(JUDGE_MODEL.legacyKey):null);
     if (!raw) return;
     const parsed = JSON.parse(raw);
-    if (!parsed?.evaluations || typeof parsed.evaluations !== 'object' || Array.isArray(parsed.evaluations)) return;
+    if (!parsed?.evaluations || typeof parsed.evaluations !== 'object' || Array.isArray(parsed.evaluations)) throw Error('Invalid ballot storage');
     if(parsed.judgeId&&parsed.judgeId!==getEditorJudgeId())throw Error('Ballot owner mismatch');
     appState.evaluations=Object.fromEntries(Object.entries(parsed.evaluations).filter(([,r])=>!r?.judgeId||r.judgeId===getEditorJudgeId()));
     editorImportedLegacy = !current;
@@ -100,11 +102,13 @@ loadSavedState = function () {
         appState.currentStep=profiles.length?navigation.step:Math.min(navigation.step,2);
       }
     }
-  } catch { editorStorageState = 'error'; }
+    editorUnreadableJudgeKeys.delete(getEditorJudgeStorageKey());
+  } catch { editorStorageState = 'error'; editorUnreadableJudgeKeys.add(getEditorJudgeStorageKey()); }
 };
 
 saveState = function () {
   try {
+    if(editorUnreadableJudgeKeys.has(getEditorJudgeStorageKey()))throw Error('Unreadable saved ballot; preserve original');
     const navigation={step:appState.currentStep===4?2:appState.currentStep,categoryId:appState.selectedCategoryId,profileId:appState.selectedProfileId};
     localStorage.setItem(getEditorJudgeStorageKey(), JSON.stringify({editionId:'travel-awards-2026',judgeId:getEditorJudgeId(), modelVersion: JUDGE_MODEL.version, evaluations: appState.evaluations,navigation }));
     editorStorageState = 'saved';

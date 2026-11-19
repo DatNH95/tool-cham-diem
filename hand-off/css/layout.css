@@ -747,3 +747,5 @@ body{background-color: rgb(243, 250, 248); background-image: url("data:image/svg
 }
 .judge-council-owner label{display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: rgb(100, 116, 139);}
 .judge-council-owner select{max-width: 100%; padding: 5px 8px; border: 1px solid rgb(219, 227, 232); border-radius: 5px; background: rgb(255, 255, 255); color: rgb(24, 59, 75); line-height: inherit;}
+.editor-submitted-judges{line-height: 1.6; margin-top: 8px; color: rgb(100, 116, 139);}
+.editor-submitted-judges strong{color: rgb(0, 113, 156);}
